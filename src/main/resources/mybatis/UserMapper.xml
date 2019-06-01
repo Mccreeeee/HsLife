@@ -10,15 +10,15 @@
     </resultMap>
 
     <select id="findByOpenId" parameterType="String" resultMap="userResultMap">
-        SELECT * FROM user WHERE openid = #{openId}
+        SELECT * FROM users WHERE openid = #{openId}
     </select>
 
     <select id="findAllUsers" resultMap="userResultMap">
-        SELECT * FROM user;
+        SELECT * FROM users;
     </select>
 
     <insert id="insertOneUser" parameterType="com.hnsfdx.hslife.pojo.User">
-        INSERT INTO user (openid, username, score)
+        INSERT INTO users (openid, username, score)
         VALUES (#{openId}, #{userName}, #{score})
     </insert>
 
