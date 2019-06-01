@@ -5,11 +5,12 @@ import com.hnsfdx.hslife.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
     private UserService userService;
-
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/test")
-    public String test(){
-        return userService.getAllUsers().toString();
+    public List<User> test(){
+        return userService.getAllUsers();
     }
 }
