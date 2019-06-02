@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface NewService {
     void addNew(New oneNew);
-    List<New> getAllNews();
+    List<New> getAllNews(Integer offset);
 }
