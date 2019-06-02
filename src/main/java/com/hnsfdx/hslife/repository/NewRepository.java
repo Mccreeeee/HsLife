@@ -7,5 +7,5 @@ import java.util.List;
 public interface NewRepository {
     void insertOneNew(New oneNew);
 
-    List<New> findAllNews();
+    List<New> findAllNews(Integer offset);
 }

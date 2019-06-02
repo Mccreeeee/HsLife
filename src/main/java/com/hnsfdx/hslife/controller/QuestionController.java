@@ -25,8 +25,8 @@ public class QuestionController {
     }
 
     @GetMapping("/getallquestions")
-    public List<Question> getAllQuestions() {
-        return questionService.getAllQuestions();
+    public List<Question> getAllQuestions(@RequestParam("offset") Integer offset) {
+        return questionService.getAllQuestions(offset);
     }
 
     @GetMapping("/getallquestionsbyaid")
@@ -35,7 +35,13 @@ public class QuestionController {
     }
 
     @GetMapping("/getallquestionsbyt")
-    public List<Question> getAllQuestionsByT(@RequestParam("title") String title) {
-        return questionService.getAllQuestionsByTitle(title);
+    public List<Question> getAllQuestionsByT(@RequestParam("title") String title, @RequestParam("offset") Integer offset) {
+        return questionService.getAllQuestionsByTitle(title, offset);
     }
+
+//    //给出“我”评论过的所有疑问
+//    @GetMapping("/getallquestionsofme")
+//    public List<Question> getAllQuestionsOfMe(@RequestParam("openId") String openId) {
+//
+//    }
 }
