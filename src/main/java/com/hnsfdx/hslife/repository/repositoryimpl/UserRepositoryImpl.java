@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
 
     @Autowired
     public UserRepositoryImpl(UserMapper userMapper){

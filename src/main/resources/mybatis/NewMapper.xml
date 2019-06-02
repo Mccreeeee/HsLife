@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnsfdx.hslife.mapper.NewMapper">
+    <resultMap id="newResultMap" type="com.hnsfdx.hslife.pojo.New">
+        <id property="id" column="id" jdbcType="INTEGER" />
+        <result property="title" column="title" jdbcType="VARCHAR" />
+        <result property="content" column="content" jdbcType="LONGVARCHAR" />
+        <result property="author" column="author" jdbcType="VARCHAR" />
+        <result property="publishDate" column="publishdate" jdbcType="DATE" />
+    </resultMap>
+    <select id="findAllNews" resultMap="newResultMap">
+        SELECT * FROM news;
+    </select>
+</mapper>

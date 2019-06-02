@@ -18,6 +18,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUser(String openId) {
+        return userRepository.findByOpenId(openId);
+    }
+
+    @Override
     public void addUser(User user) {
         userRepository.insertOneUser(user);
     }
