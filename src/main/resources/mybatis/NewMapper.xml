@@ -9,7 +9,8 @@
         <result property="author" column="author" jdbcType="VARCHAR" />
         <result property="publishDate" column="publishdate" jdbcType="DATE" />
     </resultMap>
-    <select id="findAllNews" resultMap="newResultMap">
-        SELECT * FROM news;
+
+    <select id="findAllNews" parameterType="INTEGER" resultMap="newResultMap">
+        SELECT * FROM news ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>
 </mapper>

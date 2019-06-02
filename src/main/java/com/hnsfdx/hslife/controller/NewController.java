@@ -25,7 +25,7 @@ public class NewController {
     }
 
     @GetMapping("/getallnews")
-    public List<New> getAllNews() {
-        return newService.getAllNews();
+    public List<New> getAllNews(@RequestParam("offset") Integer offset) {
+        return newService.getAllNews(offset);
     }
 }

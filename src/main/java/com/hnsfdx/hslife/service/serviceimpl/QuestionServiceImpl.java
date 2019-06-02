@@ -24,8 +24,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> getAllQuestions() {
-        return questionRepository.findAllQuestions();
+    public List<Question> getAllQuestions(Integer offset) {
+        return questionRepository.findAllQuestions(offset);
     }
 
     @Override
@@ -34,7 +34,12 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> getAllQuestionsByTitle(String title) {
-        return questionRepository.findAllQuestionsByTitle(title);
+    public List<Question> getAllQuestionsByTitle(String title, Integer offset) {
+        return questionRepository.findAllQuestionsByTitle(title, offset);
+    }
+
+    @Override
+    public List<Question> getAllQuestionsByQuestionId(List<Integer> questionIds) {
+        return questionRepository.findAllQuestionsByQuestionId(questionIds);
     }
 }

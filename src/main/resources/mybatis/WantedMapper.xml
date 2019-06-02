@@ -17,23 +17,23 @@
         <result property="imgurl4" column="imgurl4" jdbcType="VARCHAR" />
     </resultMap>
     <select id="findAllWanteds" resultMap="wantedResultMap">
-        SELECT * FROM wanteds
+        SELECT * FROM wanteds ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>
 
     <select id="findAllWantedsByRecipientOpenId" parameterType="String" resultMap="wantedResultMap">
-        SELECT * FROM wanteds WHERE id = #{openId}
+        SELECT * FROM wanteds WHERE id = #{openId} ORDER BY publishdate DESC
     </select>
 
     <select id="findAllWantedsByAuthorOpenId" parameterType="String" resultMap="wantedResultMap">
-        SELECT * FROM wanteds WHERE id = #{openId}
+        SELECT * FROM wanteds WHERE id = #{openId} ORDER BY publishdate DESC
     </select>
 
     <select id="findAllWantedsByStatus" parameterType="Integer" resultMap="wantedResultMap">
-        SELECT * FROM wanteds WHERE status = #{status}
+        SELECT * FROM wanteds WHERE status = #{status} ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>
 
     <select id="findAllWantedsByTitle" parameterType="String" resultMap="wantedResultMap">
       <bind name="pattern" value="'%' + title + '%'" />
-        SELECT * FROM wanteds WHERE title LIKE #{pattern}
+        SELECT * FROM wanteds WHERE title LIKE #{pattern} ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>
 </mapper>
