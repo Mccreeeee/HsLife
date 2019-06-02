@@ -2,6 +2,7 @@ package com.hnsfdx.hslife.controller;
 
 import com.hnsfdx.hslife.pojo.User;
 import com.hnsfdx.hslife.service.UserService;
+import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class UserController {
     public String addUser(@RequestBody User user) {
         userService.addUser(user);
         //此处要加异常处理，后续再进行优化
-        return "success!";
+        return ResponseTypeUtil.BOOLEAN_SUC;
     }
 
     @PostMapping("/getuser")

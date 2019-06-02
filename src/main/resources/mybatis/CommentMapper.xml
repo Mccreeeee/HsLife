@@ -10,13 +10,15 @@
         <result property="publishDate" column="publishdate" jdbcType="TIMESTAMP" />
         <result property="likeNum" column="likenum" jdbcType="INTEGER" />
     </resultMap>
-    <select id="findAllCommentsByQuesionId" parameterType="Integer" resultMap="commentRelustMap">
-        SELECT * FROM comments WHERE questionid = #{questionId}
+    <select id="findAllCommentsByQuesionId" resultMap="commentRelustMap">
+        SELECT * FROM comments WHERE questionid = #{questionId} ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>
 
-    <select id="findAllCommentsByQuesionIdMost3" parameterType="INTEGER" resultMap="commentRelustMap">
-        SELECT * from comments ORDER BY likenum DESC LIMIT 3
+    <select id="findAllCommentsByQuesionIdMost3" parameterType="Integer" resultMap="commentRelustMap">
+        SELECT * from comments WHERE questionid = #{questionId} ORDER BY likenum DESC LIMIT 3
     </select>
 
-    <!--<select id="findAllCommentsByQuesionIdOrdered"-->
+    <select id="findAllCommentsByReviewerOpenId" parameterType="String" resultMap="commentRelustMap">
+        SELECT DISTINCT * from comments WHERE reviewer = #{openId}
+    </select>
 </mapper>
