@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnsfdx.hslife.mapper.QuestionMapper">
+    <resultMap id="questionResultMap" type="com.hnsfdx.hslife.pojo.Question">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR" />
+        <result property="content" column="content" jdbcType="VARCHAR" />
+        <result property="author" column="author" jdbcType="VARCHAR" />
+        <result property="publishDate" column="publishdate" jdbcType="TIMESTAMP" />
+        <result property="imgurl1" column="imgurl1" jdbcType="VARCHAR" />
+        <result property="imgurl2" column="imgurl2" jdbcType="VARCHAR" />
+        <result property="imgurl3" column="imgurl3" jdbcType="VARCHAR" />
+        <result property="imgurl4" column="imgurl4" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="findAllQuestions" resultMap="questionResultMap">
+        SELECT * FROM questions
+    </select>
+
+    <select id="findAllQuestionsByAuthorOpenId" parameterType="String" resultMap="questionResultMap">
+        SELECT * FROM questions WHERE author = #{openId}
+    </select>
+
+    <select id="findAllQuestionsByTitle" parameterType="String" resultMap="questionResultMap">
+        <bind name="pattern" value="'%' + title + '%'" />
+        SELECT * FROM questions WHERE title LIKE #{pattern}
+    </select>
+</mapper>
