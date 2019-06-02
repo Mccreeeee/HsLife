@@ -23,18 +23,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> getAllCommentsByQuesionId(Integer questionId) {
-        return commentRepository.findAllCommentsByQuesionId(questionId);
+    public List<Comment> getAllCommentsByQuesionId(Integer questionId, Integer offset) {
+        return commentRepository.findAllCommentsByQuesionId(questionId, offset);
     }
 
     @Override
     public List<Comment> getAllCommentsByQuesionIdMost3(Integer questionId) {
         return commentRepository.findAllCommentsByQuesionIdMost3(questionId);
-    }
-
-    @Override
-    public List<Comment> getAllCommentsByQuesionIdOrdered(Integer questionId) {
-        return commentRepository.findAllCommentsByQuesionIdOrdered(questionId);
     }
 
     @Override
