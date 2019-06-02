@@ -1,9 +1,12 @@
 package com.hnsfdx.hslife.pojo;
 
+import javafx.util.converter.TimeStringConverter;
+
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Entertainment {
-    private Integer id;
+    private Integer id=-1;
     private String title,imgurl1,imgurl2,imgurl3,imgurl4;
     private String content;
 
@@ -63,15 +66,15 @@ public class Entertainment {
         this.content = content;
     }
 
-    public Date getPublishdate() {
+    public Timestamp getPublishdate() {
         return publishdate;
     }
 
-    public void setPublishdate(Date publishdate) {
+    public void setPublishdate(Timestamp publishdate) {
         this.publishdate = publishdate;
     }
 
-    private Date publishdate;
+    private Timestamp publishdate;
 
 
 }
