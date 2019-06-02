@@ -2,6 +2,7 @@ package com.hnsfdx.hslife.controller;
 
 import com.hnsfdx.hslife.pojo.Wanted;
 import com.hnsfdx.hslife.service.WantedService;
+import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class WantedController {
     public String addWanted(Wanted wanted) {
         wantedService.addWanted(wanted);
         //需要做异常处理，后续再优化
-        return "success!";
+        return ResponseTypeUtil.BOOLEAN_SUC;
     }
     //找到所有悬赏信息
     @GetMapping("/getallwanteds")

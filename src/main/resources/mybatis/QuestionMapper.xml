@@ -14,7 +14,7 @@
         <result property="imgurl4" column="imgurl4" jdbcType="VARCHAR" />
     </resultMap>
 
-    <select id="findAllQuestions" resultMap="questionResultMap">
+    <select id="findAllQuestions" parameterType="Integer" resultMap="questionResultMap">
         SELECT * FROM questions ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>
 
@@ -22,7 +22,7 @@
         SELECT * FROM questions WHERE author = #{openId}
     </select>
 
-    <select id="findAllQuestionsByTitle" parameterType="String" resultMap="questionResultMap">
+    <select id="findAllQuestionsByTitle" resultMap="questionResultMap">
         <bind name="pattern" value="'%' + title + '%'" />
         SELECT * FROM questions WHERE title LIKE #{pattern} ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>

@@ -28,11 +28,11 @@
         SELECT * FROM wanteds WHERE id = #{openId} ORDER BY publishdate DESC
     </select>
 
-    <select id="findAllWantedsByStatus" parameterType="Integer" resultMap="wantedResultMap">
+    <select id="findAllWantedsByStatus" resultMap="wantedResultMap">
         SELECT * FROM wanteds WHERE status = #{status} ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>
 
-    <select id="findAllWantedsByTitle" parameterType="String" resultMap="wantedResultMap">
+    <select id="findAllWantedsByTitle" resultMap="wantedResultMap">
       <bind name="pattern" value="'%' + title + '%'" />
         SELECT * FROM wanteds WHERE title LIKE #{pattern} ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>
