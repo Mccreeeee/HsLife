@@ -1,0 +1,13 @@
+package com.hnsfdx.hslife.repository;
+
+import com.hnsfdx.hslife.pojo.Entertainment;
+
+import java.util.List;
+
+public interface EntertainmentRepository {
+    void insertSingle(Entertainment entertainment);
+
+    List<Entertainment> findEntertainmentById(Integer id);
+
+    List<Entertainment> findEntertainments(Integer firstIndex, Integer size);
+}
