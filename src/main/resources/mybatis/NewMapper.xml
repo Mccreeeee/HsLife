@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hnsfdx.hslife.mapper.NewMapper">
-    <resultMap id="newResultMap" type="com.hnsfdx.hslife.pojo.New">
+<mapper namespace="com.hnsfdx.hslife.mapper.NewsMapper">
+    <resultMap id="newResultMap" type="com.hnsfdx.hslife.pojo.News">
         <id property="id" column="id" jdbcType="INTEGER" />
         <result property="title" column="title" jdbcType="VARCHAR" />
         <result property="content" column="content" jdbcType="LONGVARCHAR" />
@@ -10,7 +10,7 @@
         <result property="publishDate" column="publishdate" jdbcType="DATE" />
     </resultMap>
 
-    <select id="findAllNews" parameterType="INTEGER" resultMap="newResultMap">
+    <select id="findAllNews" parameterType="Integer" resultMap="newResultMap">
         SELECT * FROM news ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>
 </mapper>
