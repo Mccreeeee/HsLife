@@ -19,5 +19,6 @@ public interface CommentMapper {
     List<Comment> findAllCommentsByQuesionIdMost3(@Param(value = "questionId") Integer questionId);
     //找到某个疑问下按最新时间排序的所有评论
     List<Comment> findAllCommentsByQuesionIdOrdered(@Param(value = "questionId") Integer questionId);
-    //找到“我”评论过的疑问id
+    //找到“我”评论过的所有疑问id
+    List<Integer> findAllCommentsByReviewerOpenId(@Param(value = "openId") String openId);
 }

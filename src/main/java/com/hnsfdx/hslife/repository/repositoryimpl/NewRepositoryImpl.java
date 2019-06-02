@@ -23,7 +23,7 @@ public class NewRepositoryImpl implements NewRepository {
     }
 
     @Override
-    public List<New> findAllNews() {
-        return newMapper.findAllNews();
+    public List<New> findAllNews(Integer offset) {
+        return newMapper.findAllNews(offset);
     }
 }

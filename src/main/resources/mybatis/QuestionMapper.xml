@@ -15,7 +15,7 @@
     </resultMap>
 
     <select id="findAllQuestions" resultMap="questionResultMap">
-        SELECT * FROM questions
+        SELECT * FROM questions ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
     </select>
 
     <select id="findAllQuestionsByAuthorOpenId" parameterType="String" resultMap="questionResultMap">
@@ -24,6 +24,14 @@
 
     <select id="findAllQuestionsByTitle" parameterType="String" resultMap="questionResultMap">
         <bind name="pattern" value="'%' + title + '%'" />
-        SELECT * FROM questions WHERE title LIKE #{pattern}
+        SELECT * FROM questions WHERE title LIKE #{pattern} ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
+    </select>
+
+    <select id="findAllQuestionsByQuestionId" parameterType="List" resultMap="questionResultMap">
+        SELECT * FROM questions
+        WHERE id IN 
+        <foreach collection="questionIds" item="questionId" open="(" close=")" separator=",">
+            #{questionId}
+        </foreach>
     </select>
 </mapper>
