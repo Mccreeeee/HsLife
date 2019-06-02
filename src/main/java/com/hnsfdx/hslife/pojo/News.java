@@ -2,7 +2,7 @@ package com.hnsfdx.hslife.pojo;
 
 import java.sql.Date;
 
-public class New {
+public class News {
     private Integer id;
 
     private String title;
