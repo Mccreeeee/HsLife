@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/new")
+@RequestMapping("/news")
 public class NewsController {
     private NewsService newsService;
 
@@ -18,9 +18,9 @@ public class NewsController {
         this.newsService = newsService;
     }
 
-    @PostMapping("/addnew")
+    @PostMapping("/addnews")
     public String addNew(@RequestBody News oneNews) {
-        newsService.addNew(oneNews);
+        newsService.addNews(oneNews);
         //此处要加异常处理，后续再进行优化
         return ResponseTypeUtil.BOOLEAN_SUC;
     }

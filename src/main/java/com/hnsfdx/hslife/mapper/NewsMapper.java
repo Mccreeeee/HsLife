@@ -10,7 +10,7 @@ public interface NewsMapper {
     @Insert("INSERT INTO news(title, content, author, publishdate) " +
             "VALUES" +
             "(#{title}, #{content}, #{author}, #{publishDate})")
-    void insertOneNew(News oneNews);
+    void insertOneNews(News oneNews);
     //注解方式
 //    @Select("SELECT * FROM news")
 //    @Results({

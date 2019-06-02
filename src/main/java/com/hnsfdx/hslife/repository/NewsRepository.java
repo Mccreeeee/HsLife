@@ -5,7 +5,7 @@ import com.hnsfdx.hslife.pojo.News;
 import java.util.List;
 
 public interface NewsRepository {
-    void insertOneNew(News oneNews);
+    void insertOneNews(News oneNews);
 
     List<News> findAllNews(Integer offset);
 }
