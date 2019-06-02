@@ -24,8 +24,8 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     }
 
     @Override
-    public List<Question> findAllQuestions() {
-        return questionMapper.findAllQuestions();
+    public List<Question> findAllQuestions(Integer offset) {
+        return questionMapper.findAllQuestions(offset);
     }
 
     @Override
@@ -34,7 +34,12 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     }
 
     @Override
-    public List<Question> findAllQuestionsByTitle(String title) {
-        return questionMapper.findAllQuestionsByTitle(title);
+    public List<Question> findAllQuestionsByTitle(String title, Integer offset) {
+        return questionMapper.findAllQuestionsByTitle(title, offset);
+    }
+
+    @Override
+    public List<Question> findAllQuestionsByQuestionId(List<Integer> questionIds) {
+        return questionMapper.findAllQuestionsByQuestionId(questionIds);
     }
 }

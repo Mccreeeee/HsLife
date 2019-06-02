@@ -26,8 +26,8 @@ public class WantedController {
     }
     //找到所有悬赏信息
     @GetMapping("/getallwanteds")
-    public List<Wanted> getAllWanteds() {
-        return wantedService.getAllWanteds();
+    public List<Wanted> getAllWanteds(@RequestParam("offset") Integer offset) {
+        return wantedService.getAllWanteds(offset);
     }
     //找到某个接受人接受的所有悬赏信息
     @GetMapping("/getallwantedsbyrid")
@@ -41,12 +41,12 @@ public class WantedController {
     }
     //找到所有的某个状态的悬赏信息（急/已解决/未解决）
     @GetMapping("/getallwantedsbys")
-    public List<Wanted> getAllWantedsByS(@RequestParam("status") Integer status) {
-        return wantedService.getAllWantedsByStatus(status);
+    public List<Wanted> getAllWantedsByS(@RequestParam("status") Integer status, @RequestParam("offset") Integer offset) {
+        return wantedService.getAllWantedsByStatus(status, offset);
     }
     //找到搜索的类似标题的悬赏信息
     @GetMapping("/getallwantedsbyt")
-    public List<Wanted> getAllWantedsByT(@RequestParam("title") String title) {
-        return wantedService.getAllWantedsByTitle(title);
+    public List<Wanted> getAllWantedsByT(@RequestParam("title") String title, @RequestParam("offset") Integer offset) {
+        return wantedService.getAllWantedsByTitle(title, offset);
     }
 }

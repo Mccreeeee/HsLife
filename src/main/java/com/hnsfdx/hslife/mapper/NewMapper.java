@@ -21,5 +21,5 @@ public interface NewMapper {
 //            @Result(property = "author", column = "author", jdbcType = JdbcType.VARCHAR),
 //            @Result(property = "publishDate", column = "publishdate", jdbcType = JdbcType.DATE)
 //    })
-    List<New> findAllNews();
+    List<New> findAllNews(@Param(value = "offset") Integer offset);
 }

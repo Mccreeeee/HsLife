@@ -22,7 +22,7 @@ public class NewServiceImpl implements NewService {
     }
 
     @Override
-    public List<New> getAllNews() {
-        return newRepository.findAllNews();
+    public List<New> getAllNews(Integer offset) {
+        return newRepository.findAllNews(offset);
     }
 }

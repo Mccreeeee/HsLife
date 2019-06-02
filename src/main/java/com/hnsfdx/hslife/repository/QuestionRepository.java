@@ -7,9 +7,11 @@ import java.util.List;
 public interface QuestionRepository {
     void insertOneQuestion(Question question);
     //找到所有疑问
-    List<Question> findAllQuestions();
+    List<Question> findAllQuestions(Integer offset);
     //找到所有“我”发过的疑问
     List<Question> findAllQuestionsByAuthorOpenId(String openId);
     //找到搜索的类似标题的疑问
-    List<Question> findAllQuestionsByTitle(String title);
+    List<Question> findAllQuestionsByTitle(String title, Integer offset);
+    //根据Comment的questionId列表来找“我”评论过的疑问
+    List<Question> findAllQuestionsByQuestionId(List<Integer> questionIds);
 }
