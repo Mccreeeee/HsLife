@@ -4,9 +4,11 @@ import com.hnsfdx.hslife.mapper.EntertainmentMapper;
 import com.hnsfdx.hslife.pojo.Entertainment;
 import com.hnsfdx.hslife.repository.EntertainmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class EntertainmentRepositoryImpl implements EntertainmentRepository {
     private final EntertainmentMapper entertainmentMapper;
 
