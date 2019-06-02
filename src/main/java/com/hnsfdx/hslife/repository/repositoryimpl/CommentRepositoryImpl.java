@@ -23,18 +23,13 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
-    public List<Comment> findAllCommentsByQuesionId(Integer questionId) {
-        return commentMapper.findAllCommentsByQuesionId(questionId);
+    public List<Comment> findAllCommentsByQuesionId(Integer questionId, Integer offset) {
+        return commentMapper.findAllCommentsByQuesionId(questionId, offset);
     }
 
     @Override
     public List<Comment> findAllCommentsByQuesionIdMost3(Integer questionId) {
         return commentMapper.findAllCommentsByQuesionIdMost3(questionId);
-    }
-
-    @Override
-    public List<Comment> findAllCommentsByQuesionIdOrdered(Integer questionId) {
-        return commentMapper.findAllCommentsByQuesionIdOrdered(questionId);
     }
 
     @Override
