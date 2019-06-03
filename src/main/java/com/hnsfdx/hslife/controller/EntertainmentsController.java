@@ -4,10 +4,9 @@ import com.hnsfdx.hslife.pojo.Entertainment;
 import com.hnsfdx.hslife.service.EntertainmentService;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/Entertainments")
@@ -24,5 +23,13 @@ public class EntertainmentsController {
         String a = entertainment.getContent();
         entertainmentService.insertEntertainment(entertainment);
         return ResponseTypeUtil.BOOLEAN_SUC;
+    }
+    @PostMapping("/findEntertainmentById")
+    public Entertainment findEntertainmentById(@RequestParam("id") Integer id){
+        List<Entertainment> obtained = entertainmentService.getSingleEntertainmentById(id);
+        if(obtained.size()==0){
+            return null;
+        }
+        return obtained.get(0);
     }
 }
