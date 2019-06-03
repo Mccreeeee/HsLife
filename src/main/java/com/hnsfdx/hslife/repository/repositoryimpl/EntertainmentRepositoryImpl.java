@@ -18,8 +18,8 @@ public class EntertainmentRepositoryImpl implements EntertainmentRepository {
     }
 
     @Override
-    public void insertSingle(Entertainment entertainment) {
-        this.entertainmentMapper.insertSingle(entertainment);
+    public Integer insertSingle(Entertainment entertainment) {
+        return this.entertainmentMapper.insertSingle(entertainment);
     }
 
     @Override

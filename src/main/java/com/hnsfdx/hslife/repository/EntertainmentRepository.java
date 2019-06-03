@@ -5,7 +5,7 @@ import com.hnsfdx.hslife.pojo.Entertainment;
 import java.util.List;
 
 public interface EntertainmentRepository {
-    void insertSingle(Entertainment entertainment);
+    Integer insertSingle(Entertainment entertainment);
 
     List<Entertainment> findEntertainmentById(Integer id);
 

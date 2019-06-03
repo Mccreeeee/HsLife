@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/Entertainments")
@@ -19,10 +20,11 @@ public class EntertainmentsController {
     }
 
     @PostMapping("/addEntertainment")
-    public String addEntertainment(@RequestBody Entertainment entertainment) {
-        String a = entertainment.getContent();
-        entertainmentService.insertEntertainment(entertainment);
-        return ResponseTypeUtil.BOOLEAN_SUC;
+    public Map<String,Object> addEntertainment(@RequestBody Entertainment entertainment) {
+        Integer lastInsertId = entertainmentService.insertEntertainment(entertainment);
+        Map<String,Object> res =  ResponseTypeUtil.createSucResponse();
+        res.put("data",entertainment.getId());
+        return res;
     }
     @PostMapping("/findEntertainmentById")
     public Entertainment findEntertainmentById(@RequestParam("id") Integer id){
