@@ -6,7 +6,7 @@
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="content" column="content" jdbcType="LONGVARCHAR"/>
-        <result property="publishDate" column="publishdate" jdbcType="TIMESTAMP"/>
+        <result property="publishdate" column="publishdate" jdbcType="TIMESTAMP"/>
         <result property="imgurl1" column="imgurl1" jdbcType="VARCHAR"/>
         <result property="imgurl2" column="imgurl2" jdbcType="VARCHAR"/>
         <result property="imgurl3" column="imgurl3" jdbcType="VARCHAR"/>
