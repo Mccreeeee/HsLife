@@ -4,6 +4,7 @@ import com.hnsfdx.hslife.pojo.Comment;
 import com.hnsfdx.hslife.pojo.Question;
 import com.hnsfdx.hslife.service.CommentService;
 import com.hnsfdx.hslife.service.QuestionService;
+import com.hnsfdx.hslife.util.PageUtil;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +31,8 @@ public class QuestionController {
     }
 
     @GetMapping("/getallquestions")
-    public Map<String,Object> getAllQuestions(@RequestParam("offset") Integer offset) {
-        List<Question> questionList = questionService.getAllQuestions(offset);
+    public Map<String,Object> getAllQuestions(@RequestParam("page") Integer page) {
+        List<Question> questionList = questionService.getAllQuestions((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",questionList);
         return forRet;
@@ -46,8 +47,8 @@ public class QuestionController {
     }
     //模糊搜索用
     @GetMapping("/getallquestionsbyt")
-    public Map<String,Object> getAllQuestionsByT(@RequestParam("title") String title, @RequestParam("offset") Integer offset) {
-        List<Question> questionList = questionService.getAllQuestionsByTitle(title, offset);
+    public Map<String,Object> getAllQuestionsByT(@RequestParam("title") String title, @RequestParam("page") Integer page) {
+        List<Question> questionList = questionService.getAllQuestionsByTitle(title, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",questionList);
         return forRet;
@@ -71,8 +72,8 @@ public class QuestionController {
     }
 
     @GetMapping("/getallcommentsbyqid")
-    public Map<String,Object> getAllCommentsByQId (@RequestParam("questionId") Integer questionId, @RequestParam("offset") Integer offset) {
-        List<Comment> commentList = commentService.getAllCommentsByQuesionId(questionId, offset);
+    public Map<String,Object> getAllCommentsByQId (@RequestParam("questionId") Integer questionId, @RequestParam("page") Integer page) {
+        List<Comment> commentList = commentService.getAllCommentsByQuesionId(questionId, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",commentList);
         return forRet;

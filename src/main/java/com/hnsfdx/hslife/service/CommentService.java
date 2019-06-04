@@ -7,7 +7,7 @@ import java.util.List;
 public interface CommentService {
     Integer addComment(Comment comment);
     //找到某个疑问下的所有评论
-    List<Comment> getAllCommentsByQuesionId(Integer questionId, Integer offset);
+    List<Comment> getAllCommentsByQuesionId(Integer questionId, Integer offset, Integer size);
     //找到某个疑问下点赞数最高的3条评论
     List<Comment> getAllCommentsByQuesionIdMost3(Integer questionId);
     //找到“我”评论过的所有疑问id

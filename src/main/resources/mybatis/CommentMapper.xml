@@ -11,7 +11,7 @@
         <result property="likeNum" column="likenum" jdbcType="INTEGER" />
     </resultMap>
     <select id="findAllCommentsByQuesionId" resultMap="commentRelustMap">
-        SELECT * FROM comments WHERE questionid = #{questionId} ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
+        SELECT * FROM comments WHERE questionid = #{questionId} ORDER BY publishdate DESC LIMIT #{offset}, #{size}
     </select>
 
     <select id="findAllCommentsByQuesionIdMost3" parameterType="Integer" resultMap="commentRelustMap">
