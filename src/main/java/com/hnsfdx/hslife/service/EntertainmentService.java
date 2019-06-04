@@ -8,4 +8,5 @@ public interface EntertainmentService {
     Integer insertEntertainment(Entertainment entertainment);
     List<Entertainment> getSingleEntertainmentById(Integer id);
     List<Entertainment> getEntertainments(Integer first,Integer size);
+    Integer countEntertainmentsNumber();
 }

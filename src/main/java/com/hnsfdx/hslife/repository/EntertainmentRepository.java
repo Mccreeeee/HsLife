@@ -10,4 +10,6 @@ public interface EntertainmentRepository {
     List<Entertainment> findEntertainmentById(Integer id);
 
     List<Entertainment> findEntertainments(Integer firstIndex, Integer size);
+
+    Integer countEntertainmentsNumber();
 }

@@ -32,4 +32,8 @@ public class EntertainmentRepositoryImpl implements EntertainmentRepository {
         return entertainmentMapper.findEntertainments(firstIndex, size);
     }
 
+    @Override
+    public Integer countEntertainmentsNumber(){
+        return entertainmentMapper.countEntertainmentsNumber();
+    }
 }
