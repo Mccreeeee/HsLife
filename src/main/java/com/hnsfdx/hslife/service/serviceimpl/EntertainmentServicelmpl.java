@@ -19,6 +19,11 @@ public class EntertainmentServicelmpl implements EntertainmentService {
     }
 
     @Override
+    public Integer countEntertainmentsNumber(){
+        return this.entertainmentRepository.countEntertainmentsNumber();
+    }
+
+    @Override
     public Integer insertEntertainment(Entertainment entertainment) {
         return  entertainmentRepository.insertSingle(entertainment);
     }
