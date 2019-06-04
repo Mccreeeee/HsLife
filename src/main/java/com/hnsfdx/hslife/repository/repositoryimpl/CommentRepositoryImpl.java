@@ -18,8 +18,8 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
-    public void insertOneComment(Comment comment) {
-        commentMapper.insertOneComment(comment);
+    public Integer insertOneComment(Comment comment) {
+        return commentMapper.insertOneComment(comment);
     }
 
     @Override

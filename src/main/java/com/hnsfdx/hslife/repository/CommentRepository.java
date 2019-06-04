@@ -5,7 +5,7 @@ import com.hnsfdx.hslife.pojo.Comment;
 import java.util.List;
 
 public interface CommentRepository {
-    void insertOneComment(Comment comment);
+    Integer insertOneComment(Comment comment);
     //找到某个疑问下的所有评论
     List<Comment> findAllCommentsByQuesionId(Integer questionId, Integer offset);
     //找到某个疑问下点赞数最高的3条评论

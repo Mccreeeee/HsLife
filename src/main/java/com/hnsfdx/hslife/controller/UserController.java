@@ -1,10 +1,13 @@
 package com.hnsfdx.hslife.controller;
 
+import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.User;
 import com.hnsfdx.hslife.service.UserService;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -17,15 +20,23 @@ public class UserController {
     }
 
     @PostMapping("/adduser")
-    public String addUser(@RequestBody User user) {
-        userService.addUser(user);
-        //此处要加异常处理，后续再进行优化
-        return ResponseTypeUtil.BOOLEAN_SUC;
+    public Map<String, Object> addUser(@RequestBody User user) {
+        Integer result = userService.addUser(user);
+        Map<String, Object> res;
+        if(result == 0){
+            throw new DataInsertException();
+        }else {
+            res = ResponseTypeUtil.createSucResponse();
+        }
+        return res;
     }
 
-    @PostMapping("/getuser")
-    public User getUser(String openId) {
-        return userService.getUser(openId);
+    @GetMapping("/getuser")
+    public Map<String,Object> getUser(@RequestParam("openId") String openId) {
+        User user = userService.getUser(openId);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",user);
+        return forRet;
     }
 
     @GetMapping("/test")

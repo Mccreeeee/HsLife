@@ -3,6 +3,7 @@ package com.hnsfdx.hslife.mapper;
 import com.hnsfdx.hslife.pojo.Wanted;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,7 +13,8 @@ public interface WantedMapper {
     @Insert("INSERT INTO wanteds(title, content, author, publishdate, value, status, recipient, imgurl1, imgurl2, imgurl3, imgurl4)" +
             "VALUES " +
             "(#{title}, #{content}, #{author}, #{publishDate}, #{value}, #{status}, #{recipient}, #{imgurl1}, #{imgurl2}, #{imgurl3}, #{imgurl4})")
-    void insertOneWanted(Wanted wanted);
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    Integer insertOneWanted(Wanted wanted);
     //找到所有悬赏信息
     List<Wanted> findAllWanteds(@Param(value = "offset") Integer offset);
     //找到某个接受人接受的所有悬赏信息

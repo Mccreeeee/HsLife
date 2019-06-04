@@ -18,8 +18,8 @@ public class WantedServiceImpl implements WantedService {
         this.wantedRepository = wantedRepository;
     }
     @Override
-    public void addWanted(Wanted wanted) {
-        wantedRepository.insertOneWanted(wanted);
+    public Integer addWanted(Wanted wanted) {
+        return wantedRepository.insertOneWanted(wanted);
     }
 
     @Override
