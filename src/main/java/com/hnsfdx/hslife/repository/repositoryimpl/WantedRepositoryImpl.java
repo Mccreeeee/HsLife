@@ -23,8 +23,8 @@ public class WantedRepositoryImpl implements WantedRepository {
     }
 
     @Override
-    public List<Wanted> findAllWanteds(Integer offset) {
-        return wantedMapper.findAllWanteds(offset);
+    public List<Wanted> findAllWanteds(Integer offset, Integer size) {
+        return wantedMapper.findAllWanteds(offset, size);
     }
 
     @Override
@@ -38,12 +38,12 @@ public class WantedRepositoryImpl implements WantedRepository {
     }
 
     @Override
-    public List<Wanted> findAllWantedsByStatus(Integer status, Integer offset) {
-        return wantedMapper.findAllWantedsByStatus(status, offset);
+    public List<Wanted> findAllWantedsByStatus(Integer status, Integer offset, Integer size) {
+        return wantedMapper.findAllWantedsByStatus(status, offset, size);
     }
 
     @Override
-    public List<Wanted> findAllWantedsByTitle(String title, Integer offset) {
-        return wantedMapper.findAllWantedsByTitle(title, offset);
+    public List<Wanted> findAllWantedsByTitle(String title, Integer offset, Integer size) {
+        return wantedMapper.findAllWantedsByTitle(title, offset, size);
     }
 }

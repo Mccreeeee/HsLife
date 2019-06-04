@@ -22,7 +22,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<News> getAllNews(Integer offset) {
-        return newsRepository.findAllNews(offset);
+    public List<News> getAllNews(Integer offset, Integer size) {
+        return newsRepository.findAllNews(offset, size);
     }
 }

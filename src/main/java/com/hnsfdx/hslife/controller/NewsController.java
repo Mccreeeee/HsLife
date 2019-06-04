@@ -2,6 +2,7 @@ package com.hnsfdx.hslife.controller;
 
 import com.hnsfdx.hslife.pojo.News;
 import com.hnsfdx.hslife.service.NewsService;
+import com.hnsfdx.hslife.util.PageUtil;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,8 @@ public class NewsController {
     }
 
     @GetMapping("/getallnews")
-    public Map<String, Object> getAllNews(@RequestParam("offset") Integer offset) {
-        List<News> newsList = newsService.getAllNews(offset);
+    public Map<String, Object> getAllNews(@RequestParam("page") Integer page) {
+        List<News> newsList = newsService.getAllNews((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",newsList);
         return forRet;

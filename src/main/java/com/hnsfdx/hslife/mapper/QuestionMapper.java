@@ -16,11 +16,13 @@ public interface QuestionMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     Integer insertOneQuestion(Question question);
     //找到所有疑问
-    List<Question> findAllQuestions(@Param(value = "offset") Integer offset);
+    List<Question> findAllQuestions(@Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
     //找到所有“我”发过的疑问
     List<Question> findAllQuestionsByAuthorOpenId(@Param(value = "openId") String openId);
     //找到搜索的类似标题的疑问
-    List<Question> findAllQuestionsByTitle(@Param(value = "title") String title, @Param(value = "offset") Integer offset);
+    List<Question> findAllQuestionsByTitle(@Param(value = "title") String title,
+                                           @Param(value = "offset") Integer offset,
+                                           @Param(value = "size") Integer size);
     //根据Comment的questionId列表来找“我”评论过的疑问
     List<Question> findAllQuestionsByQuestionId(@Param(value = "questionIds") List<Integer> questionIds);
 }
