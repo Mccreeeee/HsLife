@@ -91,35 +91,35 @@ public class Wanted {
         this.recipient = recipient;
     }
 
-    public String getimgurl1() {
+    public String getImgurl1() {
         return imgurl1;
     }
 
-    public void setimgurl1(String imgurl1) {
+    public void setImgurl1(String imgurl1) {
         this.imgurl1 = imgurl1;
     }
 
-    public String getimgurl2() {
+    public String getImgurl2() {
         return imgurl2;
     }
 
-    public void setimgurl2(String imgurl2) {
+    public void setImgurl2(String imgurl2) {
         this.imgurl2 = imgurl2;
     }
 
-    public String getimgurl3() {
+    public String getImgurl3() {
         return imgurl3;
     }
 
-    public void setimgurl3(String imgurl3) {
+    public void setImgurl3(String imgurl3) {
         this.imgurl3 = imgurl3;
     }
 
-    public String getimgurl4() {
+    public String getImgurl4() {
         return imgurl4;
     }
 
-    public void setimgurl4(String imgurl4) {
+    public void setImgurl4(String imgurl4) {
         this.imgurl4 = imgurl4;
     }
 }
