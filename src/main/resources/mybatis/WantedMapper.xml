@@ -21,11 +21,11 @@
     </select>
 
     <select id="findAllWantedsByRecipientOpenId" parameterType="String" resultMap="wantedResultMap">
-        SELECT * FROM wanteds WHERE id = #{openId} ORDER BY publishdate DESC
+        SELECT * FROM wanteds WHERE recipient = #{openId} ORDER BY publishdate DESC
     </select>
 
     <select id="findAllWantedsByAuthorOpenId" parameterType="String" resultMap="wantedResultMap">
-        SELECT * FROM wanteds WHERE id = #{openId} ORDER BY publishdate DESC
+        SELECT * FROM wanteds WHERE author = #{openId} ORDER BY publishdate DESC
     </select>
 
     <select id="findAllWantedsByStatus" resultMap="wantedResultMap">
