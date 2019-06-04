@@ -22,7 +22,7 @@ public class WantedController {
     }
 
     @PostMapping("/addwanted")
-    public Map<String, Object> addWanted(Wanted wanted) {
+    public Map<String, Object> addWanted(@RequestBody Wanted wanted) {
         Integer result = wantedService.addWanted(wanted);
         Map<String, Object> res =ResponseTypeUtil.createDataOpResponse(result, wanted.getId());
         return res;
