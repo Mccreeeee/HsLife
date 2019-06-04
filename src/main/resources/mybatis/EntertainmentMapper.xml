@@ -23,4 +23,5 @@
     <select id="countEntertainmentsNumber" resultType="Integer" >
         SELECT count(*) AS number FROM entertainments
     </select>
+
 </mapper>
