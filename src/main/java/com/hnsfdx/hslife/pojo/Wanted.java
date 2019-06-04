@@ -19,13 +19,13 @@ public class Wanted {
 
     private String recipient;
 
-    private String imglurl1;
+    private String imgurl1;
 
-    private String imglurl2;
+    private String imgurl2;
 
-    private String imglurl3;
+    private String imgurl3;
 
-    private String imglurl4;
+    private String imgurl4;
 
     public Integer getId() {
         return id;
@@ -91,35 +91,35 @@ public class Wanted {
         this.recipient = recipient;
     }
 
-    public String getImglurl1() {
-        return imglurl1;
+    public String getimgurl1() {
+        return imgurl1;
     }
 
-    public void setImglurl1(String imglurl1) {
-        this.imglurl1 = imglurl1;
+    public void setimgurl1(String imgurl1) {
+        this.imgurl1 = imgurl1;
     }
 
-    public String getImglurl2() {
-        return imglurl2;
+    public String getimgurl2() {
+        return imgurl2;
     }
 
-    public void setImglurl2(String imglurl2) {
-        this.imglurl2 = imglurl2;
+    public void setimgurl2(String imgurl2) {
+        this.imgurl2 = imgurl2;
     }
 
-    public String getImglurl3() {
-        return imglurl3;
+    public String getimgurl3() {
+        return imgurl3;
     }
 
-    public void setImglurl3(String imglurl3) {
-        this.imglurl3 = imglurl3;
+    public void setimgurl3(String imgurl3) {
+        this.imgurl3 = imgurl3;
     }
 
-    public String getImglurl4() {
-        return imglurl4;
+    public String getimgurl4() {
+        return imgurl4;
     }
 
-    public void setImglurl4(String imglurl4) {
-        this.imglurl4 = imglurl4;
+    public void setimgurl4(String imgurl4) {
+        this.imgurl4 = imgurl4;
     }
 }
