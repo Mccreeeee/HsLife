@@ -1,6 +1,8 @@
 package com.hnsfdx.hslife.controller;
 
+import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.pojo.Entertainment;
+import com.hnsfdx.hslife.service.AnswerService;
 import com.hnsfdx.hslife.service.EntertainmentService;
 import com.hnsfdx.hslife.util.PageUtil;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
@@ -15,10 +17,12 @@ import java.util.logging.Logger;
 @RequestMapping("/Entertainments")
 public class EntertainmentsController {
     private EntertainmentService entertainmentService;
+    private AnswerService answerService;
 
     @Autowired
-    public EntertainmentsController(EntertainmentService entertainmentService) {
+    public EntertainmentsController(EntertainmentService entertainmentService, AnswerService answerService) {
         this.entertainmentService = entertainmentService;
+        this.answerService = answerService;
     }
 
     @PostMapping("/addEntertainment")
@@ -47,17 +51,35 @@ public class EntertainmentsController {
     @GetMapping("/getEntertainments")
     public Map<String, Object> findEntertainments(@RequestParam("page") Integer page) {
         List<Entertainment> obtained = entertainmentService.getEntertainments((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
-        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
-        forRet.put("data",obtained);
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", obtained);
         return forRet;
     }
 
-    @GetMapping("/getMaxPage")
-    public Map<String,Object> getMaxPage(){
+    @GetMapping("/getEntertainmentMaxPage")
+    public Map<String, Object> getMaxPage() {
         Integer count = entertainmentService.countEntertainmentsNumber();
-        Logger.getLogger("EntertainmentsContoller").info(String.format("entertainments Size=%d",count));
-        Map<String,Object> forRet = ResponseTypeUtil.createSucResponse();
-        forRet.put("data",(int)Math.ceil(count*1.0/PageUtil.PAGESIZE));
+        Logger.getLogger("EntertainmentsContoller").info(String.format("entertainments Size=%d", count));
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
         return forRet;
+    }
+
+    @PostMapping("/addAnswer")
+    public Map<String, Object> addAnswer(@RequestBody Answer answer) {
+        Integer result = answerService.addSingleAnswer(answer);
+        if(result==0){
+            return ResponseTypeUtil.createFailResponse();
+        }
+        else{
+            return ResponseTypeUtil.createSucResponseWithData(answer.getId());
+        }
+    }
+
+    @GetMapping("/getAnswer")
+    public Map<String,Object> getAnswer(@RequestParam("enterId") Integer enterId,@RequestParam("page") Integer page){
+        return ResponseTypeUtil.createSucResponseWithData(
+                answerService.getAllAnswerByEntertainmentId(enterId,(page-1)*PageUtil.PAGESIZE,PageUtil.PAGESIZE)
+        );
     }
 }
