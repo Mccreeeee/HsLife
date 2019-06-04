@@ -7,5 +7,5 @@ import java.util.List;
 public interface NewsRepository {
     Integer insertOneNews(News oneNews);
 
-    List<News> findAllNews(Integer offset);
+    List<News> findAllNews(Integer offset, Integer size);
 }

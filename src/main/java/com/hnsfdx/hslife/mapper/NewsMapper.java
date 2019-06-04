@@ -21,5 +21,5 @@ public interface NewsMapper {
 //            @Result(property = "author", column = "author", jdbcType = JdbcType.VARCHAR),
 //            @Result(property = "publishDate", column = "publishdate", jdbcType = JdbcType.DATE)
 //    })
-    List<News> findAllNews(@Param(value = "offset") Integer offset);
+    List<News> findAllNews(@Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
 }

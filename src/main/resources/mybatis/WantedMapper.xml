@@ -17,7 +17,7 @@
         <result property="imgurl4" column="imgurl4" jdbcType="VARCHAR" />
     </resultMap>
     <select id="findAllWanteds" resultMap="wantedResultMap">
-        SELECT * FROM wanteds ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
+        SELECT * FROM wanteds ORDER BY publishdate DESC LIMIT #{offset}, #{size}
     </select>
 
     <select id="findAllWantedsByRecipientOpenId" parameterType="String" resultMap="wantedResultMap">
@@ -29,11 +29,11 @@
     </select>
 
     <select id="findAllWantedsByStatus" resultMap="wantedResultMap">
-        SELECT * FROM wanteds WHERE status = #{status} ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
+        SELECT * FROM wanteds WHERE status = #{status} ORDER BY publishdate DESC LIMIT #{offset}, #{size}
     </select>
 
     <select id="findAllWantedsByTitle" resultMap="wantedResultMap">
       <bind name="pattern" value="'%' + title + '%'" />
-        SELECT * FROM wanteds WHERE title LIKE #{pattern} ORDER BY publishdate DESC LIMIT #{offset}, ${@com.hnsfdx.hslife.util.PageUtil@PAGESIZE}
+        SELECT * FROM wanteds WHERE title LIKE #{pattern} ORDER BY publishdate DESC LIMIT #{offset}, #{size}
     </select>
 </mapper>
