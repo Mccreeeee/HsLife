@@ -27,4 +27,9 @@ public class ResponseTypeUtil {
         forRet.put("data", id);
         return forRet;
     }
+    public static Map<String,Object> createSucResponseWithData(Object data){
+        Map<String,Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data",data);
+        return forRet;
+    }
 }
