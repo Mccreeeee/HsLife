@@ -18,8 +18,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void addComment(Comment comment) {
-        commentRepository.insertOneComment(comment);
+    public Integer addComment(Comment comment) {
+        return commentRepository.insertOneComment(comment);
     }
 
     @Override

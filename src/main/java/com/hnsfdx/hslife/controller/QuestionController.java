@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/question")
@@ -22,49 +23,67 @@ public class QuestionController {
     }
 
     @PostMapping("/addquestion")
-    public String addQuestion(@RequestBody Question question) {
-        questionService.addQuestion(question);
-        //需要异常处理，后续再优化
-        return ResponseTypeUtil.BOOLEAN_SUC;
+    public Map<String, Object> addQuestion(@RequestBody Question question) {
+        Integer result = questionService.addQuestion(question);
+        Map<String, Object> res = ResponseTypeUtil.createDataOpResponse(result, question.getId());
+        return res;
     }
 
     @GetMapping("/getallquestions")
-    public List<Question> getAllQuestions(@RequestParam("offset") Integer offset) {
-        return questionService.getAllQuestions(offset);
+    public Map<String,Object> getAllQuestions(@RequestParam("offset") Integer offset) {
+        List<Question> questionList = questionService.getAllQuestions(offset);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",questionList);
+        return forRet;
     }
 
     @GetMapping("/getallquestionsbyaid")
-    public List<Question> getAllQuestionsByAId(@RequestParam("openId") String openId) {
-        return questionService.getAllQuestionsByAuthorOpenId(openId);
+    public Map<String,Object> getAllQuestionsByAId(@RequestParam("openId") String openId) {
+        List<Question> questionList = questionService.getAllQuestionsByAuthorOpenId(openId);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",questionList);
+        return forRet;
     }
     //模糊搜索用
     @GetMapping("/getallquestionsbyt")
-    public List<Question> getAllQuestionsByT(@RequestParam("title") String title, @RequestParam("offset") Integer offset) {
-        return questionService.getAllQuestionsByTitle(title, offset);
+    public Map<String,Object> getAllQuestionsByT(@RequestParam("title") String title, @RequestParam("offset") Integer offset) {
+        List<Question> questionList = questionService.getAllQuestionsByTitle(title, offset);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",questionList);
+        return forRet;
     }
 
     //给出“我”评论过的所有疑问
     @GetMapping("/getallquestionsofme")
-    public List<Question> getAllQuestionsOfMe(@RequestParam("openId") String openId) {
+    public Map<String,Object> getAllQuestionsOfMe(@RequestParam("openId") String openId) {
         List<Integer> questionId = commentService.getAllCommentsByReviewerOpenId(openId);
-        return questionService.getAllQuestionsByQuestionId(questionId);
+        List<Question> questionList = questionService.getAllQuestionsByQuestionId(questionId);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",questionList);
+        return forRet;
     }
 
     @PostMapping("/addcomment")
-    public String addComment(@RequestBody Comment comment) {
-        commentService.addComment(comment);
-        //需要异常处理，后续再优化
-        return ResponseTypeUtil.BOOLEAN_SUC;
+    public Map<String, Object> addComment(@RequestBody Comment comment) {
+        Integer result = commentService.addComment(comment);
+        Map<String, Object> res = ResponseTypeUtil.createDataOpResponse(result, comment.getId());
+        return res;
     }
 
     @GetMapping("/getallcommentsbyqid")
-    public List<Comment> getAllCommentsByQId (@RequestParam("questionId") Integer questionId, @RequestParam("offset") Integer offset) {
-        return commentService.getAllCommentsByQuesionId(questionId, offset);
+    public Map<String,Object> getAllCommentsByQId (@RequestParam("questionId") Integer questionId, @RequestParam("offset") Integer offset) {
+        List<Comment> commentList = commentService.getAllCommentsByQuesionId(questionId, offset);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",commentList);
+        return forRet;
     }
 
     @GetMapping("/getmost3commentsbyqid")
-    public List<Comment> getAllCommentsByQIdMost3 (@RequestParam("questionId") Integer questionId) {
-        return commentService.getAllCommentsByQuesionIdMost3(questionId);
+    public Map<String,Object> getAllCommentsByQIdMost3 (@RequestParam("questionId") Integer questionId) {
+        List<Comment> commentList = commentService.getAllCommentsByQuesionIdMost3(questionId);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",commentList);
+        return forRet;
     }
 
 }

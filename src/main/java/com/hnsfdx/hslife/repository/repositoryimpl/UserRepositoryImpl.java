@@ -27,7 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void insertOneUser(User user) {
-        userMapper.insertOneUser(user);
+    public Integer insertOneUser(User user) {
+        return userMapper.insertOneUser(user);
     }
 }

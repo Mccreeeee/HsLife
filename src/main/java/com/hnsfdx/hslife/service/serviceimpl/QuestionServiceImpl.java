@@ -19,8 +19,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void addQuestion(Question question) {
-        questionRepository.insertOneQuestion(question);
+    public Integer addQuestion(Question question) {
+        return questionRepository.insertOneQuestion(question);
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/wanted")
@@ -20,34 +21,49 @@ public class WantedController {
     }
 
     @PostMapping("/addwanted")
-    public String addWanted(Wanted wanted) {
-        wantedService.addWanted(wanted);
-        //需要做异常处理，后续再优化
-        return ResponseTypeUtil.BOOLEAN_SUC;
+    public Map<String, Object> addWanted(Wanted wanted) {
+        Integer result = wantedService.addWanted(wanted);
+        Map<String, Object> res =ResponseTypeUtil.createDataOpResponse(result, wanted.getId());
+        return res;
     }
     //找到所有悬赏信息
     @GetMapping("/getallwanteds")
-    public List<Wanted> getAllWanteds(@RequestParam("offset") Integer offset) {
-        return wantedService.getAllWanteds(offset);
+    public Map<String,Object> getAllWanteds(@RequestParam("offset") Integer offset) {
+        List<Wanted> wantedList = wantedService.getAllWanteds(offset);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",wantedList);
+        return forRet;
     }
     //找到某个接受人接受的所有悬赏信息
     @GetMapping("/getallwantedsbyrid")
-    public List<Wanted> getAllWantedsByRId(@RequestParam("openId") String openId) {
-        return wantedService.getAllWantedsByRecipientOpenId(openId);
+    public Map<String,Object> getAllWantedsByRId(@RequestParam("openId") String openId) {
+        List<Wanted> wantedList = wantedService.getAllWantedsByRecipientOpenId(openId);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",wantedList);
+        return forRet;
     }
     //找到某个人发布的所有悬赏信息
     @GetMapping("/getallwantedsbyaid")
-    public List<Wanted> getAllWantedsByAId(@RequestParam("openId") String openId) {
-        return wantedService.getAllWantedsByAuthorOpenId(openId);
+    public Map<String,Object> getAllWantedsByAId(@RequestParam("openId") String openId) {
+        List<Wanted> wantedList = wantedService.getAllWantedsByAuthorOpenId(openId);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",wantedList);
+        return forRet;
     }
     //找到所有的某个状态的悬赏信息（急/已解决/未解决）
     @GetMapping("/getallwantedsbys")
-    public List<Wanted> getAllWantedsByS(@RequestParam("status") Integer status, @RequestParam("offset") Integer offset) {
-        return wantedService.getAllWantedsByStatus(status, offset);
+    public Map<String,Object> getAllWantedsByS(@RequestParam("status") Integer status, @RequestParam("offset") Integer offset) {
+        List<Wanted> wantedList = wantedService.getAllWantedsByStatus(status, offset);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",wantedList);
+        return forRet;
     }
     //找到搜索的类似标题的悬赏信息
     @GetMapping("/getallwantedsbyt")
-    public List<Wanted> getAllWantedsByT(@RequestParam("title") String title, @RequestParam("offset") Integer offset) {
-        return wantedService.getAllWantedsByTitle(title, offset);
+    public Map<String,Object> getAllWantedsByT(@RequestParam("title") String title, @RequestParam("offset") Integer offset) {
+        List<Wanted> wantedList = wantedService.getAllWantedsByTitle(title, offset);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",wantedList);
+        return forRet;
     }
 }

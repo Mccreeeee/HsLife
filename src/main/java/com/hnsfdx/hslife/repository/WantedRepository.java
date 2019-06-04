@@ -5,7 +5,7 @@ import com.hnsfdx.hslife.pojo.Wanted;
 import java.util.List;
 
 public interface WantedRepository {
-    void insertOneWanted(Wanted wanted);
+    Integer insertOneWanted(Wanted wanted);
     //找到所有悬赏信息
     List<Wanted> findAllWanteds(Integer offset);
     //找到某个接受人接受的所有悬赏信息

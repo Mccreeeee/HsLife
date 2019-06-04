@@ -17,8 +17,8 @@ public class NewsServiceImpl implements NewsService {
         this.newsRepository = newsRepository;
     }
     @Override
-    public void addNews(News oneNews) {
-        newsRepository.insertOneNews(oneNews);
+    public Integer addNews(News oneNews) {
+        return newsRepository.insertOneNews(oneNews);
     }
 
     @Override

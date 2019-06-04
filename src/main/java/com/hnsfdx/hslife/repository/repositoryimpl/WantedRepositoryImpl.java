@@ -18,8 +18,8 @@ public class WantedRepositoryImpl implements WantedRepository {
         this.wantedMapper = wantedMapper;
     }
     @Override
-    public void insertOneWanted(Wanted wanted) {
-        wantedMapper.insertOneWanted(wanted);
+    public Integer insertOneWanted(Wanted wanted) {
+        return wantedMapper.insertOneWanted(wanted);
     }
 
     @Override
