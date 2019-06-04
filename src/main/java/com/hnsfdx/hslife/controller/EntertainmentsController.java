@@ -50,6 +50,9 @@ public class EntertainmentsController {
 
     @GetMapping("/getEntertainments")
     public Map<String, Object> findEntertainments(@RequestParam("page") Integer page) {
+        if (page <= 0) {
+            return ResponseTypeUtil.createFailResponse();
+        }
         List<Entertainment> obtained = entertainmentService.getEntertainments((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", obtained);
@@ -68,18 +71,17 @@ public class EntertainmentsController {
     @PostMapping("/addAnswer")
     public Map<String, Object> addAnswer(@RequestBody Answer answer) {
         Integer result = answerService.addSingleAnswer(answer);
-        if(result==0){
+        if (result == 0) {
             return ResponseTypeUtil.createFailResponse();
-        }
-        else{
+        } else {
             return ResponseTypeUtil.createSucResponseWithData(answer.getId());
         }
     }
 
     @GetMapping("/getAnswer")
-    public Map<String,Object> getAnswer(@RequestParam("enterId") Integer enterId,@RequestParam("page") Integer page){
+    public Map<String, Object> getAnswer(@RequestParam("enterId") Integer enterId, @RequestParam("page") Integer page) {
         return ResponseTypeUtil.createSucResponseWithData(
-                answerService.getAllAnswerByEntertainmentId(enterId,(page-1)*PageUtil.PAGESIZE,PageUtil.PAGESIZE)
+                answerService.getAllAnswerByEntertainmentId(enterId, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE)
         );
     }
 }

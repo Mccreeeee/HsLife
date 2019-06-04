@@ -4,10 +4,12 @@ import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.repository.AnswerRepository;
 import com.hnsfdx.hslife.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import sun.reflect.annotation.AnnotationSupport;
 
 import java.util.List;
 
+@Service
 public class AnswerServicelmpl implements AnswerService {
     private AnswerRepository answerRepository;
 

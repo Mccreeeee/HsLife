@@ -4,9 +4,11 @@ import com.hnsfdx.hslife.mapper.AnswerMapper;
 import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class AnswerRepositorylmpl implements AnswerRepository {
 
     private final AnswerMapper answerMapper;
