@@ -18,7 +18,7 @@
         SELECT * from comments WHERE questionid = #{questionId} ORDER BY likenum DESC LIMIT 3
     </select>
 
-    <select id="findAllCommentsByReviewerOpenId" parameterType="String" resultMap="commentRelustMap">
-        SELECT DISTINCT * from comments WHERE reviewer = #{openId}
+    <select id="findAllCommentsByReviewerOpenId" parameterType="String" resultType="Integer">
+        SELECT DISTINCT questionid from comments WHERE reviewer = #{openId}
     </select>
 </mapper>

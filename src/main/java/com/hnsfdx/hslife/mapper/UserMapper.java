@@ -10,5 +10,5 @@ import java.util.List;
 public interface UserMapper {
      User findByOpenId(@Param(value = "openId") String openId);
      List<User> findAllUsers();
-     void insertOneUser(User user);
+     Integer insertOneUser(User user);
 }

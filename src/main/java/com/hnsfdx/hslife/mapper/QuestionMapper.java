@@ -3,6 +3,7 @@ package com.hnsfdx.hslife.mapper;
 import com.hnsfdx.hslife.pojo.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,7 +13,8 @@ public interface QuestionMapper {
     @Insert("INSERT INTO questions(title, content, author, publishdate, imgurl1, imgurl2, imgurl3, imgurl4)" +
             "VALUES " +
             "(#{title}, #{content}, #{author}, #{publishDate}, #{imgurl1}, #{imgurl2}, #{imgurl3}, #{imgurl4})")
-    void insertOneQuestion(Question question);
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    Integer insertOneQuestion(Question question);
     //找到所有疑问
     List<Question> findAllQuestions(@Param(value = "offset") Integer offset);
     //找到所有“我”发过的疑问

@@ -5,7 +5,7 @@ import com.hnsfdx.hslife.pojo.Question;
 import java.util.List;
 
 public interface QuestionService {
-    void addQuestion(Question question);
+    Integer addQuestion(Question question);
     //找到所有疑问
     List<Question> getAllQuestions(Integer offset);
     //找到所有“我”发过的疑问

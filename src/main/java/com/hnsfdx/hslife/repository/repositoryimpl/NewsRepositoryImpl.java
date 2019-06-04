@@ -18,8 +18,8 @@ public class NewsRepositoryImpl implements NewsRepository {
     }
 
     @Override
-    public void insertOneNews(News oneNews) {
-        newsMapper.insertOneNews(oneNews);
+    public Integer insertOneNews(News oneNews) {
+        return newsMapper.insertOneNews(oneNews);
     }
 
     @Override

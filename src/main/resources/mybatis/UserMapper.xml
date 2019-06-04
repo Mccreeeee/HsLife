@@ -17,7 +17,7 @@
         SELECT * FROM users;
     </select>
 
-    <insert id="insertOneUser" parameterType="com.hnsfdx.hslife.pojo.User">
+    <insert id="insertOneUser" parameterType="com.hnsfdx.hslife.pojo.User" >
         INSERT INTO users (openid, username, score)
         VALUES (#{openId}, #{userName}, #{score})
     </insert>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/news")
@@ -19,14 +20,17 @@ public class NewsController {
     }
 
     @PostMapping("/addnews")
-    public String addNew(@RequestBody News oneNews) {
-        newsService.addNews(oneNews);
-        //此处要加异常处理，后续再进行优化
-        return ResponseTypeUtil.BOOLEAN_SUC;
+    public Map<String, Object> addNew(@RequestBody News oneNews) {
+        Integer result = newsService.addNews(oneNews);
+        Map<String, Object> res = ResponseTypeUtil.createDataOpResponse(result, oneNews.getId());
+        return res;
     }
 
     @GetMapping("/getallnews")
-    public List<News> getAllNews(@RequestParam("offset") Integer offset) {
-        return newsService.getAllNews(offset);
+    public Map<String, Object> getAllNews(@RequestParam("offset") Integer offset) {
+        List<News> newsList = newsService.getAllNews(offset);
+        Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
+        forRet.put("data",newsList);
+        return forRet;
     }
 }

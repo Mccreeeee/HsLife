@@ -19,8 +19,8 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     }
 
     @Override
-    public void insertOneQuestion(Question question) {
-        questionMapper.insertOneQuestion(question);
+    public Integer insertOneQuestion(Question question) {
+        return questionMapper.insertOneQuestion(question);
     }
 
     @Override
