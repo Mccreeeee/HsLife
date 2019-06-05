@@ -16,4 +16,8 @@ public interface WantedRepository {
     List<Wanted> findAllWantedsByStatus(Integer status, Integer offset, Integer size);
     //找到搜索的类似标题的悬赏信息
     List<Wanted> findAllWantedsByTitle(String title, Integer offset, Integer size);
+
+    Integer updateSingleWanted(Wanted wanted);
+
+    Integer deleteSingleWanted(Integer id);
 }

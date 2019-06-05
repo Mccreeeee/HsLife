@@ -46,4 +46,14 @@ public class WantedRepositoryImpl implements WantedRepository {
     public List<Wanted> findAllWantedsByTitle(String title, Integer offset, Integer size) {
         return wantedMapper.findAllWantedsByTitle(title, offset, size);
     }
+
+    @Override
+    public Integer updateSingleWanted(Wanted wanted){
+        return wantedMapper.updateSingleWanted(wanted);
+    }
+
+    @Override
+    public Integer deleteSingleWanted(Integer id){
+        return wantedMapper.deleteSingleWanted(id);
+    }
 }
