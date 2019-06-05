@@ -25,4 +25,6 @@ public interface QuestionMapper {
                                            @Param(value = "size") Integer size);
     //根据Comment的questionId列表来找“我”评论过的疑问
     List<Question> findAllQuestionsByQuestionId(@Param(value = "questionIds") List<Integer> questionIds);
+
+
 }
