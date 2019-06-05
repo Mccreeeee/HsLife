@@ -1,6 +1,8 @@
 package com.hnsfdx.hslife.exception.handler;
 
+import com.hnsfdx.hslife.exception.DataDeleteException;
 import com.hnsfdx.hslife.exception.DataInsertException;
+import com.hnsfdx.hslife.exception.DataUpdateException;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -28,6 +30,22 @@ public class ExceptionsHandler {
     @ResponseBody
     public Map<String, Object> insertExceptionHandler() {
         Map<String, Object> res = handler(DataInsertException.EXCEPTION_CODE, DataInsertException.EXCEPTION_MESSAGE);
+        return res;
+    }
+
+    @ExceptionHandler(DataUpdateException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public Map<String, Object> updateExceptionHandler() {
+        Map<String, Object> res = handler(DataUpdateException.EXCEPTION_CODE, DataUpdateException.EXCEPTION_MESSAGE);
+        return res;
+    }
+
+    @ExceptionHandler(DataDeleteException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public Map<String, Object> deleteExceptionHandler() {
+        Map<String, Object> res = handler(DataDeleteException.EXCEPTION_CODE, DataDeleteException.EXCEPTION_MESSAGE);
         return res;
     }
 
