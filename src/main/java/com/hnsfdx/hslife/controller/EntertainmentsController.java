@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.controller;
 
+import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.pojo.Entertainment;
 import com.hnsfdx.hslife.service.AnswerService;
@@ -29,7 +30,7 @@ public class EntertainmentsController {
     public Map<String, Object> addEntertainment(@RequestBody Entertainment entertainment) {
         Integer result = entertainmentService.insertEntertainment(entertainment);
         if (result == 0) {
-            return ResponseTypeUtil.createFailResponse();
+            throw new DataInsertException();
         } else {
             Map<String, Object> res = ResponseTypeUtil.createSucResponse();
             res.put("data", entertainment.getId());
@@ -72,7 +73,7 @@ public class EntertainmentsController {
     public Map<String, Object> addAnswer(@RequestBody Answer answer) {
         Integer result = answerService.addSingleAnswer(answer);
         if (result == 0) {
-            return ResponseTypeUtil.createFailResponse();
+            throw new DataInsertException();
         } else {
             return ResponseTypeUtil.createSucResponseWithData(answer.getId());
         }
