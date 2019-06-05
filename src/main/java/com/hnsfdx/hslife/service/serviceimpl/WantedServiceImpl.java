@@ -5,6 +5,7 @@ import com.hnsfdx.hslife.repository.WantedRepository;
 import com.hnsfdx.hslife.service.WantedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -45,5 +46,15 @@ public class WantedServiceImpl implements WantedService {
     @Override
     public List<Wanted> getAllWantedsByTitle(String title, Integer offset, Integer size) {
         return wantedRepository.findAllWantedsByTitle(title, offset, size);
+    }
+
+    @Override
+    public Integer updateSingleWanted(Wanted wanted){
+        return wantedRepository.updateSingleWanted(wanted);
+    }
+
+    @Override
+    public Integer deleteSingleWanted(Integer id){
+        return wantedRepository.deleteSingleWanted(id);
     }
 }

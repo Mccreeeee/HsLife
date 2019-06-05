@@ -29,4 +29,8 @@ public interface WantedMapper {
     List<Wanted> findAllWantedsByTitle(@Param(value = "title") String title,
                                        @Param(value = "offset") Integer offset,
                                        @Param(value = "size") Integer size);
+
+    Integer updateSingleWanted(@Param(value = "wanted")Wanted wanted);
+
+    Integer deleteSingleWanted(Integer id);
 }
