@@ -67,4 +67,23 @@ public class WantedController {
         forRet.put("data",wantedList);
         return forRet;
     }
+
+    @PostMapping("/updatewanted")
+    public Map<String,Object> updateSingleWanted(@RequestBody Wanted wanted){
+        if(wantedService.updateSingleWanted(wanted) == 1){
+            return ResponseTypeUtil.createSucResponse();
+        }
+        else{
+            return ResponseTypeUtil.createFailResponse();
+        }
+    }
+    @GetMapping("/deletewanted")
+    public Map<String,Object> deleteSingleWanted(@RequestParam(value = "id") Integer id){
+        if (wantedService.deleteSingleWanted(id) == 1){
+            return ResponseTypeUtil.createSucResponse();
+        }
+        else{
+            return ResponseTypeUtil.createFailResponse();
+        }
+    }
 }

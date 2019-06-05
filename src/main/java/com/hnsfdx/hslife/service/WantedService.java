@@ -16,4 +16,9 @@ public interface WantedService {
     List<Wanted> getAllWantedsByStatus(Integer status, Integer offset, Integer size);
     //找到搜索的类似标题的悬赏信息
     List<Wanted> getAllWantedsByTitle(String title, Integer offset, Integer size);
+
+    //更新单个悬赏
+    Integer updateSingleWanted(Wanted wanted);
+
+    Integer deleteSingleWanted(Integer id);
 }
