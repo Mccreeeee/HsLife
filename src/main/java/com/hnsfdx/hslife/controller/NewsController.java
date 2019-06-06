@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.controller;
 
+import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.News;
 import com.hnsfdx.hslife.service.NewsService;
 import com.hnsfdx.hslife.util.PageUtil;
@@ -21,9 +22,9 @@ public class NewsController {
     }
 
     @PostMapping("/addnews")
-    public Map<String, Object> addNew(@RequestBody News oneNews) {
+    public Map<String, Object> addNew(@RequestBody News oneNews) throws Exception {
         Integer result = newsService.addNews(oneNews);
-        Map<String, Object> res = ResponseTypeUtil.createDataOpResponse(result, oneNews.getId());
+        Map<String, Object> res = ResponseTypeUtil.createDataOpResponse(result, oneNews.getId(), new DataInsertException());
         return res;
     }
 

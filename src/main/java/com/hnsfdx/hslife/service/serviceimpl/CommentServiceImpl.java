@@ -36,4 +36,14 @@ public class CommentServiceImpl implements CommentService {
     public List<Integer> getAllCommentsByReviewerOpenId(String openId) {
         return commentRepository.findAllCommentsByReviewerOpenId(openId);
     }
+
+    @Override
+    public Integer updateComment(Comment comment) {
+        return commentRepository.updateSingleComment(comment);
+    }
+
+    @Override
+    public Integer deleteComment(Integer id) {
+        return commentRepository.deleteSingleComment(id);
+    }
 }

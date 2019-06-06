@@ -12,4 +12,8 @@ public interface CommentRepository {
     List<Comment> findAllCommentsByQuesionIdMost3(Integer questionId);
     //找到“我”评论过的所有疑问id
     List<Integer> findAllCommentsByReviewerOpenId(String openId);
+    //更新一条疑问
+    Integer updateSingleComment(Comment comment);
+    //删除一条疑问
+    Integer deleteSingleComment(Integer id);
 }

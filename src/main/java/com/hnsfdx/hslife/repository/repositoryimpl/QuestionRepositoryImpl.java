@@ -42,4 +42,14 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     public List<Question> findAllQuestionsByQuestionId(List<Integer> questionIds) {
         return questionMapper.findAllQuestionsByQuestionId(questionIds);
     }
+
+    @Override
+    public Integer updateSingleQuestion(Question question) {
+        return questionMapper.updateSingleQuestion(question);
+    }
+
+    @Override
+    public Integer deleteSingleQuestion(Integer id) {
+        return questionMapper.deleteSingleQuestion(id);
+    }
 }

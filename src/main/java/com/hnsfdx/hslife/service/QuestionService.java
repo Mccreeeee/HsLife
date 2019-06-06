@@ -14,4 +14,8 @@ public interface QuestionService {
     List<Question> getAllQuestionsByTitle(String title, Integer offset, Integer size);
     //根据Comment的questionId列表来找“我”评论过的疑问
     List<Question> getAllQuestionsByQuestionId(List<Integer> questionIds);
+    //更新一条疑问
+    Integer updateQuestion(Question question);
+    //删除一条疑问
+    Integer deleteQuestion(Integer id);
 }

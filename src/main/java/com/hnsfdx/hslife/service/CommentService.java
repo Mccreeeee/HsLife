@@ -12,4 +12,8 @@ public interface CommentService {
     List<Comment> getAllCommentsByQuesionIdMost3(Integer questionId);
     //找到“我”评论过的所有疑问id
     List<Integer> getAllCommentsByReviewerOpenId(String openId);
+    //更新一条疑问
+    Integer updateComment(Comment comment);
+    //删除一条疑问
+    Integer deleteComment(Integer id);
 }

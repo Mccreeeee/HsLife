@@ -34,4 +34,24 @@
             #{questionId}
         </foreach>
     </select>
+    
+    <update id="updateSingleQuestion" parameterType="com.hnsfdx.hslife.pojo.Question">
+        UPDATE questions
+        <set>
+            <choose>
+                <when test="title != null">title = #{title}, </when>
+                <when test="content != null">content = #{content}, </when>
+                <when test="publishDate != null">publishdate = #{publishDate}, </when>
+                <when test="imgurl1 != null">imgurl1 = #{imgurl1}, </when>
+                <when test="imgurl2 != null">imgurl2 = #{imgurl2}, </when>
+                <when test="imgurl3 != null">imgurl3 = #{imgurl3}, </when>
+                <when test="imgurl4 != null">imgurl4 = #{imgurl4}, </when>
+            </choose>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteSingleQuestion" parameterType="Integer">
+        DELETE FROM questions WHERE id = #{id}
+    </delete>
 </mapper>

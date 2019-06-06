@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.controller;
 
+import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.Wanted;
 import com.hnsfdx.hslife.service.WantedService;
 import com.hnsfdx.hslife.util.PageUtil;
@@ -22,9 +23,9 @@ public class WantedController {
     }
 
     @PostMapping("/addwanted")
-    public Map<String, Object> addWanted(@RequestBody Wanted wanted) {
+    public Map<String, Object> addWanted(@RequestBody Wanted wanted) throws Exception {
         Integer result = wantedService.addWanted(wanted);
-        Map<String, Object> res =ResponseTypeUtil.createDataOpResponse(result, wanted.getId());
+        Map<String, Object> res =ResponseTypeUtil.createDataOpResponse(result, wanted.getId(), new DataInsertException());
         return res;
     }
     //找到所有悬赏信息
