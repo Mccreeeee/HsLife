@@ -36,4 +36,14 @@ public class CommentRepositoryImpl implements CommentRepository {
     public List<Integer> findAllCommentsByReviewerOpenId(String openId) {
         return commentMapper.findAllCommentsByReviewerOpenId(openId);
     }
+
+    @Override
+    public Integer updateSingleComment(Comment comment) {
+        return commentMapper.updateSingleComment(comment);
+    }
+
+    @Override
+    public Integer deleteSingleComment(Integer id) {
+        return commentMapper.deleteSingleComment(id);
+    }
 }

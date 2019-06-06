@@ -21,4 +21,20 @@
     <select id="findAllCommentsByReviewerOpenId" parameterType="String" resultType="Integer">
         SELECT DISTINCT questionid from comments WHERE reviewer = #{openId}
     </select>
+
+    <update id="updateSingleComment" parameterType="com.hnsfdx.hslife.pojo.Comment">
+        UPDATE comments
+        <set>
+            <choose>
+                <when test="content != null">content = #{content}, </when>
+                <when test="publishDate != null">publishdate = #{publishDate}, </when>
+                <when test="likeNum != null">likenum = #{likeNum}</when>
+            </choose>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteSingleComment" parameterType="Integer">
+        DELETE FROM comments WHERE id = #{id}
+    </delete>
 </mapper>

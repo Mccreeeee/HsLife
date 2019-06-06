@@ -18,15 +18,25 @@ public class ResponseTypeUtil {
         forRet.put("result",BOOLEAN_SUC);
         return forRet;
     }
-    public static Map<String,Object> createDataOpResponse(Integer result, Integer id) {
+    public static Map<String,Object> createDataOpResponse(Integer result, Integer id, Exception ex) throws Exception {
         HashMap<String,Object> forRet = new HashMap<>();
         forRet.put("result",BOOLEAN_SUC);
         if(result == 0){
-            throw new DataInsertException();
+            throw ex;
         }
         forRet.put("data", id);
         return forRet;
     }
+
+    public static Map<String,Object> modDataOpResponse(Integer result, Exception ex) throws Exception {
+        HashMap<String,Object> forRet = new HashMap<>();
+        forRet.put("result",BOOLEAN_SUC);
+        if(result == 0){
+            throw ex;
+        }
+        return forRet;
+    }
+
     public static Map<String,Object> createSucResponseWithData(Object data){
         Map<String,Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data",data);
