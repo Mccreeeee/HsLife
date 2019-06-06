@@ -42,4 +42,14 @@ public class QuestionServiceImpl implements QuestionService {
     public List<Question> getAllQuestionsByQuestionId(List<Integer> questionIds) {
         return questionRepository.findAllQuestionsByQuestionId(questionIds);
     }
+
+    @Override
+    public Integer updateQuestion(Question question) {
+        return questionRepository.updateSingleQuestion(question);
+    }
+
+    @Override
+    public Integer deleteQuestion(Integer id) {
+        return questionRepository.deleteSingleQuestion(id);
+    }
 }

@@ -26,5 +26,7 @@ public interface QuestionMapper {
     //根据Comment的questionId列表来找“我”评论过的疑问
     List<Question> findAllQuestionsByQuestionId(@Param(value = "questionIds") List<Integer> questionIds);
 
+    Integer updateSingleQuestion(@Param(value = "question") Question question);
 
+    Integer deleteSingleQuestion(@Param(value = "id") Integer id);
 }

@@ -14,4 +14,8 @@ public interface QuestionRepository {
     List<Question> findAllQuestionsByTitle(String title, Integer offset, Integer size);
     //根据Comment的questionId列表来找“我”评论过的疑问
     List<Question> findAllQuestionsByQuestionId(List<Integer> questionIds);
+    //更新一条疑问
+    Integer updateSingleQuestion(Question question);
+    //删除一条疑问
+    Integer deleteSingleQuestion(Integer id);
 }
