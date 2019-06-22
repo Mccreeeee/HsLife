@@ -125,4 +125,22 @@ public class Wanted {
     public void setImgurl4(String imgurl4) {
         this.imgurl4 = imgurl4;
     }
+
+    @Override
+    public String toString() {
+        return "Wanted{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", author='" + author + '\'' +
+                ", publishDate=" + publishDate +
+                ", value=" + value +
+                ", status=" + status +
+                ", recipient='" + recipient + '\'' +
+                ", imgurl1='" + imgurl1 + '\'' +
+                ", imgurl2='" + imgurl2 + '\'' +
+                ", imgurl3='" + imgurl3 + '\'' +
+                ", imgurl4='" + imgurl4 + '\'' +
+                '}';
+    }
 }

@@ -50,4 +50,14 @@ public class Answer {
         this.publishdate = publishdate;
     }
 
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id=" + id +
+                ", entertainmentid=" + entertainmentid +
+                ", content='" + content + '\'' +
+                ", reviewer='" + reviewer + '\'' +
+                ", publishdate=" + publishdate +
+                '}';
+    }
 }

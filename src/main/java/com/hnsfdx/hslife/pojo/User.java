@@ -31,4 +31,13 @@ public class User {
     public void setScore(Integer score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "openId='" + openId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", score=" + score +
+                '}';
+    }
 }

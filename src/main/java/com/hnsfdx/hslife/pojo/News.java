@@ -52,4 +52,15 @@ public class News {
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
     }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", author='" + author + '\'' +
+                ", publishDate=" + publishDate +
+                '}';
+    }
 }
