@@ -7,6 +7,10 @@ import com.hnsfdx.hslife.service.AnswerService;
 import com.hnsfdx.hslife.service.EntertainmentService;
 import com.hnsfdx.hslife.util.PageUtil;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+@Api(value = "娱乐-抢答模块控制器")
 @RestController
 @RequestMapping("/Entertainments")
 public class EntertainmentsController {
@@ -26,6 +31,12 @@ public class EntertainmentsController {
         this.answerService = answerService;
     }
 
+    @ApiOperation(value = "添加一个抢答的问题", httpMethod = "POST",produces = "application/json")
+    @ApiResponses(
+            {
+                    @ApiResponse(code = 200, message = "")
+            }
+    )
     @PostMapping("/addEntertainment")
     public Map<String, Object> addEntertainment(@RequestBody Entertainment entertainment) {
         Integer result = entertainmentService.insertEntertainment(entertainment);
