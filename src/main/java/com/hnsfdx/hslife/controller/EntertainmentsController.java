@@ -70,7 +70,7 @@ public class EntertainmentsController {
         forRet.put("data", obtained);
         return forRet;
     }
-
+    //娱乐的最大页数
     @GetMapping("/getEntertainmentMaxPage")
     public Map<String, Object> getMaxPage() {
         Integer count = entertainmentService.countEntertainmentsNumber();
@@ -95,5 +95,13 @@ public class EntertainmentsController {
         return ResponseTypeUtil.createSucResponseWithData(
                 answerService.getAllAnswerByEntertainmentId(enterId, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE)
         );
+    }
+    //回答的最大页数
+    @GetMapping("/getAnswerMaxPage")
+    public Map<String, Object> getAnswerMaxPage() {
+        Integer count = answerService.getAllAnswersCount();
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        return forRet;
     }
 }

@@ -75,7 +75,7 @@ public class Entertainment {
         this.publishdate = publishdate;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp publishdate;
 
 

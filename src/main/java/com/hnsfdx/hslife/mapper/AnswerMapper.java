@@ -11,10 +11,12 @@ public interface AnswerMapper {
             "VALUES " +
             "(#{entertainmentid}, #{content}, #{reviewer}, #{publishdate})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    Integer insertOneComment(Answer answer);
+    Integer insertOneAnswer(Answer answer);
 
-    //找到某个疑问下的所有评论
+    //找到某个答题下的所有回答
     List<Answer> findAllAnswerByEntertainmentId(@Param(value = "enterId") Integer enterId,
                                           @Param(value = "lindex") Integer offset,
                                           @Param(value = "lsize") Integer size);
+    //所有回答的数量
+    Integer countAllAnswers();
 }

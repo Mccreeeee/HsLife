@@ -29,6 +29,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public Integer getAllQuestionsCount() {
+        return questionRepository.countAllQuestions();
+    }
+
+    @Override
     public List<Question> getAllQuestionsByAuthorOpenId(String openId) {
         return questionRepository.findAllQuestionsByAuthorOpenId(openId);
     }
@@ -36,6 +41,11 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Question> getAllQuestionsByTitle(String title, Integer offset, Integer size) {
         return questionRepository.findAllQuestionsByTitle(title, offset, size);
+    }
+
+    @Override
+    public Integer getAllQuestionsByTitleCount(String title) {
+        return questionRepository.countAllQuestionsByTitle(title);
     }
 
     @Override
