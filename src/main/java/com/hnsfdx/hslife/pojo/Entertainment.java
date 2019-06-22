@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import javafx.util.converter.TimeStringConverter;
 
 import java.sql.Date;
@@ -74,6 +75,7 @@ public class Entertainment {
         this.publishdate = publishdate;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp publishdate;
 
 

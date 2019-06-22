@@ -1,10 +1,14 @@
 package com.hnsfdx.hslife.pojo;
 
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.sql.Timestamp;
 
 public class Answer {
     private Integer id,entertainmentid;
-    String content,reviewer;
+    private String content,reviewer;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp publishdate;
 
     public Integer getId() {
         return id;
@@ -38,13 +42,12 @@ public class Answer {
         this.reviewer = reviewer;
     }
 
-    public Date getPublishdate() {
+    public Timestamp getPublishdate() {
         return publishdate;
     }
 
-    public void setPublishdate(Date publishdate) {
+    public void setPublishdate(Timestamp publishdate) {
         this.publishdate = publishdate;
     }
 
-    Date publishdate;
 }
