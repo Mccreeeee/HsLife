@@ -15,7 +15,10 @@
         <where>
         entertainmentid=#{enterId}
         </where>
-        order by publishdate LIMIT #{lindex},#{lsize}
+        order by publishdate desc LIMIT #{lindex},#{lsize}
     </select>
 
+    <select id="countAllAnswers" resultType="Integer">
+        SELECT COUNT(*) FROM answers
+    </select>
 </mapper>

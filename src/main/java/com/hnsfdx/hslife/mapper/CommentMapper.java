@@ -19,6 +19,9 @@ public interface CommentMapper {
     List<Comment> findAllCommentsByQuesionId(@Param(value = "questionId") Integer questionId,
                                              @Param(value = "offset") Integer offset,
                                              @Param(value = "size") Integer size);
+    //所有评论的条数
+    Integer countAllComments();
+
     //找到某个疑问下点赞数最高的3条评论
     List<Comment> findAllCommentsByQuesionIdMost3(@Param(value = "questionId") Integer questionId);
     //找到“我”评论过的所有疑问id

@@ -29,6 +29,11 @@ public class WantedServiceImpl implements WantedService {
     }
 
     @Override
+    public Integer getAllWantedsCount() {
+        return wantedRepository.countAllWanteds();
+    }
+
+    @Override
     public List<Wanted> getAllWantedsByRecipientOpenId(String openId) {
         return wantedRepository.findAllWantedsByRecipientOpenId(openId);
     }
@@ -44,8 +49,18 @@ public class WantedServiceImpl implements WantedService {
     }
 
     @Override
+    public Integer getAllWantedsByStatusCount(Integer status) {
+        return wantedRepository.countAllWantedsByStatus(status);
+    }
+
+    @Override
     public List<Wanted> getAllWantedsByTitle(String title, Integer offset, Integer size) {
         return wantedRepository.findAllWantedsByTitle(title, offset, size);
+    }
+
+    @Override
+    public Integer getAllWantedsByTitleCount(String title) {
+        return wantedRepository.countAllWantedsByTitle(title);
     }
 
     @Override

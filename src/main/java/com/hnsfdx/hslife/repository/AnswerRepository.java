@@ -9,4 +9,7 @@ public interface AnswerRepository {
     Integer insertSingleAnswer(Answer answer);
 
     List<Answer> findAllAnswerByEntertainmentId(Integer enterId, Integer offset, Integer size);
+
+    //所有回答的数量
+    Integer countAllAnswers();
 }

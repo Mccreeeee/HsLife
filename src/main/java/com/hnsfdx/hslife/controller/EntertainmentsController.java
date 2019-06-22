@@ -85,4 +85,6 @@ public class EntertainmentsController {
                 answerService.getAllAnswerByEntertainmentId(enterId, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE)
         );
     }
+
+
 }

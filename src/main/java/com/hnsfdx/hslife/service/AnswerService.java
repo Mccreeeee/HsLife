@@ -10,4 +10,7 @@ public interface AnswerService {
     Integer addSingleAnswer(Answer answer);
 
     List<Answer> getAllAnswerByEntertainmentId(Integer EnterId,Integer offset, Integer size);
+
+    //所有答案的数量
+    Integer getAllAnswersCount();
 }

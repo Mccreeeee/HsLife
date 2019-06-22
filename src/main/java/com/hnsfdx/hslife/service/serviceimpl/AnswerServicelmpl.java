@@ -26,4 +26,9 @@ public class AnswerServicelmpl implements AnswerService {
     public List<Answer> getAllAnswerByEntertainmentId(Integer enterId,Integer offset, Integer size){
         return answerRepository.findAllAnswerByEntertainmentId(enterId,offset,size);
     }
+
+    @Override
+    public Integer getAllAnswersCount() {
+        return answerRepository.countAllAnswers();
+    }
 }
