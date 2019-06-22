@@ -17,7 +17,7 @@
     </select>
 
     <select id="findEntertainments" resultMap="EntertainmentsResultMap" parameterType="java.util.Map">
-    SELECT * FROM entertainments ORDER BY publishdate LIMIT #{lindex},#{lsize}
+    SELECT * FROM entertainments ORDER BY publishdate desc LIMIT #{lindex},#{lsize}
     </select>
 
     <select id="countEntertainmentsNumber" resultType="Integer" >

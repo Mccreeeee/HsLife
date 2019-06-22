@@ -29,6 +29,11 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     }
 
     @Override
+    public Integer countAllQuestions() {
+        return questionMapper.countAllQuestions();
+    }
+
+    @Override
     public List<Question> findAllQuestionsByAuthorOpenId(String openId) {
         return questionMapper.findAllQuestionsByAuthorOpenId(openId);
     }
@@ -36,6 +41,11 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     @Override
     public List<Question> findAllQuestionsByTitle(String title, Integer offset, Integer size) {
         return questionMapper.findAllQuestionsByTitle(title, offset, size);
+    }
+
+    @Override
+    public Integer countAllQuestionsByTitle(String title) {
+        return questionMapper.countAllQuestionsByTitle(title);
     }
 
     @Override

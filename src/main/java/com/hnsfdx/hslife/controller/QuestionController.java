@@ -3,6 +3,7 @@ package com.hnsfdx.hslife.controller;
 import com.hnsfdx.hslife.exception.DataDeleteException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.exception.DataUpdateException;
+import com.hnsfdx.hslife.mapper.QuestionMapper;
 import com.hnsfdx.hslife.pojo.Comment;
 import com.hnsfdx.hslife.pojo.Question;
 import com.hnsfdx.hslife.service.CommentService;
@@ -20,7 +21,6 @@ import java.util.Map;
 public class QuestionController {
     private QuestionService questionService;
     private CommentService commentService;
-
     @Autowired
     public QuestionController(QuestionService questionService, CommentService commentService) {
         this.questionService = questionService;
@@ -62,8 +62,8 @@ public class QuestionController {
     //给出“我”评论过的所有疑问
     @GetMapping("/getallquestionsofme")
     public Map<String, Object> getAllQuestionsOfMe(@RequestParam("openId") String openId) {
-        List<Integer> questionId = commentService.getAllCommentsByReviewerOpenId(openId);
-        List<Question> questionList = questionService.getAllQuestionsByQuestionId(questionId);
+        List<Integer> questionIds = commentService.getAllCommentsByReviewerOpenId(openId);
+        List<Question> questionList = questionService.getAllQuestionsByQuestionId(questionIds);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", questionList);
         return forRet;
@@ -111,7 +111,7 @@ public class QuestionController {
         Map<String, Object> res = ResponseTypeUtil.modDataOpResponse(result, new DataUpdateException());
         return res;
     }
-    @PostMapping("/deletequestion")
+    @PostMapping("/deletecomment")
     public Map<String, Object> deleteComment(Integer id) throws Exception {
         Integer result = commentService.deleteComment(id);
         Map<String, Object> res = ResponseTypeUtil.modDataOpResponse(result, new DataDeleteException());

@@ -20,6 +20,10 @@
         SELECT * FROM wanteds ORDER BY publishdate DESC LIMIT #{offset}, #{size}
     </select>
 
+    <select id="countAllWanteds" resultType="Integer">
+        SELECT COUNT(*) FROM wanteds
+    </select>
+
     <select id="findAllWantedsByRecipientOpenId" parameterType="String" resultMap="wantedResultMap">
         SELECT * FROM wanteds WHERE recipient = #{openId} ORDER BY publishdate DESC
     </select>
@@ -32,9 +36,18 @@
         SELECT * FROM wanteds WHERE status = #{status} ORDER BY publishdate DESC LIMIT #{offset}, #{size}
     </select>
 
+    <select id="countAllWantedsByStatus" parameterType="Integer" resultType="Integer">
+        SELECT COUNT(*) FROM wanteds WHERE status = #{status}
+    </select>
+
     <select id="findAllWantedsByTitle" resultMap="wantedResultMap">
         <bind name="pattern" value="'%' + title + '%'"/>
         SELECT * FROM wanteds WHERE title LIKE #{pattern} ORDER BY publishdate DESC LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="countAllWantedsByTitle" parameterType="String" resultType="Integer">
+        <bind name="pattern" value="'%' + title + '%'"/>
+        SELECT COUNT(*) FROM wanteds WHERE title LIKE #{pattern}
     </select>
 
     <update id="updateSingleWanted" parameterType="com.hnsfdx.hslife.pojo.Wanted">

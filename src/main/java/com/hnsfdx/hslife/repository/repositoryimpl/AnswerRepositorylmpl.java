@@ -20,11 +20,16 @@ public class AnswerRepositorylmpl implements AnswerRepository {
 
     @Override
     public Integer insertSingleAnswer(Answer answer){
-        return answerMapper.insertOneComment(answer);
+        return answerMapper.insertOneAnswer(answer);
     }
 
     @Override
     public List<Answer> findAllAnswerByEntertainmentId(Integer enterId, Integer offset, Integer size){
        return answerMapper.findAllAnswerByEntertainmentId(enterId,offset,size);
+    }
+
+    @Override
+    public Integer countAllAnswers() {
+        return answerMapper.countAllAnswers();
     }
 }
