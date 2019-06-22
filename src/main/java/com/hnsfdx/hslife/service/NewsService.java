@@ -7,4 +7,6 @@ import java.util.List;
 public interface NewsService {
     Integer addNews(News oneNews);
     List<News> getAllNews(Integer offset, Integer size);
+    //所有新闻条数
+    Integer getAllNewsCount();
 }

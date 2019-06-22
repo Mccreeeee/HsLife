@@ -25,4 +25,9 @@ public class NewsServiceImpl implements NewsService {
     public List<News> getAllNews(Integer offset, Integer size) {
         return newsRepository.findAllNews(offset, size);
     }
+
+    @Override
+    public Integer getAllNewsCount() {
+        return newsRepository.countAllNews();
+    }
 }

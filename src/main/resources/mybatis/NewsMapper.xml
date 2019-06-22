@@ -13,4 +13,7 @@
     <select id="findAllNews" resultMap="newResultMap">
         SELECT * FROM news ORDER BY publishdate DESC LIMIT #{offset}, #{size}
     </select>
+    <select id="countAllNews" resultType="Integer">
+        SELECT COUNT(*) FROM news
+    </select>
 </mapper>

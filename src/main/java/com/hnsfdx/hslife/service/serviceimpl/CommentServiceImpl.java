@@ -28,6 +28,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public Integer getAllCommentsCount() {
+        return commentRepository.countAllComments();
+    }
+
+    @Override
     public List<Comment> getAllCommentsByQuesionIdMost3(Integer questionId) {
         return commentRepository.findAllCommentsByQuesionIdMost3(questionId);
     }
