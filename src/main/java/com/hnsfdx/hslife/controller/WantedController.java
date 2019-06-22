@@ -36,6 +36,14 @@ public class WantedController {
         forRet.put("data",wantedList);
         return forRet;
     }
+    //悬赏信息最大页数
+    @GetMapping("/getallwantedsmaxpage")
+    public Map<String, Object> getAllWantedsMaxPage() {
+        Integer count = wantedService.getAllWantedsCount();
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        return forRet;
+    }
     //找到某个接受人接受的所有悬赏信息
     @GetMapping("/getallwantedsbyrid")
     public Map<String,Object> getAllWantedsByRId(@RequestParam("openId") String openId) {
@@ -60,6 +68,16 @@ public class WantedController {
         forRet.put("data",wantedList);
         return forRet;
     }
+
+    //某个状态悬赏信息的最大页数
+    @GetMapping("/getallwantedsbysmaxpage")
+    public Map<String, Object> getAllWantedsBySMaxPage(@RequestParam("status") Integer status) {
+        Integer count = wantedService.getAllWantedsByStatusCount(status);
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        return forRet;
+    }
+
     //找到搜索的类似标题的悬赏信息
     @GetMapping("/getallwantedsbyt")
     public Map<String,Object> getAllWantedsByT(@RequestParam("title") String title, @RequestParam("page") Integer page) {
@@ -69,6 +87,14 @@ public class WantedController {
         return forRet;
     }
 
+    //所有类似标题的悬赏信息的最大页数
+    @GetMapping("/getallwantedsbytmaxpage")
+    public Map<String, Object> getAllWantedsByTMaxPage(@RequestParam("title") String title) {
+        Integer count = wantedService.getAllWantedsByTitleCount(title);
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        return forRet;
+    }
     @PostMapping("/updatewanted")
     public Map<String,Object> updateSingleWanted(@RequestBody Wanted wanted){
         if(wantedService.updateSingleWanted(wanted) == 1){

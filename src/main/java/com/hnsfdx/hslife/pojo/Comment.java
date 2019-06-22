@@ -1,5 +1,7 @@
 package com.hnsfdx.hslife.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 
 public class Comment {
@@ -7,6 +9,7 @@ public class Comment {
     private Integer questionId;
     private String content;
     private String reviewer;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp publishDate;
     private Integer likeNum;
     public Integer getId() {

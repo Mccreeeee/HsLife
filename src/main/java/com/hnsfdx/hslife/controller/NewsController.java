@@ -35,4 +35,12 @@ public class NewsController {
         forRet.put("data",newsList);
         return forRet;
     }
+    //新闻的最大页数
+    @GetMapping("/getnewsmaxpage")
+    public Map<String, Object> getNewsMaxPage() {
+        Integer count = newsService.getAllNewsCount();
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        return forRet;
+    }
 }

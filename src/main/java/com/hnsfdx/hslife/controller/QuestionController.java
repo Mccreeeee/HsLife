@@ -41,6 +41,14 @@ public class QuestionController {
         forRet.put("data", questionList);
         return forRet;
     }
+    //所有疑问数量的最大页数
+    @GetMapping("/getquestionsmaxpage")
+    public Map<String, Object> getAllQuestionsMaxPage() {
+        Integer count = questionService.getAllQuestionsCount();
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        return forRet;
+    }
 
     @GetMapping("/getallquestionsbyaid")
     public Map<String, Object> getAllQuestionsByAId(@RequestParam("openId") String openId) {
@@ -56,6 +64,14 @@ public class QuestionController {
         List<Question> questionList = questionService.getAllQuestionsByTitle(title, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", questionList);
+        return forRet;
+    }
+    //模糊搜索疑问的最大页数
+    @GetMapping("/getquestionsbytmaxpage")
+    public Map<String, Object> getAllQuestionsByTMaxPage(@RequestParam("title") String title) {
+        Integer count = questionService.getAllQuestionsByTitleCount(title);
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
         return forRet;
     }
 
