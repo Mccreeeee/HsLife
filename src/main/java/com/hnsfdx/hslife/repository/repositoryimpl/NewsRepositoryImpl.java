@@ -26,4 +26,9 @@ public class NewsRepositoryImpl implements NewsRepository {
     public List<News> findAllNews(Integer offset, Integer size) {
         return newsMapper.findAllNews(offset, size);
     }
+
+    @Override
+    public Integer countAllNews() {
+        return newsMapper.countAllNews();
+    }
 }

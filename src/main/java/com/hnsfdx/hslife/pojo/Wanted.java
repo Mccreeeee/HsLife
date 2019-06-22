@@ -1,5 +1,7 @@
 package com.hnsfdx.hslife.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 
 public class Wanted {
@@ -11,6 +13,7 @@ public class Wanted {
 
     private String author;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp publishDate;
 
     private Float value;
