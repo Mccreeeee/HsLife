@@ -111,10 +111,12 @@ public class QuestionController {
         Map<String, Object> res = ResponseTypeUtil.modDataOpResponse(result, new DataUpdateException());
         return res;
     }
+    /*
     @PostMapping("/deletequestion")
     public Map<String, Object> deleteComment(Integer id) throws Exception {
         Integer result = commentService.deleteComment(id);
         Map<String, Object> res = ResponseTypeUtil.modDataOpResponse(result, new DataDeleteException());
         return res;
     }
+     */
 }
