@@ -3,6 +3,7 @@ package com.hnsfdx.hslife.controller;
 import com.hnsfdx.hslife.exception.DataDeleteException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.exception.DataUpdateException;
+import com.hnsfdx.hslife.mapper.QuestionMapper;
 import com.hnsfdx.hslife.pojo.Comment;
 import com.hnsfdx.hslife.pojo.Question;
 import com.hnsfdx.hslife.service.CommentService;
@@ -20,7 +21,6 @@ import java.util.Map;
 public class QuestionController {
     private QuestionService questionService;
     private CommentService commentService;
-
     @Autowired
     public QuestionController(QuestionService questionService, CommentService commentService) {
         this.questionService = questionService;
@@ -41,6 +41,14 @@ public class QuestionController {
         forRet.put("data", questionList);
         return forRet;
     }
+    //所有疑问数量的最大页数
+    @GetMapping("/getquestionsmaxpage")
+    public Map<String, Object> getAllQuestionsMaxPage() {
+        Integer count = questionService.getAllQuestionsCount();
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        return forRet;
+    }
 
     @GetMapping("/getallquestionsbyaid")
     public Map<String, Object> getAllQuestionsByAId(@RequestParam("openId") String openId) {
@@ -58,12 +66,20 @@ public class QuestionController {
         forRet.put("data", questionList);
         return forRet;
     }
+    //模糊搜索疑问的最大页数
+    @GetMapping("/getquestionsbytmaxpage")
+    public Map<String, Object> getAllQuestionsByTMaxPage(@RequestParam("title") String title) {
+        Integer count = questionService.getAllQuestionsByTitleCount(title);
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        return forRet;
+    }
 
     //给出“我”评论过的所有疑问
     @GetMapping("/getallquestionsofme")
     public Map<String, Object> getAllQuestionsOfMe(@RequestParam("openId") String openId) {
-        List<Integer> questionId = commentService.getAllCommentsByReviewerOpenId(openId);
-        List<Question> questionList = questionService.getAllQuestionsByQuestionId(questionId);
+        List<Integer> questionIds = commentService.getAllCommentsByReviewerOpenId(openId);
+        List<Question> questionList = questionService.getAllQuestionsByQuestionId(questionIds);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", questionList);
         return forRet;
@@ -111,8 +127,7 @@ public class QuestionController {
         Map<String, Object> res = ResponseTypeUtil.modDataOpResponse(result, new DataUpdateException());
         return res;
     }
-    /*
-    @PostMapping("/deletequestion")
+    @PostMapping("/deletecomment")
     public Map<String, Object> deleteComment(Integer id) throws Exception {
         Integer result = commentService.deleteComment(id);
         Map<String, Object> res = ResponseTypeUtil.modDataOpResponse(result, new DataDeleteException());

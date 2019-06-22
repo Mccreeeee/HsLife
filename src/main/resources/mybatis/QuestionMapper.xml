@@ -18,6 +18,10 @@
         SELECT * FROM questions ORDER BY publishdate DESC LIMIT #{offset}, #{size}
     </select>
 
+    <select id="countAllQuestions" resultType="Integer">
+        SELECT COUNT(*) FROM questions
+    </select>
+
     <select id="findAllQuestionsByAuthorOpenId" parameterType="String" resultMap="questionResultMap">
         SELECT * FROM questions WHERE author = #{openId}
     </select>
@@ -25,6 +29,11 @@
     <select id="findAllQuestionsByTitle" resultMap="questionResultMap">
         <bind name="pattern" value="'%' + title + '%'" />
         SELECT * FROM questions WHERE title LIKE #{pattern} ORDER BY publishdate DESC LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="countAllQuestionsByTitle" parameterType="String" resultType="Integer">
+        <bind name="pattern" value="'%' + title + '%'" />
+        SELECT COUNT(*) FROM questions WHERE title LIKE #{pattern}
     </select>
 
     <select id="findAllQuestionsByQuestionId" parameterType="List" resultMap="questionResultMap">

@@ -21,5 +21,8 @@ public interface NewsMapper {
 //            @Result(property = "author", column = "author", jdbcType = JdbcType.VARCHAR),
 //            @Result(property = "publishDate", column = "publishdate", jdbcType = JdbcType.DATE)
 //    })
+    //所有新闻
     List<News> findAllNews(@Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
+    //所有新闻的条数
+    Integer countAllNews();
 }

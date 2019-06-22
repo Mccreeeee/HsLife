@@ -22,6 +22,10 @@
         SELECT DISTINCT questionid from comments WHERE reviewer = #{openId}
     </select>
 
+    <select id="countAllComments" resultType="Integer">
+        SELECT COUNT(*) FROM comments
+    </select>
+
     <update id="updateSingleComment" parameterType="com.hnsfdx.hslife.pojo.Comment">
         UPDATE comments
         <set>

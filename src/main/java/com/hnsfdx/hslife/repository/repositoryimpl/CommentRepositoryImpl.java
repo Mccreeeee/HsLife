@@ -28,6 +28,11 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
+    public Integer countAllComments() {
+        return commentMapper.countAllComments();
+    }
+
+    @Override
     public List<Comment> findAllCommentsByQuesionIdMost3(Integer questionId) {
         return commentMapper.findAllCommentsByQuesionIdMost3(questionId);
     }
