@@ -95,4 +95,19 @@ public class Question {
     public void setimgurl4(String imgurl4) {
         this.imgurl4 = imgurl4;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", author='" + author + '\'' +
+                ", publishDate=" + publishDate +
+                ", imgurl1='" + imgurl1 + '\'' +
+                ", imgurl2='" + imgurl2 + '\'' +
+                ", imgurl3='" + imgurl3 + '\'' +
+                ", imgurl4='" + imgurl4 + '\'' +
+                '}';
+    }
 }

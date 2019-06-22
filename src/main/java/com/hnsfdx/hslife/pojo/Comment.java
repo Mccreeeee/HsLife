@@ -59,4 +59,16 @@ public class Comment {
     public void setLikeNum(Integer likeNum) {
         this.likeNum = likeNum;
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", questionId=" + questionId +
+                ", content='" + content + '\'' +
+                ", reviewer='" + reviewer + '\'' +
+                ", publishDate=" + publishDate +
+                ", likeNum=" + likeNum +
+                '}';
+    }
 }

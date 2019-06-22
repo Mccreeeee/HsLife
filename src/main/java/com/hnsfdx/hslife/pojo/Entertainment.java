@@ -10,7 +10,8 @@ public class Entertainment {
     private Integer id=-1;
     private String title,imgurl1,imgurl2,imgurl3,imgurl4;
     private String content;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp publishdate;
     public Integer getId() {
         return id;
     }
@@ -75,8 +76,18 @@ public class Entertainment {
         this.publishdate = publishdate;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp publishdate;
 
-
+    @Override
+    public String toString() {
+        return "Entertainment{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", imgurl1='" + imgurl1 + '\'' +
+                ", imgurl2='" + imgurl2 + '\'' +
+                ", imgurl3='" + imgurl3 + '\'' +
+                ", imgurl4='" + imgurl4 + '\'' +
+                ", content='" + content + '\'' +
+                ", publishdate=" + publishdate +
+                '}';
+    }
 }
