@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnsfdx.hslife.mapper.AnswerMapper">
+    <resultMap id="AnswerResultMap" type="com.hnsfdx.hslife.pojo.Answer">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="entertainmentid" column="entertainmentid" jdbcType="INTEGER"/>
+        <result property="content" column="content" jdbcType="LONGVARCHAR"/>
+        <result property="reviewer" column="reviewer" jdbcType="LONGVARCHAR"/>
+        <result property="publishdate" column="publishdate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="findAllAnswerByEntertainmentId" resultMap="AnswerResultMap" parameterType="java.util.Map">
+        select * from answers
+        <where>
+        entertainmentid=#{enterId}
+        </where>
+        order by publishdate desc LIMIT #{lindex},#{lsize}
+    </select>
+
+    <select id="countAllAnswers" resultType="Integer">
+        SELECT COUNT(*) FROM answers
+    </select>
+</mapper>
