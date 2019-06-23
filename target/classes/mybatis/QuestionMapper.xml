@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnsfdx.hslife.mapper.QuestionMapper">
+    <resultMap id="questionResultMap" type="com.hnsfdx.hslife.pojo.Question">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR" />
+        <result property="content" column="content" jdbcType="VARCHAR" />
+        <result property="author" column="author" jdbcType="VARCHAR" />
+        <result property="publishDate" column="publishdate" jdbcType="TIMESTAMP" />
+        <result property="imgurl1" column="imgurl1" jdbcType="VARCHAR" />
+        <result property="imgurl2" column="imgurl2" jdbcType="VARCHAR" />
+        <result property="imgurl3" column="imgurl3" jdbcType="VARCHAR" />
+        <result property="imgurl4" column="imgurl4" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="findAllQuestions" parameterType="Integer" resultMap="questionResultMap">
+        SELECT * FROM questions ORDER BY publishdate DESC LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="countAllQuestions" resultType="Integer">
+        SELECT COUNT(*) FROM questions
+    </select>
+
+    <select id="findAllQuestionsByAuthorOpenId" parameterType="String" resultMap="questionResultMap">
+        SELECT * FROM questions WHERE author = #{openId}
+    </select>
+
+    <select id="findAllQuestionsByTitle" resultMap="questionResultMap">
+        <bind name="pattern" value="'%' + title + '%'" />
+        SELECT * FROM questions WHERE title LIKE #{pattern} ORDER BY publishdate DESC LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="countAllQuestionsByTitle" parameterType="String" resultType="Integer">
+        <bind name="pattern" value="'%' + title + '%'" />
+        SELECT COUNT(*) FROM questions WHERE title LIKE #{pattern}
+    </select>
+
+    <select id="findAllQuestionsByQuestionId" parameterType="List" resultMap="questionResultMap">
+        SELECT * FROM questions
+        WHERE id IN 
+        <foreach collection="questionIds" item="questionId" open="(" close=")" separator=",">
+            #{questionId}
+        </foreach>
+    </select>
+    
+    <update id="updateSingleQuestion" parameterType="com.hnsfdx.hslife.pojo.Question">
+        UPDATE questions
+        <set>
+            <choose>
+                <when test="title != null">title = #{title}, </when>
+                <when test="content != null">content = #{content}, </when>
+                <when test="publishDate != null">publishdate = #{publishDate}, </when>
+                <when test="imgurl1 != null">imgurl1 = #{imgurl1}, </when>
+                <when test="imgurl2 != null">imgurl2 = #{imgurl2}, </when>
+                <when test="imgurl3 != null">imgurl3 = #{imgurl3}, </when>
+                <when test="imgurl4 != null">imgurl4 = #{imgurl4}, </when>
+            </choose>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteSingleQuestion" parameterType="Integer">
+        DELETE FROM questions WHERE id = #{id}
+    </delete>
+</mapper>
