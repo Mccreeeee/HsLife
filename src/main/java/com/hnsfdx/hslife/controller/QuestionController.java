@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.controller;
 
+import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.DataDeleteException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.exception.DataUpdateException;
@@ -36,6 +37,9 @@ public class QuestionController {
 
     @GetMapping("/getallquestions")
     public Map<String, Object> getAllQuestions(@RequestParam("page") Integer page) {
+        if(page <= 0) {
+            throw new ArgsIntroduceException();
+        }
         List<Question> questionList = questionService.getAllQuestions((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", questionList);
@@ -61,6 +65,9 @@ public class QuestionController {
     //模糊搜索用
     @GetMapping("/getallquestionsbyt")
     public Map<String, Object> getAllQuestionsByT(@RequestParam("title") String title, @RequestParam("page") Integer page) {
+        if(page <= 0) {
+            throw new ArgsIntroduceException();
+        }
         List<Question> questionList = questionService.getAllQuestionsByTitle(title, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", questionList);
@@ -94,6 +101,9 @@ public class QuestionController {
 
     @GetMapping("/getallcommentsbyqid")
     public Map<String, Object> getAllCommentsByQId(@RequestParam("questionId") Integer questionId, @RequestParam("page") Integer page) {
+        if(page <= 0) {
+            throw new ArgsIntroduceException();
+        }
         List<Comment> commentList = commentService.getAllCommentsByQuesionId(questionId, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", commentList);
@@ -133,5 +143,4 @@ public class QuestionController {
         Map<String, Object> res = ResponseTypeUtil.modDataOpResponse(result, new DataDeleteException());
         return res;
     }
-     */
 }

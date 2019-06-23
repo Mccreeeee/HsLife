@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.controller;
 
+import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.pojo.Entertainment;
@@ -62,14 +63,13 @@ public class EntertainmentsController {
 
     @GetMapping("/getEntertainments")
     public Map<String, Object> findEntertainments(@RequestParam("page") Integer page) {
-        throw new DataInsertException();
-//        if (page <= 0) {
-//            return ResponseTypeUtil.createFailResponse();
-//        }
-//        List<Entertainment> obtained = entertainmentService.getEntertainments((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
-//        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
-//        forRet.put("data", obtained);
-//        return forRet;
+        if (page <= 0) {
+            throw new ArgsIntroduceException();
+        }
+        List<Entertainment> obtained = entertainmentService.getEntertainments((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", obtained);
+        return forRet;
     }
     //娱乐的最大页数
     @GetMapping("/getEntertainmentMaxPage")

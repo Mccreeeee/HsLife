@@ -48,11 +48,16 @@ public class ControllerLogAop {
     public void doAfterController(Object object) {
         logger.info("====================AfterReturning=====================");
         logger.info("Time Consuming: {}", System.currentTimeMillis() - startTime.get());
-
         logger.info("Response Data: {}", object.toString());
         startTime.remove();
         logger.info("==========================End==========================");
     }
 
     @AfterThrowing(pointcut = "pointCut()", throwing = "ex")
+    public void doThrowingException(Exception ex) {
+        logger.info("====================ThrowException=====================");
+        logger.info("Exception Ocuured In Class: {}", ex.getClass());
+        startTime.remove();
+        logger.info("==========================End==========================");
+    }
 }
