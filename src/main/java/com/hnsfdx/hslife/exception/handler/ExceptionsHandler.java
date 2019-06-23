@@ -3,10 +3,9 @@ package com.hnsfdx.hslife.exception.handler;
 import com.hnsfdx.hslife.exception.*;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,42 +23,50 @@ public class ExceptionsHandler {
         res.put("timestamp", dateThreadLocal.get().format(new Date()));
         res.put("message", exMsg);
         res.put("data", null);
+        dateThreadLocal.remove();
         return res;
     }
-    @ExceptionHandler(DataInsertException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
-    public Map<String, Object> insertExceptionHandler() {
-        ExceptionCode exceptionCode = ExceptionCode.valueOf("DATA_INSERT_EXCEPTION");
+    @ExceptionHandler(BaseException.class)
+    public ResponseEntity<Map<String, Object>> customizedExceptionHandler(BaseException ae) {
+        ExceptionCode exceptionCode = ae.getExceptionCode();
         Map<String, Object> res = handler(exceptionCode.getCode(), exceptionCode.getMsg());
-        return res;
+        return new ResponseEntity<Map<String, Object>>(res, exceptionCode.getStatus());
     }
-
-    @ExceptionHandler(DataUpdateException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ResponseBody
-    public Map<String, Object> updateExceptionHandler() {
-        ExceptionCode exceptionCode = ExceptionCode.valueOf("DATA_UPDATE_EXCEPTION");
-        Map<String, Object> res = handler(exceptionCode.getCode(), exceptionCode.getMsg());
-        return res;
-    }
-
-    @ExceptionHandler(DataDeleteException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ResponseBody
-    public Map<String, Object> deleteExceptionHandler() {
-        ExceptionCode exceptionCode = ExceptionCode.valueOf("DATA_DELETE_EXCEPTION");
-        Map<String, Object> res = handler(exceptionCode.getCode(), exceptionCode.getMsg());
-        return res;
-    }
-
-    @ExceptionHandler(ArgsIntroduceException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    public Map<String, Object> ArgsExceptionHandler() {
-        ExceptionCode exceptionCode = ExceptionCode.valueOf("ARGS_INTRODUCE_EXCEPTION");
-        Map<String, Object> res = handler(exceptionCode.getCode(), exceptionCode.getMsg());
-        return res;
-    }
+    //另一种实现方式，但是代码很臃肿
+//    @ExceptionHandler(DataInsertException.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    @ResponseBody
+//    public Map<String, Object> insertExceptionHandler() {
+//        ExceptionCode exceptionCode = ExceptionCode.valueOf("DATA_INSERT_EXCEPTION");
+//        Map<String, Object> res = handler(exceptionCode.getCode(), exceptionCode.getMsg());
+//        return res;
+//    }
+//
+//    @ExceptionHandler(DataUpdateException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    @ResponseBody
+//    public Map<String, Object> updateExceptionHandler() {
+//        ExceptionCode exceptionCode = ExceptionCode.valueOf("DATA_UPDATE_EXCEPTION");
+//        Map<String, Object> res = handler(exceptionCode.getCode(), exceptionCode.getMsg());
+//        return res;
+//    }
+//
+//    @ExceptionHandler(DataDeleteException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    @ResponseBody
+//    public Map<String, Object> deleteExceptionHandler() {
+//        ExceptionCode exceptionCode = ExceptionCode.valueOf("DATA_DELETE_EXCEPTION");
+//        Map<String, Object> res = handler(exceptionCode.getCode(), exceptionCode.getMsg());
+//        return res;
+//    }
+//
+//    @ExceptionHandler(ArgsIntroduceException.class)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    @ResponseBody
+//    public Map<String, Object> ArgsExceptionHandler() {
+//        ExceptionCode exceptionCode = ExceptionCode.valueOf("ARGS_INTRODUCE_EXCEPTION");
+//        Map<String, Object> res = handler(exceptionCode.getCode(), exceptionCode.getMsg());
+//        return res;
+//    }
 
 }
