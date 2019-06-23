@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.controller;
 
+import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.Wanted;
 import com.hnsfdx.hslife.service.WantedService;
@@ -31,6 +32,9 @@ public class WantedController {
     //找到所有悬赏信息
     @GetMapping("/getallwanteds")
     public Map<String,Object> getAllWanteds(@RequestParam("page") Integer page) {
+        if(page <= 0) {
+            throw new ArgsIntroduceException();
+        }
         List<Wanted> wantedList = wantedService.getAllWanteds((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",wantedList);
@@ -63,6 +67,9 @@ public class WantedController {
     //找到所有的某个状态的悬赏信息（急/已解决/未解决）
     @GetMapping("/getallwantedsbys")
     public Map<String,Object> getAllWantedsByS(@RequestParam("status") Integer status, @RequestParam("page") Integer page) {
+        if(page <= 0) {
+            throw new ArgsIntroduceException();
+        }
         List<Wanted> wantedList = wantedService.getAllWantedsByStatus(status, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",wantedList);
@@ -81,6 +88,9 @@ public class WantedController {
     //找到搜索的类似标题的悬赏信息
     @GetMapping("/getallwantedsbyt")
     public Map<String,Object> getAllWantedsByT(@RequestParam("title") String title, @RequestParam("page") Integer page) {
+        if(page <= 0) {
+            throw new ArgsIntroduceException();
+        }
         List<Wanted> wantedList = wantedService.getAllWantedsByTitle(title, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",wantedList);

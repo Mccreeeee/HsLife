@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.controller;
 
+import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.News;
 import com.hnsfdx.hslife.service.NewsService;
@@ -30,6 +31,9 @@ public class NewsController {
 
     @GetMapping("/getallnews")
     public Map<String, Object> getAllNews(@RequestParam("page") Integer page) {
+        if(page <= 0) {
+            throw new ArgsIntroduceException();
+        }
         List<News> newsList = newsService.getAllNews((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",newsList);
