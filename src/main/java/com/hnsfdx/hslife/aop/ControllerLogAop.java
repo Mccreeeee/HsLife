@@ -56,7 +56,7 @@ public class ControllerLogAop {
     @AfterThrowing(pointcut = "pointCut()", throwing = "ex")
     public void doThrowingException(Exception ex) {
         logger.info("====================ThrowException=====================");
-        logger.info("Exception Ocuured In Class: {}", ex.getClass());
+        logger.info("Exception Ocuured Of Class: {}", ex.getClass());
         startTime.remove();
         logger.info("==========================End==========================");
     }
