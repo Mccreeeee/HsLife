@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hnsfdx.hslife.mapper.UserMapper">
+
+    <resultMap id="userResultMap" type="com.hnsfdx.hslife.pojo.User">
+        <id property="openId" column="openid" jdbcType="VARCHAR" />
+        <result property="userName" column="username" jdbcType="VARCHAR" />
+        <result property="score" column="score" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="findByOpenId" parameterType="String" resultMap="userResultMap">
+        SELECT * FROM users WHERE openid = #{openId}
+    </select>
+
+    <select id="findAllUsers" resultMap="userResultMap">
+        SELECT * FROM users;
+    </select>
+
+    <insert id="insertOneUser" parameterType="com.hnsfdx.hslife.pojo.User" >
+        INSERT INTO users (openid, username, score)
+        VALUES (#{openId}, #{userName}, #{score})
+    </insert>
+
+</mapper>
