@@ -13,6 +13,7 @@ D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\service\AnswerService.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\HslifeApplication.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\controller\SimpleEchoForTest.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\controller\UserController.java
+D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\pojo\CommentLikeRecord.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\repository\QuestionRepository.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\service\serviceimpl\QuestionServiceImpl.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\controller\WantedController.java
@@ -21,6 +22,7 @@ D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\repository\repositoryimpl\En
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\aop\ControllerLogAop.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\mapper\AnswerMapper.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\repository\AnswerRepository.java
+D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\service\serviceimpl\CommentLikeRecordServicelmpl.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\mapper\QuestionMapper.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\repository\repositoryimpl\AnswerRepositorylmpl.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\pojo\Answer.java
@@ -48,12 +50,14 @@ D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\util\PageUtil.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\exception\BaseException.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\pojo\Wanted.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\repository\UserRepository.java
+D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\repository\repositoryimpl\CommentLikeRecordRepositorylmpl.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\service\CommentService.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\exception\DataDeleteException.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\repository\repositoryimpl\NewsRepositoryImpl.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\exception\DataInsertException.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\controller\NewsController.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\repository\repositoryimpl\WantedRepositoryImpl.java
+D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\mapper\CommentLikeRecordMapper.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\exception\ExceptionCode.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\pojo\Comment.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\pojo\News.java

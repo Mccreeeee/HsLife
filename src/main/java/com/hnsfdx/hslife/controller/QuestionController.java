@@ -6,9 +6,11 @@ import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.exception.DataUpdateException;
 import com.hnsfdx.hslife.mapper.QuestionMapper;
 import com.hnsfdx.hslife.pojo.Comment;
+import com.hnsfdx.hslife.pojo.CommentLikeRecord;
 import com.hnsfdx.hslife.pojo.Question;
 import com.hnsfdx.hslife.service.CommentService;
 import com.hnsfdx.hslife.service.QuestionService;
+import com.hnsfdx.hslife.service.serviceimpl.CommentLikeRecordServicelmpl;
 import com.hnsfdx.hslife.util.PageUtil;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,12 @@ import java.util.Map;
 public class QuestionController {
     private QuestionService questionService;
     private CommentService commentService;
+    private CommentLikeRecordServicelmpl commentLikeRecord;
     @Autowired
-    public QuestionController(QuestionService questionService, CommentService commentService) {
+    public QuestionController(QuestionService questionService, CommentService commentService,CommentLikeRecordServicelmpl commentLikeRecord) {
         this.questionService = questionService;
         this.commentService = commentService;
+        this.commentLikeRecord = commentLikeRecord;
     }
 
     @PostMapping("/addquestion")
@@ -142,5 +146,27 @@ public class QuestionController {
         Integer result = commentService.deleteComment(id);
         Map<String, Object> res = ResponseTypeUtil.modDataOpResponse(result, new DataDeleteException());
         return res;
+    }
+    @GetMapping("/like")
+    public Map<String,Object> sendCommentLike(@RequestParam Integer commentId, @RequestParam String reviewer){
+        try{
+            return ResponseTypeUtil.createSucResponseWithData(commentLikeRecord.insert(new CommentLikeRecord(commentId,reviewer)));
+        }
+        catch (Exception e){
+            return ResponseTypeUtil.createFailResponse();
+        }
+
+    }
+    @GetMapping("/cancelLike")
+    public Map<String,Object> cancelCommentLike(@RequestParam Integer commentId, @RequestParam String reviewer){
+        return ResponseTypeUtil.createSucResponseWithData(commentLikeRecord.delete(new CommentLikeRecord(commentId,reviewer)));
+        /*
+        try{
+        }
+        catch (Exception e){
+            return ResponseTypeUtil.createFailResponse();
+        }
+        */
+
     }
 }
