@@ -159,14 +159,12 @@ public class QuestionController {
     }
     @GetMapping("/cancelLike")
     public Map<String,Object> cancelCommentLike(@RequestParam Integer commentId, @RequestParam String reviewer){
-        return ResponseTypeUtil.createSucResponseWithData(commentLikeRecord.delete(new CommentLikeRecord(commentId,reviewer)));
-        /*
         try{
+            return ResponseTypeUtil.createSucResponseWithData(commentLikeRecord.delete(new CommentLikeRecord(commentId,reviewer)));
         }
         catch (Exception e){
             return ResponseTypeUtil.createFailResponse();
         }
-        */
 
     }
 }
