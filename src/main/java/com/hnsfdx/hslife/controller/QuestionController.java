@@ -155,7 +155,6 @@ public class QuestionController {
         catch (Exception e){
             return ResponseTypeUtil.createFailResponse();
         }
-
     }
     @GetMapping("/cancelLike")
     public Map<String,Object> cancelCommentLike(@RequestParam Integer commentId, @RequestParam String reviewer){

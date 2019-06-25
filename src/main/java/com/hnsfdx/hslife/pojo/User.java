@@ -8,6 +8,23 @@ public class User {
     //用户分数
     private Integer score;
 
+    public User(String openId,String userName,String imageUrl,int score){
+        this.openId=openId;
+        this.userName=userName;
+        this.imageUrl=imageUrl;
+        this.score=score;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    private String imageUrl;
+
     public String getOpenId() {
         return openId;
     }
