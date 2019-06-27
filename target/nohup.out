@@ -1,0 +1,322 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.5.RELEASE)
+
+2019-06-26 15:59:36.172  INFO 17027 --- [           main] com.hnsfdx.hslife.HslifeApplication      : Starting HslifeApplication v0.0.1-SNAPSHOT on ubuntu-fw with PID 17027 (/root/HsLife/target/hslife-0.0.1-SNAPSHOT.jar started by root in /root/HsLife/target)
+2019-06-26 15:59:36.184  INFO 17027 --- [           main] com.hnsfdx.hslife.HslifeApplication      : No active profile set, falling back to default profiles: default
+2019-06-26 15:59:40.239  INFO 17027 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-06-26 15:59:40.242  INFO 17027 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-26 15:59:40.338  INFO 17027 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49ms. Found 0 repository interfaces.
+2019-06-26 15:59:41.770  INFO 17027 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a5fdfefc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-26 15:59:43.661  INFO 17027 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-26 15:59:43.794  INFO 17027 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-26 15:59:43.800  INFO 17027 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-06-26 15:59:44.126  INFO 17027 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-26 15:59:44.126  INFO 17027 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7727 ms
+2019-06-26 15:59:49.015  INFO 17027 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-26 15:59:49.938  INFO 17027 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-26 15:59:52.896  INFO 17027 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-26 15:59:52.967  INFO 17027 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-26 15:59:53.067  INFO 17027 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-26 15:59:53.769  INFO 17027 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-26 15:59:53.784  INFO 17027 --- [           main] com.hnsfdx.hslife.HslifeApplication      : Started HslifeApplication in 19.344 seconds (JVM running for 20.744)
+2019-06-26 15:59:58.101  INFO 17027 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-26 15:59:58.103  INFO 17027 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-26 15:59:58.168  INFO 17027 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 64 ms
+2019-06-26 15:59:58.269  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================Before========================
+2019-06-26 15:59:58.270  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Url: /user/signUp
+2019-06-26 15:59:58.274  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method: GET
+2019-06-26 15:59:58.275  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request IP: 183.63.97.103
+2019-06-26 15:59:58.277  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Class_Method: com.hnsfdx.hslife.controller.UserController.login
+2019-06-26 15:59:58.279  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method_Args: 011JxVT12sdkYW0f13W12cCIT12JxVT8
+2019-06-26 15:59:58.279  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-26 15:59:59.665  INFO 17027 --- [nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-06-26 16:00:04.442  INFO 17027 --- [nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-06-26 16:00:05.234  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ====================AfterReturning=====================
+2019-06-26 16:00:05.234  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Time Consuming: 6965
+2019-06-26 16:00:05.255  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Response Data: {"result":"success","openid":"oyZnj5IY-ZqX8Bfoq3iiq2IPwMHY","session_key":"SL9ASYgkS3CMhCKklYouFQ=="}
+2019-06-26 16:00:05.255  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-26 16:04:49.129  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================Before========================
+2019-06-26 16:04:49.129  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Url: /user/signUp
+2019-06-26 16:04:49.130  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method: GET
+2019-06-26 16:04:49.132  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Request IP: 183.63.97.103
+2019-06-26 16:04:49.132  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Class_Method: com.hnsfdx.hslife.controller.UserController.login
+2019-06-26 16:04:49.132  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method_Args: 011JxVT12sdkYW0f13W12cCIT12JxVT8
+2019-06-26 16:04:49.132  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-26 16:04:49.442  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : ====================AfterReturning=====================
+2019-06-26 16:04:49.442  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Time Consuming: 313
+2019-06-26 16:04:49.442  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Response Data: {"errcode":40163,"result":"fail","errmsg":"code been used, hints: [ req_id: B.nCSLXIRa- ]"}
+2019-06-26 16:04:49.443  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-26 16:05:04.232  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================Before========================
+2019-06-26 16:05:04.232  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Url: /user/signUp
+2019-06-26 16:05:04.232  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method: GET
+2019-06-26 16:05:04.233  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Request IP: 183.63.97.103
+2019-06-26 16:05:04.233  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Class_Method: com.hnsfdx.hslife.controller.UserController.login
+2019-06-26 16:05:04.233  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method_Args: 061B0e5g23yIEH0nwT5g2FTy5g2B0e5m
+2019-06-26 16:05:04.233  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-26 16:05:07.376 ERROR 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : ====================ThrowException=====================
+2019-06-26 16:05:07.377 ERROR 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Exception Ocuured Of Class: class org.springframework.dao.DuplicateKeyException
+2019-06-26 16:05:07.377 ERROR 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-26 16:05:07.394 ERROR 17027 --- [nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'oyZnj5IY-ZqX8Bfoq3iiq2IPwMHY' for key 'PRIMARY'
+### The error may exist in class path resource [mybatis/UserMapper.xml]
+### The error may involve com.hnsfdx.hslife.mapper.UserMapper.insertOneUser-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO users (openid, username, score, imageUrl)         VALUES (?, ?, ?,?)
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'oyZnj5IY-ZqX8Bfoq3iiq2IPwMHY' for key 'PRIMARY'
+; Duplicate entry 'oyZnj5IY-ZqX8Bfoq3iiq2IPwMHY' for key 'PRIMARY'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'oyZnj5IY-ZqX8Bfoq3iiq2IPwMHY' for key 'PRIMARY'] with root cause
+
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'oyZnj5IY-ZqX8Bfoq3iiq2IPwMHY' for key 'PRIMARY'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117) ~[mysql-connector-java-8.0.16.jar!/:8.0.16]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.16.jar!/:8.0.16]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.16.jar!/:8.0.16]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:955) ~[mysql-connector-java-8.0.16.jar!/:8.0.16]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:372) ~[mysql-connector-java-8.0.16.jar!/:8.0.16]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44) ~[HikariCP-3.2.0.jar!/:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java) ~[HikariCP-3.2.0.jar!/:na]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47) ~[mybatis-3.5.1.jar!/:3.5.1]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74) ~[mybatis-3.5.1.jar!/:3.5.1]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50) ~[mybatis-3.5.1.jar!/:3.5.1]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.1.jar!/:3.5.1]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.1.jar!/:3.5.1]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.1.jar!/:3.5.1]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184) ~[mybatis-3.5.1.jar!/:3.5.1]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433) ~[mybatis-spring-2.0.1.jar!/:2.0.1]
+	at com.sun.proxy.$Proxy93.insert(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:278) ~[mybatis-spring-2.0.1.jar!/:2.0.1]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62) ~[mybatis-3.5.1.jar!/:3.5.1]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58) ~[mybatis-3.5.1.jar!/:3.5.1]
+	at com.sun.proxy.$Proxy98.insertOneUser(Unknown Source) ~[na:na]
+	at com.hnsfdx.hslife.repository.repositoryimpl.UserRepositoryImpl.insertOneUser(UserRepositoryImpl.java:31) ~[classes!/:0.0.1-SNAPSHOT]
+	at com.hnsfdx.hslife.repository.repositoryimpl.UserRepositoryImpl$$FastClassBySpringCGLIB$$7eee2908.invoke(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:749) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at com.hnsfdx.hslife.repository.repositoryimpl.UserRepositoryImpl$$EnhancerBySpringCGLIB$$8f9122f4.insertOneUser(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at com.hnsfdx.hslife.service.serviceimpl.UserServiceImpl.addUser(UserServiceImpl.java:27) ~[classes!/:0.0.1-SNAPSHOT]
+	at com.hnsfdx.hslife.controller.UserController.login(UserController.java:38) ~[classes!/:0.0.1-SNAPSHOT]
+	at com.hnsfdx.hslife.controller.UserController$$FastClassBySpringCGLIB$$c5464c06.invoke(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:749) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:56) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:55) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:62) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at com.hnsfdx.hslife.controller.UserController$$EnhancerBySpringCGLIB$$dd4ccdaa.login(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104) ~[spring-webmvc-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892) ~[spring-webmvc-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1039) ~[spring-webmvc-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005) ~[spring-webmvc-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:897) ~[spring-webmvc-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882) ~[spring-webmvc-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) ~[spring-web-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) ~[spring-web-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.1.7.RELEASE.jar!/:5.1.7.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2019-06-26 16:22:23.730  INFO 17027 --- [nio-8080-exec-3] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:414) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:294) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2019-06-27 00:52:03.501  WARN 17027 --- [io-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required Integer parameter 'questionId' is not present]
+2019-06-27 00:52:14.130  WARN 17027 --- [nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required Integer parameter 'questionId' is not present]
+2019-06-27 00:58:40.874  WARN 17027 --- [nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'js_code' is not present]
+2019-06-27 04:30:23.223  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================Before========================
+2019-06-27 04:30:23.224  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Url: /EchoTest/echo
+2019-06-27 04:30:23.224  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method: GET
+2019-06-27 04:30:23.224  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : Request IP: 120.236.163.38
+2019-06-27 04:30:23.224  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Class_Method: com.hnsfdx.hslife.controller.SimpleEchoForTest.echo
+2019-06-27 04:30:23.224  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method_Args: 123
+2019-06-27 04:30:23.224  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:30:23.249  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : ====================AfterReturning=====================
+2019-06-27 04:30:23.249  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : Time Consuming: 26
+2019-06-27 04:30:23.249  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : Response Data: 123
+2019-06-27 04:30:23.249  INFO 17027 --- [nio-8080-exec-4] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:30:33.812  WARN 17027 --- [nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; nested exception is java.lang.NumberFormatException: For input string: "?"]
+2019-06-27 04:30:45.298  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================Before========================
+2019-06-27 04:30:45.298  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Url: /Entertainments/findEntertainmentById
+2019-06-27 04:30:45.301  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method: GET
+2019-06-27 04:30:45.302  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Request IP: 120.236.163.38
+2019-06-27 04:30:45.302  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Class_Method: com.hnsfdx.hslife.controller.EntertainmentsController.findEntertainmentById
+2019-06-27 04:30:45.302  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method_Args: 1
+2019-06-27 04:30:45.302  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:30:45.355  WARN 17027 --- [nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1b7c2983 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-06-27 04:30:45.364  WARN 17027 --- [nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@513374fe (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-06-27 04:30:45.366  WARN 17027 --- [nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6fd500f2 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-06-27 04:30:45.375  WARN 17027 --- [nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@151f0cba (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-06-27 04:30:45.379  WARN 17027 --- [nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@511990b1 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-06-27 04:30:45.381  WARN 17027 --- [nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1b478ae8 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-06-27 04:30:45.384  WARN 17027 --- [nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5c52dbe2 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-06-27 04:30:45.389  WARN 17027 --- [nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3145760e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-06-27 04:30:45.391  WARN 17027 --- [nio-8080-exec-8] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2c44f48f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-06-27 04:30:46.133  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : ====================AfterReturning=====================
+2019-06-27 04:30:46.133  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Time Consuming: 835
+2019-06-27 04:30:46.135  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : Response Data: {result=success, data=Entertainment{id=1, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}}
+2019-06-27 04:30:46.135  INFO 17027 --- [nio-8080-exec-8] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:33:06.769  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================Before========================
+2019-06-27 04:33:06.769  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Url: /Entertainments/getEntertainments
+2019-06-27 04:33:06.770  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method: GET
+2019-06-27 04:33:06.770  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request IP: 120.236.163.38
+2019-06-27 04:33:06.770  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Class_Method: com.hnsfdx.hslife.controller.EntertainmentsController.findEntertainments
+2019-06-27 04:33:06.770  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method_Args: 1
+2019-06-27 04:33:06.770  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:33:07.500  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ====================AfterReturning=====================
+2019-06-27 04:33:07.503  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Time Consuming: 734
+2019-06-27 04:33:07.503  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Response Data: {result=success, data=[Entertainment{id=21, title='test_', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test_', publishdate=2019-06-02 11:11:11.0}, Entertainment{id=22, title='test_', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test_', publishdate=2019-06-02 11:11:11.0}, Entertainment{id=1, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=2, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=3, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=4, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=5, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=6, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=7, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=8, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}]}
+2019-06-27 04:33:07.503  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:33:35.828  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================Before========================
+2019-06-27 04:33:35.829  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Url: /Entertainments/getEntertainments
+2019-06-27 04:33:35.829  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method: GET
+2019-06-27 04:33:35.829  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : Request IP: 120.236.163.38
+2019-06-27 04:33:35.829  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Class_Method: com.hnsfdx.hslife.controller.EntertainmentsController.findEntertainments
+2019-06-27 04:33:35.829  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method_Args: 1
+2019-06-27 04:33:35.829  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:33:36.555  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : ====================AfterReturning=====================
+2019-06-27 04:33:36.555  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : Time Consuming: 727
+2019-06-27 04:33:36.556  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : Response Data: {result=success, data=[Entertainment{id=21, title='test_', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test_', publishdate=2019-06-02 11:11:11.0}, Entertainment{id=22, title='test_', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test_', publishdate=2019-06-02 11:11:11.0}, Entertainment{id=1, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=2, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=3, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=4, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=5, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=6, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=7, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}, Entertainment{id=8, title='test', imgurl1='', imgurl2='', imgurl3='', imgurl4='', content='test', publishdate=2019-06-02 00:00:00.0}]}
+2019-06-27 04:33:36.556  INFO 17027 --- [nio-8080-exec-2] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:35:38.841  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================Before========================
+2019-06-27 04:35:38.841  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Url: /Entertainments/getAnswer
+2019-06-27 04:35:38.841  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method: GET
+2019-06-27 04:35:38.841  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request IP: 120.236.163.38
+2019-06-27 04:35:38.841  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Class_Method: com.hnsfdx.hslife.controller.EntertainmentsController.getAnswer
+2019-06-27 04:35:38.842  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method_Args: 1
+2019-06-27 04:35:38.842  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:35:39.574  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ====================AfterReturning=====================
+2019-06-27 04:35:39.574  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Time Consuming: 733
+2019-06-27 04:35:39.574  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : Response Data: {result=success, data=[]}
+2019-06-27 04:35:39.574  INFO 17027 --- [nio-8080-exec-1] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:38:15.947  WARN 17027 --- [nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required Integer parameter 'page' is not present]
+2019-06-27 04:38:24.152  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================Before========================
+2019-06-27 04:38:24.153  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Url: /Entertainments/getAnswer
+2019-06-27 04:38:24.154  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method: GET
+2019-06-27 04:38:24.155  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Request IP: 120.236.163.38
+2019-06-27 04:38:24.155  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Class_Method: com.hnsfdx.hslife.controller.EntertainmentsController.getAnswer
+2019-06-27 04:38:24.155  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Request Method_Args: 7
+2019-06-27 04:38:24.155  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:38:24.875  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : ====================AfterReturning=====================
+2019-06-27 04:38:24.875  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Time Consuming: 723
+2019-06-27 04:38:24.879  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : Response Data: {result=success, data=[Answer{id=4, entertainmentid=7, content='cyy_test', reviewer='1', publishdate=2019-06-04 00:00:00.0}, Answer{id=5, entertainmentid=7, content='cyy_test2', reviewer='2', publishdate=2019-06-04 00:00:00.0}, Answer{id=6, entertainmentid=7, content='cyy_test', reviewer='1', publishdate=2019-06-04 00:00:00.0}]}
+2019-06-27 04:38:24.879  INFO 17027 --- [nio-8080-exec-5] com.hnsfdx.hslife.aop.ControllerLogAop   : ==========================End==========================
+2019-06-27 04:58:40.218  INFO 17027 --- [       Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-06-27 04:58:40.235  INFO 17027 --- [       Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-06-27 04:58:40.263  INFO 17027 --- [       Thread-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.5.RELEASE)
+
+2019-06-27 04:59:06.860  INFO 19733 --- [           main] com.hnsfdx.hslife.HslifeApplication      : Starting HslifeApplication v0.0.1-SNAPSHOT on ubuntu-fw with PID 19733 (/root/HsLife/target/hslife-0.0.1-SNAPSHOT.jar started by root in /root/HsLife/target)
+2019-06-27 04:59:06.875  INFO 19733 --- [           main] com.hnsfdx.hslife.HslifeApplication      : No active profile set, falling back to default profiles: default
+2019-06-27 04:59:11.121  INFO 19733 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-06-27 04:59:11.128  INFO 19733 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-06-27 04:59:11.212  INFO 19733 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43ms. Found 0 repository interfaces.
+2019-06-27 04:59:12.692  INFO 19733 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8aadedf2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-06-27 04:59:14.476  INFO 19733 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-06-27 04:59:14.681  INFO 19733 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-06-27 04:59:14.682  INFO 19733 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-06-27 04:59:14.966  INFO 19733 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-06-27 04:59:14.966  INFO 19733 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7889 ms
+2019-06-27 04:59:19.423  INFO 19733 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-27 04:59:20.291  INFO 19733 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-06-27 04:59:23.173  INFO 19733 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-27 04:59:23.249  INFO 19733 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-27 04:59:23.344  INFO 19733 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-27 04:59:24.063  INFO 19733 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-06-27 04:59:24.078  INFO 19733 --- [           main] com.hnsfdx.hslife.HslifeApplication      : Started HslifeApplication in 18.93 seconds (JVM running for 20.301)
+2019-06-27 05:19:54.751  INFO 19733 --- [nio-8080-exec-1] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:414) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:294) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:836) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1747) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.19.jar!/:9.0.19]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2019-06-27 05:29:06.028  INFO 19733 --- [nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-06-27 05:29:06.029  INFO 19733 --- [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-06-27 05:29:06.112  INFO 19733 --- [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 83 ms
+2019-06-27 05:42:03.909  INFO 19733 --- [       Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
