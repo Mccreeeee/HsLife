@@ -100,8 +100,8 @@ public class EntertainmentsController {
     }
     //回答的最大页数
     @GetMapping("/getAnswerMaxPage")
-    public Map<String, Object> getAnswerMaxPage() {
-        Integer count = answerService.getAllAnswersCount();
+    public Map<String, Object> getAnswerMaxPage(@RequestParam("enterId")  Integer enterId) {
+        Integer count = answerService.getAllAnswersCount(enterId);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
         return forRet;

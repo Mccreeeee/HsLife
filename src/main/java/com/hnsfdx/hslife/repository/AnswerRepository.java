@@ -11,5 +11,5 @@ public interface AnswerRepository {
     List<Answer> findAllAnswerByEntertainmentId(Integer enterId, Integer offset, Integer size);
 
     //所有回答的数量
-    Integer countAllAnswers();
+    Integer countAllAnswers(Integer enterId);
 }

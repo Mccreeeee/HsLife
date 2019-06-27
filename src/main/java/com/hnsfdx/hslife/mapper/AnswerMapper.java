@@ -18,5 +18,5 @@ public interface AnswerMapper {
                                           @Param(value = "lindex") Integer offset,
                                           @Param(value = "lsize") Integer size);
     //所有回答的数量
-    Integer countAllAnswers();
+    Integer countAllAnswers(Integer enterId);
 }
