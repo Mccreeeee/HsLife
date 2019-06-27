@@ -12,5 +12,5 @@ public interface AnswerService {
     List<Answer> getAllAnswerByEntertainmentId(Integer EnterId,Integer offset, Integer size);
 
     //所有答案的数量
-    Integer getAllAnswersCount();
+    Integer getAllAnswersCount(Integer enid);
 }

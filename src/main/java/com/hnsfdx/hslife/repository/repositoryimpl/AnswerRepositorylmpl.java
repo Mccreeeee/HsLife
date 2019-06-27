@@ -5,6 +5,7 @@ import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class AnswerRepositorylmpl implements AnswerRepository {
     }
 
     @Override
-    public Integer countAllAnswers() {
-        return answerMapper.countAllAnswers();
+    public Integer countAllAnswers(Integer enterId) {
+        return answerMapper.countAllAnswers(enterId);
     }
 }

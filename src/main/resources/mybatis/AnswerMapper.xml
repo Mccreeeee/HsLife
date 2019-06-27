@@ -18,7 +18,7 @@
         order by publishdate desc LIMIT #{lindex},#{lsize}
     </select>
 
-    <select id="countAllAnswers" resultType="Integer">
-        SELECT COUNT(*) FROM answers
+    <select id="countAllAnswers" resultType="Integer" parameterType="Integer">
+        SELECT COUNT(*) FROM answers WHERE entertainmentid = #{enterID}
     </select>
 </mapper>
