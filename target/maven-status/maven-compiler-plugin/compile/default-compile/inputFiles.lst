@@ -35,7 +35,9 @@ D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\repository\repositoryimpl\Co
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\service\EntertainmentService.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\service\WantedService.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\util\ResponseTypeUtil.java
+D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\util\RestConfiguration.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\pojo\Entertainment.java
+D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\util\MiniProgramConst.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\exception\handler\ExceptionsHandler.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\repository\WantedRepository.java
 D:\code\java\HsLife\src\main\java\com\hnsfdx\hslife\service\NewsService.java
