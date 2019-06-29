@@ -1,6 +1,9 @@
 package com.hnsfdx.hslife.pojo;
 
 public class CommentLikeRecord {
+    public CommentLikeRecord(){
+
+    }
     public CommentLikeRecord(Integer commentId, String user){
         this.commentId=commentId;
         this.user=user;
