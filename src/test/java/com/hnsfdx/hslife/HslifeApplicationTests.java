@@ -15,9 +15,11 @@ public class HslifeApplicationTests {
 
     @Test
     public void encryptPwd() {
+        /*
         Object aa = "sss";
         int ss = 1;
         ss = (int) aa;
         System.out.println(ss );
+         */
     }
 }
