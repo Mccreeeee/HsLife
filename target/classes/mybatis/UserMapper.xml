@@ -7,6 +7,7 @@
         <id property="openId" column="openid" jdbcType="VARCHAR" />
         <result property="userName" column="username" jdbcType="VARCHAR" />
         <result property="score" column="score" jdbcType="INTEGER" />
+        <result property="imageUrl" column="imageUrl" jdbcType="VARCHAR" />
     </resultMap>
 
     <select id="findByOpenId" parameterType="String" resultMap="userResultMap">

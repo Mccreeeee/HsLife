@@ -8,7 +8,12 @@ public class User {
     //用户分数
     private Integer score;
 
-    public User(String openId,String userName,String imageUrl,int score){
+    private String imageUrl;
+
+    public User() {
+    }
+
+    public User(String openId, String userName, String imageUrl, Integer score){
         this.openId=openId;
         this.userName=userName;
         this.imageUrl=imageUrl;
@@ -22,8 +27,6 @@ public class User {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-    private String imageUrl;
 
     public String getOpenId() {
         return openId;
@@ -55,6 +58,7 @@ public class User {
                 "openId='" + openId + '\'' +
                 ", userName='" + userName + '\'' +
                 ", score=" + score +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }
