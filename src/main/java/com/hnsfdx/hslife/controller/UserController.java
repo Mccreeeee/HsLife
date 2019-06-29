@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -34,11 +35,8 @@ public class UserController {
         if (forRet.containsKey("errcode") && (Integer) forRet.get("errcode") != 0) {
             forRet.put("result", ResponseTypeUtil.BOOLEAN_FAIL);
         } else {
-            User user = new User((String) forRet.get("openid"), username, imageUrl, 0);
-            Integer result = userService.addUser(user);
-            if (result == 0) {
-                throw new DataInsertException();
-            }
+            User user = new User(js_code, username, imageUrl, 0);
+            userService.tryAddUser(user);
             forRet.put("result", ResponseTypeUtil.BOOLEAN_SUC);
         }
         return forRet;
