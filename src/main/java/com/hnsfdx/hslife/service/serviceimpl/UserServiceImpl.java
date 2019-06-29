@@ -4,6 +4,7 @@ import com.hnsfdx.hslife.pojo.User;
 import com.hnsfdx.hslife.repository.UserRepository;
 import com.hnsfdx.hslife.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,5 +31,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAllUsers();
+    }
+
+    @Override
+    public boolean tryAddUser(User user){
+        try{
+            addUser(user);
+            return true;
+        }catch (DuplicateKeyException e){
+            return false;
+        }
     }
 }
