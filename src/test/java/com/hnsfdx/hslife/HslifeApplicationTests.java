@@ -15,9 +15,9 @@ public class HslifeApplicationTests {
 
     @Test
     public void encryptPwd() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("data", 1);
-        map.put("data2", "string");
-        System.out.println(map);
+        Object aa = "sss";
+        int ss = 1;
+        ss = (int) aa;
+        System.out.println(ss );
     }
 }
