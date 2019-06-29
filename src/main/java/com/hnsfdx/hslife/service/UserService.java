@@ -8,4 +8,5 @@ public interface UserService {
     User getUser(String openId);
     Integer addUser(User user);
     List<User> getAllUsers();
+    public boolean tryAddUser(User user);
 }
