@@ -8,4 +8,5 @@ public interface UserRepository {
     User findByOpenId(String openId);
     List<User> findAllUsers();
     Integer insertOneUser(User user);
+    List<User> getBatchOfUser(List<String> batchOfOpendId);
 }

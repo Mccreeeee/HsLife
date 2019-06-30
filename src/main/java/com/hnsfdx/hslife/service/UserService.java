@@ -9,4 +9,5 @@ public interface UserService {
     Integer addUser(User user);
     List<User> getAllUsers();
     public boolean tryAddUser(User user);
+    List<User> getBatchOfUser(List<String> batchOfOpendId);
 }
