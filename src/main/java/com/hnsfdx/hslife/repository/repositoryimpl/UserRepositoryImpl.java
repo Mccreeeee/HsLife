@@ -30,4 +30,9 @@ public class UserRepositoryImpl implements UserRepository {
     public Integer insertOneUser(User user) {
         return userMapper.insertOneUser(user);
     }
+
+    @Override
+    public List<User> getBatchOfUser(List<String> batchOfOpendId){
+        return userMapper.getBatchOfUser(batchOfOpendId);
+    }
 }

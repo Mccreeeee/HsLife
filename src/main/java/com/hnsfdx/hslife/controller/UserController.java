@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -80,5 +81,12 @@ public class UserController {
     public User test(String t) {
         User sss = userService.getUser(t);
         return sss;
+    }
+    @PostMapping("/getBatchOfUsers")
+    public Map<String,Object> getBatchOfUsers(@RequestBody JSONObject jsonObject){
+        List alist = (List)jsonObject.get("openIds");
+        List<User> data =  userService.getBatchOfUser((List)jsonObject.get("openIds"));
+        Map<String,Object> forRet = ResponseTypeUtil.createSucResponseWithData(data);
+        return forRet;
     }
 }
