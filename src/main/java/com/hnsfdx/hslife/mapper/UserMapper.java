@@ -11,4 +11,5 @@ public interface UserMapper {
      User findByOpenId(@Param(value = "openId") String openId);
      List<User> findAllUsers();
      Integer insertOneUser(User user);
+     List<User> getBatchOfUser(@Param(value = "param_ids")List<String> ids);
 }

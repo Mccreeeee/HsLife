@@ -23,4 +23,12 @@
         VALUES (#{openId}, #{userName}, #{score},#{imageUrl})
     </insert>
 
+    <select id="getBatchOfUser" resultType="com.hnsfdx.hslife.pojo.User" parameterType="java.util.List">
+        SELECT * FROM users
+        WHERE openid in
+        <foreach collection="param_ids" item="openId" index="index" open="(" close=")" separator=",">
+            #{openId}
+        </foreach>
+    </select>
+
 </mapper>

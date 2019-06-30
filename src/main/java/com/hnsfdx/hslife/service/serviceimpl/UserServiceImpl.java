@@ -42,4 +42,9 @@ public class UserServiceImpl implements UserService {
             return false;
         }
     }
+
+    @Override
+    public List<User> getBatchOfUser(List<String> batchOfOpendId){
+        return userRepository.getBatchOfUser(batchOfOpendId);
+    }
 }
