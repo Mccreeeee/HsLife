@@ -1,13 +1,12 @@
 package com.hnsfdx.hslife.controller;
 
 import com.hnsfdx.hslife.exception.ArgsIntroduceException;
-import com.hnsfdx.hslife.exception.DataDeleteException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.pojo.Entertainment;
 import com.hnsfdx.hslife.service.AnswerService;
 import com.hnsfdx.hslife.service.EntertainmentService;
-import com.hnsfdx.hslife.util.PageUtil;
+import com.hnsfdx.hslife.util.PageUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -67,7 +66,7 @@ public class EntertainmentsController {
         if (page <= 0) {
             throw new ArgsIntroduceException();
         }
-        List<Entertainment> obtained = entertainmentService.getEntertainments((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
+        List<Entertainment> obtained = entertainmentService.getEntertainments((page - 1) * PageUtils.PAGESIZE, PageUtils.PAGESIZE);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", obtained);
         return forRet;
@@ -78,7 +77,7 @@ public class EntertainmentsController {
         Integer count = entertainmentService.countEntertainmentsNumber();
         Logger.getLogger("EntertainmentsContoller").info(String.format("entertainments Size=%d", count));
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
-        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtils.PAGESIZE));
         return forRet;
     }
 
@@ -95,7 +94,7 @@ public class EntertainmentsController {
     @GetMapping("/getAnswer")
     public Map<String, Object> getAnswer(@RequestParam("enterId") Integer enterId, @RequestParam("page") Integer page) {
         return ResponseTypeUtil.createSucResponseWithData(
-                answerService.getAllAnswerByEntertainmentId(enterId, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE)
+                answerService.getAllAnswerByEntertainmentId(enterId, (page - 1) * PageUtils.PAGESIZE, PageUtils.PAGESIZE)
         );
     }
     //回答的最大页数
@@ -103,7 +102,7 @@ public class EntertainmentsController {
     public Map<String, Object> getAnswerMaxPage(@RequestParam("enterId")  Integer enterId) {
         Integer count = answerService.getAllAnswersCount(enterId);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
-        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtils.PAGESIZE));
         return forRet;
     }
 }
