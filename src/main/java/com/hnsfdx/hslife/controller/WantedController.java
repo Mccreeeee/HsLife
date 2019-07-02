@@ -4,7 +4,7 @@ import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.Wanted;
 import com.hnsfdx.hslife.service.WantedService;
-import com.hnsfdx.hslife.util.PageUtil;
+import com.hnsfdx.hslife.util.PageUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +35,7 @@ public class WantedController {
         if(page <= 0) {
             throw new ArgsIntroduceException();
         }
-        List<Wanted> wantedList = wantedService.getAllWanteds((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
+        List<Wanted> wantedList = wantedService.getAllWanteds((page - 1) * PageUtils.PAGESIZE, PageUtils.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",wantedList);
         return forRet;
@@ -45,7 +45,7 @@ public class WantedController {
     public Map<String, Object> getAllWantedsMaxPage() {
         Integer count = wantedService.getAllWantedsCount();
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
-        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtils.PAGESIZE));
         return forRet;
     }
     //找到某个接受人接受的所有悬赏信息
@@ -70,7 +70,7 @@ public class WantedController {
         if(page <= 0) {
             throw new ArgsIntroduceException();
         }
-        List<Wanted> wantedList = wantedService.getAllWantedsByStatus(status, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
+        List<Wanted> wantedList = wantedService.getAllWantedsByStatus(status, (page - 1) * PageUtils.PAGESIZE, PageUtils.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",wantedList);
         return forRet;
@@ -81,7 +81,7 @@ public class WantedController {
     public Map<String, Object> getAllWantedsBySMaxPage(@RequestParam("status") Integer status) {
         Integer count = wantedService.getAllWantedsByStatusCount(status);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
-        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtils.PAGESIZE));
         return forRet;
     }
 
@@ -91,7 +91,7 @@ public class WantedController {
         if(page <= 0) {
             throw new ArgsIntroduceException();
         }
-        List<Wanted> wantedList = wantedService.getAllWantedsByTitle(title, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
+        List<Wanted> wantedList = wantedService.getAllWantedsByTitle(title, (page - 1) * PageUtils.PAGESIZE, PageUtils.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",wantedList);
         return forRet;
@@ -102,7 +102,7 @@ public class WantedController {
     public Map<String, Object> getAllWantedsByTMaxPage(@RequestParam("title") String title) {
         Integer count = wantedService.getAllWantedsByTitleCount(title);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
-        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtils.PAGESIZE));
         return forRet;
     }
     @PostMapping("/updatewanted")

@@ -4,14 +4,13 @@ import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.DataDeleteException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.exception.DataUpdateException;
-import com.hnsfdx.hslife.mapper.QuestionMapper;
 import com.hnsfdx.hslife.pojo.Comment;
 import com.hnsfdx.hslife.pojo.CommentLikeRecord;
 import com.hnsfdx.hslife.pojo.Question;
 import com.hnsfdx.hslife.service.CommentService;
 import com.hnsfdx.hslife.service.QuestionService;
 import com.hnsfdx.hslife.service.serviceimpl.CommentLikeRecordServicelmpl;
-import com.hnsfdx.hslife.util.PageUtil;
+import com.hnsfdx.hslife.util.PageUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +43,7 @@ public class QuestionController {
         if(page <= 0) {
             throw new ArgsIntroduceException();
         }
-        List<Question> questionList = questionService.getAllQuestions((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
+        List<Question> questionList = questionService.getAllQuestions((page - 1) * PageUtils.PAGESIZE, PageUtils.PAGESIZE);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", questionList);
         return forRet;
@@ -54,7 +53,7 @@ public class QuestionController {
     public Map<String, Object> getAllQuestionsMaxPage() {
         Integer count = questionService.getAllQuestionsCount();
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
-        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtils.PAGESIZE));
         return forRet;
     }
 
@@ -72,7 +71,7 @@ public class QuestionController {
         if(page <= 0) {
             throw new ArgsIntroduceException();
         }
-        List<Question> questionList = questionService.getAllQuestionsByTitle(title, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
+        List<Question> questionList = questionService.getAllQuestionsByTitle(title, (page - 1) * PageUtils.PAGESIZE, PageUtils.PAGESIZE);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", questionList);
         return forRet;
@@ -82,7 +81,7 @@ public class QuestionController {
     public Map<String, Object> getAllQuestionsByTMaxPage(@RequestParam("title") String title) {
         Integer count = questionService.getAllQuestionsByTitleCount(title);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
-        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtils.PAGESIZE));
         return forRet;
     }
 
@@ -108,7 +107,7 @@ public class QuestionController {
         if(page <= 0) {
             throw new ArgsIntroduceException();
         }
-        List<Comment> commentList = commentService.getAllCommentsByQuesionId(questionId, (page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
+        List<Comment> commentList = commentService.getAllCommentsByQuesionId(questionId, (page - 1) * PageUtils.PAGESIZE, PageUtils.PAGESIZE);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", commentList);
         return forRet;

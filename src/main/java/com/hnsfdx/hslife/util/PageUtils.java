@@ -1,5 +1,5 @@
 package com.hnsfdx.hslife.util;
 
-public class PageUtil {
+public class PageUtils {
     public static final Integer PAGESIZE = 10;
 }
