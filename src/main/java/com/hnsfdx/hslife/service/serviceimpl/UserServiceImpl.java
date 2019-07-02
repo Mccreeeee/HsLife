@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.service.serviceimpl;
 
+import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.User;
 import com.hnsfdx.hslife.repository.UserRepository;
 import com.hnsfdx.hslife.service.UserService;
@@ -39,7 +40,7 @@ public class UserServiceImpl implements UserService {
             addUser(user);
             return true;
         }catch (DuplicateKeyException e){
-            return false;
+            throw new DataInsertException();
         }
     }
 
