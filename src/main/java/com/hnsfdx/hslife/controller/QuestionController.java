@@ -198,7 +198,7 @@ public class QuestionController {
         return forRet;
     }
 
-    // 给出发布悬赏的人的openId和悬赏的Id，删除对应相对路径下的所有文件
+    // 给出发布疑问的人的openId和疑问的Id，删除对应相对路径下的所有文件
     @PostMapping("/deleteimg")
     public Map<String,Object> deleteOneImage(@RequestParam("author") String author,
                                              @RequestParam("id") Integer id) {
