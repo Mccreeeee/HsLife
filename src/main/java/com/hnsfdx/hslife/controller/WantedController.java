@@ -1,6 +1,7 @@
 package com.hnsfdx.hslife.controller;
 
 import com.hnsfdx.hslife.exception.ArgsIntroduceException;
+import com.hnsfdx.hslife.exception.AuthException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.exception.StorageException;
 import com.hnsfdx.hslife.pojo.Wanted;
@@ -126,16 +127,32 @@ public class WantedController {
             return ResponseTypeUtil.createFailResponse();
         }
     }
+
+    // 给出发布悬赏的人的openId和悬赏的Id以及上传的文件，将其保存在服务端，返回相对路径
     @PostMapping("/uploadimg")
     public Map<String,Object> uploadOneImage(@RequestParam("author") String author,
                                              @RequestParam("id") Integer id,
                                              @RequestParam("file") MultipartFile file) {
-        String uploadPath = author + "/" + id + "/";
+        String uploadPath = author + "/" + "wanted" + id + "/";
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         try {
             forRet.put("data", FileUtils.uploadToServer(uploadPath, file));
         } catch (Exception e) {
             throw new StorageException();
+        }
+        return forRet;
+    }
+
+    // 给出发布悬赏的人的openId和悬赏的Id，删除对应相对路径下的所有文件
+    @PostMapping("/deleteimg")
+    public Map<String,Object> deleteOneImage(@RequestParam("author") String author,
+                                             @RequestParam("id") Integer id) {
+        String deletePath = author + "/" +  "wanted" + id + "/";
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        try {
+            FileUtils.deleteInServer(deletePath);
+        } catch (Exception e) {
+            throw new AuthException();
         }
         return forRet;
     }
