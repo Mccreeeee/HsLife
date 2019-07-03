@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,12 +16,7 @@ import java.util.Map;
 public class HslifeApplicationTests {
 
     @Test
-    public void encryptPwd() {
-        /*
-        Object aa = "sss";
-        int ss = 1;
-        ss = (int) aa;
-        System.out.println(ss );
-         */
+    public void encryptPwd() throws IOException {
+
     }
 }
