@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.DataDeleteException;
 import com.hnsfdx.hslife.exception.DataInsertException;
@@ -13,9 +14,13 @@ import com.hnsfdx.hslife.service.QuestionService;
 import com.hnsfdx.hslife.service.serviceimpl.CommentLikeRecordServicelmpl;
 import com.hnsfdx.hslife.util.PageUtil;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
+import javafx.beans.property.adapter.ReadOnlyJavaBeanBooleanProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.rmi.UnexpectedException;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -164,6 +169,21 @@ public class QuestionController {
         catch (Exception e){
             return ResponseTypeUtil.createFailResponse();
         }
-
+    }
+    @PostMapping("/isLiked")
+    public Map<String,Object> isLikedComment(@RequestBody JSONObject jsonObject) {
+        String openid = jsonObject.getString("openId");
+        List<String> cids = (List<String>) jsonObject.get("commentIdList");
+        HashSet<String> likeInString = null;
+        List<Boolean> likeInBoolean = new LinkedList<>();
+        try {
+            likeInString = new HashSet(commentLikeRecord.isLiked(openid, cids));
+        }catch (Exception e){
+            return ResponseTypeUtil.createFailResponse("database Exception");
+        }
+        for (String i : cids) {
+            likeInBoolean.add(likeInString.contains(i));
+        }
+        return ResponseTypeUtil.createSucResponseWithData(likeInBoolean);
     }
 }

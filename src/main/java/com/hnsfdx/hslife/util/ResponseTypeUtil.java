@@ -13,6 +13,11 @@ public class ResponseTypeUtil {
         forRet.put("result",BOOLEAN_FAIL);
         return forRet;
     }
+    public static Map<String,Object> createFailResponse(String msg){
+        Map<String,Object> forRet = createFailResponse();
+        forRet.put("msg",msg);
+        return forRet;
+    }
     public static Map<String,Object> createSucResponse(){
         HashMap<String,Object> forRet = new HashMap<>();
         forRet.put("result",BOOLEAN_SUC);
