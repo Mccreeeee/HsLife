@@ -110,7 +110,7 @@ public class EntertainmentsController {
         return forRet;
     }
 
-    // 给出发布疑问的人的openId和疑问的Id以及上传的文件，将其保存在服务端，返回相对路径
+    // 给出发布娱乐的人的openId和娱乐的Id以及上传的文件，将其保存在服务端，返回相对路径
     @PostMapping("/uploadimg")
     public Map<String,Object> uploadOneImage(@RequestParam("author") String author,
                                              @RequestParam("id") Integer id,
@@ -125,7 +125,7 @@ public class EntertainmentsController {
         return forRet;
     }
 
-    // 给出发布悬赏的人的openId和悬赏的Id，删除对应相对路径下的所有文件
+    // 给出发布娱乐的人的openId和娱乐的Id，删除对应相对路径下的所有文件
     @PostMapping("/deleteimg")
     public Map<String,Object> deleteOneImage(@RequestParam("author") String author,
                                              @RequestParam("id") Integer id) {
