@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.AutomapConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class CommentLikeRecordRepositorylmpl {
     private CommentLikeRecordMapper commentLikeRecordMapper;
@@ -21,6 +23,9 @@ public class CommentLikeRecordRepositorylmpl {
     }
     public Integer delete(CommentLikeRecord commentLikeRecord){
         return commentLikeRecordMapper.deleteCommentLikeRecord(commentLikeRecord);
+    }
+    public List<String> isLike(String openid,List<String> commentIds){
+        return commentLikeRecordMapper.isLiked(openid,commentIds);
     }
 
 

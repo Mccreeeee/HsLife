@@ -2,12 +2,15 @@ package com.hnsfdx.hslife.controller;
 
 import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.DataInsertException;
+import com.hnsfdx.hslife.exception.StorageException;
 import com.hnsfdx.hslife.pojo.Wanted;
 import com.hnsfdx.hslife.service.WantedService;
+import com.hnsfdx.hslife.util.FileUtils;
 import com.hnsfdx.hslife.util.PageUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -122,5 +125,18 @@ public class WantedController {
         else{
             return ResponseTypeUtil.createFailResponse();
         }
+    }
+    @PostMapping("/uploadimg")
+    public Map<String,Object> uploadOneImage(@RequestParam("author") String author,
+                                             @RequestParam("id") Integer id,
+                                             @RequestParam("file") MultipartFile file) {
+        String uploadPath = author + "/" + id + "/";
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        try {
+            forRet.put("data", FileUtils.uploadToServer(uploadPath, file));
+        } catch (Exception e) {
+            throw new StorageException();
+        }
+        return forRet;
     }
 }

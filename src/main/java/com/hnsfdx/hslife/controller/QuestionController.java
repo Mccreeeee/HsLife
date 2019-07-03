@@ -1,5 +1,6 @@
 package com.hnsfdx.hslife.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.DataDeleteException;
 import com.hnsfdx.hslife.exception.DataInsertException;
@@ -15,6 +16,9 @@ import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.rmi.UnexpectedException;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -150,9 +154,8 @@ public class QuestionController {
     public Map<String,Object> sendCommentLike(@RequestParam Integer commentId, @RequestParam String reviewer){
         try{
             return ResponseTypeUtil.createSucResponseWithData(commentLikeRecord.insert(new CommentLikeRecord(commentId,reviewer)));
-        }
-        catch (Exception e){
-            return ResponseTypeUtil.createFailResponse();
+        } catch (Exception e){
+            throw new DataInsertException();
         }
     }
     @GetMapping("/cancelLike")
@@ -161,8 +164,23 @@ public class QuestionController {
             return ResponseTypeUtil.createSucResponseWithData(commentLikeRecord.delete(new CommentLikeRecord(commentId,reviewer)));
         }
         catch (Exception e){
-            return ResponseTypeUtil.createFailResponse();
+            throw new DataDeleteException();
         }
-
+    }
+    @PostMapping("/isLiked")
+    public Map<String,Object> isLikedComment(@RequestBody JSONObject jsonObject) {
+        String openid = jsonObject.getString("openId");
+        List<String> cids = (List<String>) jsonObject.get("commentIdList");
+        HashSet<String> likeInString = null;
+        List<Boolean> likeInBoolean = new LinkedList<>();
+        try {
+            likeInString = new HashSet(commentLikeRecord.isLiked(openid, cids));
+        }catch (Exception e){
+            return ResponseTypeUtil.createFailResponse("Database Exception");
+        }
+        for (String i : cids) {
+            likeInBoolean.add(likeInString.contains(i));
+        }
+        return ResponseTypeUtil.createSucResponseWithData(likeInBoolean);
     }
 }

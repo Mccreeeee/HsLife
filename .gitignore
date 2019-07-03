@@ -27,3 +27,6 @@ HELP.md
 ### VS Code ###
 .vscode/
 /target
+
+src\main\resources\application.properties
+src/main/resources/application.properties

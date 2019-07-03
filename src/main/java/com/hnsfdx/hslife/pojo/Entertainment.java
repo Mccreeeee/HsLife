@@ -1,7 +1,6 @@
 package com.hnsfdx.hslife.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import javafx.util.converter.TimeStringConverter;
 
 import java.sql.Date;
 import java.sql.Timestamp;
