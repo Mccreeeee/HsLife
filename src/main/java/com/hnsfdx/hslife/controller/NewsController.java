@@ -4,7 +4,7 @@ import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.News;
 import com.hnsfdx.hslife.service.NewsService;
-import com.hnsfdx.hslife.util.PageUtil;
+import com.hnsfdx.hslife.util.PageUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +34,7 @@ public class NewsController {
         if(page <= 0) {
             throw new ArgsIntroduceException();
         }
-        List<News> newsList = newsService.getAllNews((page - 1) * PageUtil.PAGESIZE, PageUtil.PAGESIZE);
+        List<News> newsList = newsService.getAllNews((page - 1) * PageUtils.PAGESIZE, PageUtils.PAGESIZE);
         Map<String,Object> forRet =  ResponseTypeUtil.createSucResponse();
         forRet.put("data",newsList);
         return forRet;
@@ -44,7 +44,7 @@ public class NewsController {
     public Map<String, Object> getNewsMaxPage() {
         Integer count = newsService.getAllNewsCount();
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
-        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtil.PAGESIZE));
+        forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtils.PAGESIZE));
         return forRet;
     }
 }

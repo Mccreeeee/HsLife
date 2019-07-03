@@ -6,7 +6,9 @@ public enum ExceptionCode {
     DATA_INSERT_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, 50001, "Data Insert Error"),
     DATA_UPDATE_EXCEPTION(HttpStatus.NOT_FOUND, 50002, "Data Update Error"),
     DATA_DELETE_EXCEPTION(HttpStatus.NOT_FOUND, 50003, "Data Delete Error"),
-    ARGS_INTRODUCE_EXCEPTION(HttpStatus.BAD_REQUEST, 50004, "Args Introduce Error");
+    ARGS_INTRODUCE_EXCEPTION(HttpStatus.BAD_REQUEST, 50004, "Args Introduce Error"),
+    FILE_STORAGE_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, 50005, "File Storage Error"),
+    AUTH_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, 50006, "Authorization Error");
 
     private HttpStatus status;
     private Integer code;
