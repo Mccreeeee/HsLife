@@ -13,7 +13,6 @@ import com.hnsfdx.hslife.service.QuestionService;
 import com.hnsfdx.hslife.service.serviceimpl.CommentLikeRecordServicelmpl;
 import com.hnsfdx.hslife.util.PageUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
-import javafx.beans.property.adapter.ReadOnlyJavaBeanBooleanProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
