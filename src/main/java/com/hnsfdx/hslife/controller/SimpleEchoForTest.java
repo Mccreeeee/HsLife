@@ -20,4 +20,9 @@ public class SimpleEchoForTest {
         FileUtils.uploadToServer("rid_is_1/qid_is_2/", file);
         return "sssss";
     }
+    @PostMapping("/delfile")
+    public String testFile2() {
+        FileUtils.deleteInServer("rid_is_1/qid_is_2/");
+        return "sssss";
+    }
 }
