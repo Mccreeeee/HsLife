@@ -12,7 +12,7 @@ import java.io.IOException;
 public class FileUtils {
     private static final String BASE_DIR = "temp/images/";
 
-    // 相对路径（暂定为reviewerId + xxxId） + 文件名用于存储
+    // 相对路径（暂定为reviewerId + xxxId） + 文件名用于存储，可能会出现一些异常，到时候统一在controller层捕捉转换
     public static void uploadToServer(String relativePath, MultipartFile multipartFile) {
         if ("".equals(relativePath) || relativePath == null) {
             throw new ArgsIntroduceException();
@@ -35,7 +35,7 @@ public class FileUtils {
         }
     }
 
-    // 删除文件夹相对路径下的所有图片文件
+    // 删除文件夹相对路径下的所有图片文件，可能会出现一些异常，到时候统一在controller层捕捉转换
     public static void deleteInServer(String relativePath) {
         if ("".equals(relativePath) || relativePath == null) {
             throw new ArgsIntroduceException();
@@ -44,7 +44,6 @@ public class FileUtils {
         if (!file.isDirectory()) {
             throw new ArgsIntroduceException();
         }
-        // 可能会出现访问权限的异常，使用的时候再捕获异常
         File[] listFiles = file.listFiles();
         if (listFiles != null && listFiles.length != 0) {
             for (File tmpFile : listFiles) {
