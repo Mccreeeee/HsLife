@@ -1,20 +1,19 @@
 package com.hnsfdx.hslife.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hnsfdx.hslife.exception.ArgsIntroduceException;
-import com.hnsfdx.hslife.exception.DataDeleteException;
-import com.hnsfdx.hslife.exception.DataInsertException;
-import com.hnsfdx.hslife.exception.DataUpdateException;
+import com.hnsfdx.hslife.exception.*;
 import com.hnsfdx.hslife.pojo.Comment;
 import com.hnsfdx.hslife.pojo.CommentLikeRecord;
 import com.hnsfdx.hslife.pojo.Question;
 import com.hnsfdx.hslife.service.CommentService;
 import com.hnsfdx.hslife.service.QuestionService;
 import com.hnsfdx.hslife.service.serviceimpl.CommentLikeRecordServicelmpl;
+import com.hnsfdx.hslife.util.FileUtils;
 import com.hnsfdx.hslife.util.PageUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.rmi.UnexpectedException;
 import java.util.HashSet;
@@ -154,9 +153,8 @@ public class QuestionController {
     public Map<String,Object> sendCommentLike(@RequestParam Integer commentId, @RequestParam String reviewer){
         try{
             return ResponseTypeUtil.createSucResponseWithData(commentLikeRecord.insert(new CommentLikeRecord(commentId,reviewer)));
-        }
-        catch (Exception e){
-            return ResponseTypeUtil.createFailResponse();
+        } catch (Exception e){
+            throw new DataInsertException();
         }
     }
     @GetMapping("/cancelLike")
@@ -165,7 +163,7 @@ public class QuestionController {
             return ResponseTypeUtil.createSucResponseWithData(commentLikeRecord.delete(new CommentLikeRecord(commentId,reviewer)));
         }
         catch (Exception e){
-            return ResponseTypeUtil.createFailResponse();
+            throw new DataDeleteException();
         }
     }
     @PostMapping("/isLiked")
@@ -177,11 +175,40 @@ public class QuestionController {
         try {
             likeInString = new HashSet(commentLikeRecord.isLiked(openid, cids));
         }catch (Exception e){
-            return ResponseTypeUtil.createFailResponse("database Exception");
+            return ResponseTypeUtil.createFailResponse("Database Exception");
         }
         for (String i : cids) {
             likeInBoolean.add(likeInString.contains(i));
         }
         return ResponseTypeUtil.createSucResponseWithData(likeInBoolean);
+    }
+
+    // 给出发布疑问的人的openId和疑问的Id以及上传的文件，将其保存在服务端，返回相对路径
+    @PostMapping("/uploadimg")
+    public Map<String,Object> uploadOneImage(@RequestParam("author") String author,
+                                             @RequestParam("id") Integer id,
+                                             @RequestParam("file") MultipartFile file) {
+        String uploadPath = author + "/" + "question" + id + "/";
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        try {
+            forRet.put("data", FileUtils.uploadToServer(uploadPath, file));
+        } catch (Exception e) {
+            throw new StorageException();
+        }
+        return forRet;
+    }
+
+    // 给出发布疑问的人的openId和疑问的Id，删除对应相对路径下的所有文件
+    @PostMapping("/deleteimg")
+    public Map<String,Object> deleteOneImage(@RequestParam("author") String author,
+                                             @RequestParam("id") Integer id) {
+        String deletePath = author + "/" +  "question" + id + "/";
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        try {
+            FileUtils.deleteInServer(deletePath);
+        } catch (Exception e) {
+            throw new AuthException();
+        }
+        return forRet;
     }
 }
