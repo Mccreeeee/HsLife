@@ -11,9 +11,11 @@ import java.io.IOException;
 
 public class FileUtils {
     private static final String BASE_DIR = "temp/images/";
+    private static final String BASE_URL = "https://hslife.me/";
 
     // 相对路径（暂定为reviewerId + xxxId） + 文件名用于存储，可能会出现一些异常，到时候统一在controller层捕捉转换
-    public static void uploadToServer(String relativePath, MultipartFile multipartFile) {
+    // 返回在服务器端的相对路径
+    public static String uploadToServer(String relativePath, MultipartFile multipartFile) {
         if ("".equals(relativePath) || relativePath == null) {
             throw new ArgsIntroduceException();
         }
@@ -30,12 +32,13 @@ public class FileUtils {
         try {
             file.createNewFile();
             multipartFile.transferTo(file);
+            return (BASE_URL + relativePath + fileName);
         } catch (IOException e) {
             throw new StorageException();
         }
     }
 
-    // 删除文件夹相对路径下的所有图片文件，可能会出现一些异常，到时候统一在controller层捕捉转换
+    // 删除文件夹相对路径（暂定为reviewerId + xxxId）下的所有图片文件，可能会出现一些异常，到时候统一在controller层捕捉转换
     public static void deleteInServer(String relativePath) {
         if ("".equals(relativePath) || relativePath == null) {
             throw new ArgsIntroduceException();

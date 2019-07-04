@@ -1,11 +1,14 @@
 package com.hnsfdx.hslife.controller;
 
 import com.hnsfdx.hslife.exception.ArgsIntroduceException;
+import com.hnsfdx.hslife.exception.AuthException;
 import com.hnsfdx.hslife.exception.DataInsertException;
+import com.hnsfdx.hslife.exception.StorageException;
 import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.pojo.Entertainment;
 import com.hnsfdx.hslife.service.AnswerService;
 import com.hnsfdx.hslife.service.EntertainmentService;
+import com.hnsfdx.hslife.util.FileUtils;
 import com.hnsfdx.hslife.util.PageUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import io.swagger.annotations.Api;
@@ -14,6 +17,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -103,6 +107,35 @@ public class EntertainmentsController {
         Integer count = answerService.getAllAnswersCount(enterId);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtils.PAGESIZE));
+        return forRet;
+    }
+
+    // 给出发布娱乐的人的openId和娱乐的Id以及上传的文件，将其保存在服务端，返回相对路径
+    @PostMapping("/uploadimg")
+    public Map<String,Object> uploadOneImage(@RequestParam("author") String author,
+                                             @RequestParam("id") Integer id,
+                                             @RequestParam("file") MultipartFile file) {
+        String uploadPath = author + "/" + "entertainment" + id + "/";
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        try {
+            forRet.put("data", FileUtils.uploadToServer(uploadPath, file));
+        } catch (Exception e) {
+            throw new StorageException();
+        }
+        return forRet;
+    }
+
+    // 给出发布娱乐的人的openId和娱乐的Id，删除对应相对路径下的所有文件
+    @PostMapping("/deleteimg")
+    public Map<String,Object> deleteOneImage(@RequestParam("author") String author,
+                                             @RequestParam("id") Integer id) {
+        String deletePath = author + "/" +  "entertainment" + id + "/";
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        try {
+            FileUtils.deleteInServer(deletePath);
+        } catch (Exception e) {
+            throw new AuthException();
+        }
         return forRet;
     }
 }
