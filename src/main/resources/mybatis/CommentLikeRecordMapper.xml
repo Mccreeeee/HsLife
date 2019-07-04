@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hnsfdx.hslife.mapper.CommentLikeRecordMapper">
     <select id="isLiked" resultType="String">
-        SELECT commentID from commentlikerecord
+        SELECT commentID from CommentLikeRecord
         WHERE
             user = #{oid}
             and
