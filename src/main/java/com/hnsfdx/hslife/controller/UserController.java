@@ -89,4 +89,10 @@ public class UserController {
         Map<String,Object> forRet = ResponseTypeUtil.createSucResponseWithData(data);
         return forRet;
     }
+    @GetMapping("/getrank15")
+    public Map<String,Object> getRankOf15() {
+        List<User> data =  userService.getUsersRank15();
+        Map<String,Object> forRet = ResponseTypeUtil.createSucResponseWithData(data);
+        return forRet;
+    }
 }

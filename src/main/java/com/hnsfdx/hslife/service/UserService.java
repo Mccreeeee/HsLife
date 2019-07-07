@@ -10,4 +10,5 @@ public interface UserService {
     List<User> getAllUsers();
     public boolean tryAddUser(User user);
     List<User> getBatchOfUser(List<String> batchOfOpendId);
+    List<User> getUsersRank15();
 }
