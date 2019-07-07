@@ -35,4 +35,9 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> getBatchOfUser(List<String> batchOfOpendId){
         return userMapper.getBatchOfUser(batchOfOpendId);
     }
+
+    @Override
+    public List<User> listUsersRank15() {
+        return userMapper.listUsersRank15();
+    }
 }

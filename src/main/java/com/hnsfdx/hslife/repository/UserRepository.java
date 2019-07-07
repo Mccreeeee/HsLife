@@ -9,4 +9,5 @@ public interface UserRepository {
     List<User> findAllUsers();
     Integer insertOneUser(User user);
     List<User> getBatchOfUser(List<String> batchOfOpendId);
+    List<User> listUsersRank15();
 }

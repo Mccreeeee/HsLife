@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class FileUtils {
     private static final String BASE_DIR = "temp/images/";
-    private static final String BASE_URL = "https://hslife.me/";
+    private static final String BASE_URL = "https://hslife.me/resources/";
 
     // 相对路径（暂定为reviewerId + xxxId） + 文件名用于存储，可能会出现一些异常，到时候统一在controller层捕捉转换
     // 返回在服务器端的相对路径

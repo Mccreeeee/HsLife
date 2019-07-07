@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getBatchOfUser(List<String> batchOfOpendId){
         return userRepository.getBatchOfUser(batchOfOpendId);
     }
+
+    @Override
+    public List<User> getUsersRank15() {
+        return userRepository.listUsersRank15();
+    }
 }
