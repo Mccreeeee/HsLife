@@ -1,10 +1,7 @@
 package com.hnsfdx.hslife.mapper;
 
 import com.hnsfdx.hslife.pojo.Comment;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -19,6 +16,10 @@ public interface CommentMapper {
     List<Comment> findAllCommentsByQuesionId(@Param(value = "questionId") Integer questionId,
                                              @Param(value = "offset") Integer offset,
                                              @Param(value = "size") Integer size);
+    @Update("UPDATE comments set likenum = likenum - 1 where id = #{commentId}")
+    Integer subLikeNumber(@Param(value = "commentId") Integer commentId);
+    @Update("UPDATE comments set likenum = likenum + 1 where id = #{commentId}")
+    Integer addLikeNumber(@Param(value = "commentId") Integer commentId);
     //所有评论的条数
     Integer countAllComments();
 

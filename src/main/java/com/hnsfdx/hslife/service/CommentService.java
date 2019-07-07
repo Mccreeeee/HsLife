@@ -18,4 +18,8 @@ public interface CommentService {
     Integer updateComment(Comment comment);
     //删除一条疑问
     Integer deleteComment(Integer id);
+    // 取消赞之后 like-1
+    Integer subLikeNumber(Integer commentId);
+    // 点赞之后 like+1
+    Integer addLikeNumber(Integer commentId);
 }

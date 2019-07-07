@@ -12,6 +12,7 @@ import com.hnsfdx.hslife.util.FileUtils;
 import com.hnsfdx.hslife.util.PageUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -152,17 +153,22 @@ public class QuestionController {
     @GetMapping("/like")
     public Map<String,Object> sendCommentLike(@RequestParam Integer commentId, @RequestParam String reviewer){
         try{
-            return ResponseTypeUtil.createSucResponseWithData(commentLikeRecord.insert(new CommentLikeRecord(commentId,reviewer)));
-        } catch (Exception e){
+            commentLikeRecord.insert(new CommentLikeRecord(commentId,reviewer));
+            commentService.addLikeNumber(commentId);
+            return ResponseTypeUtil.createSucResponse();
+        } catch (DuplicateKeyException de){
+            return ResponseTypeUtil.createFailResponse("Record already exits(user already like it) ");
+        }catch (Exception e){
             throw new DataInsertException();
         }
     }
     @GetMapping("/cancelLike")
     public Map<String,Object> cancelCommentLike(@RequestParam Integer commentId, @RequestParam String reviewer){
         try{
-            return ResponseTypeUtil.createSucResponseWithData(commentLikeRecord.delete(new CommentLikeRecord(commentId,reviewer)));
-        }
-        catch (Exception e){
+            commentLikeRecord.delete(new CommentLikeRecord(commentId,reviewer));
+            commentService.subLikeNumber(commentId);
+            return ResponseTypeUtil.createSucResponse();
+        }catch (Exception e){
             throw new DataDeleteException();
         }
     }
