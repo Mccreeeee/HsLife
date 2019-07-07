@@ -51,4 +51,12 @@ public class CommentRepositoryImpl implements CommentRepository {
     public Integer deleteSingleComment(Integer id) {
         return commentMapper.deleteSingleComment(id);
     }
+    @Override
+    public Integer subLikeNumber(Integer commentId){
+        return commentMapper.subLikeNumber(commentId);
+    }
+    @Override
+    public Integer addLikeNumber(Integer commentId){
+        return commentMapper.addLikeNumber(commentId);
+    }
 }

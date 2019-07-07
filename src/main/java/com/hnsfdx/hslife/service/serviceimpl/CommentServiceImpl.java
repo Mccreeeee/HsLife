@@ -51,4 +51,13 @@ public class CommentServiceImpl implements CommentService {
     public Integer deleteComment(Integer id) {
         return commentRepository.deleteSingleComment(id);
     }
+
+    @Override
+    public Integer subLikeNumber(Integer commentId){
+        return commentRepository.subLikeNumber(commentId);
+    }
+    @Override
+    public Integer addLikeNumber(Integer commentId){
+        return commentRepository.addLikeNumber(commentId);
+    }
 }

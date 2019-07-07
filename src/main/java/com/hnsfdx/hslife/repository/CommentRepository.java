@@ -18,4 +18,8 @@ public interface CommentRepository {
     Integer updateSingleComment(Comment comment);
     //删除一条疑问
     Integer deleteSingleComment(Integer id);
+    // 取消赞 like=like-1
+    public Integer subLikeNumber(Integer commentId);
+    // 点赞 like = like + 1
+    public Integer addLikeNumber(Integer commentId);
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface AnswerMapper {
-    @Insert("INSERT INTO Answers(entertainmentid, content, reviewer, publishdate)" +
+    @Insert("INSERT INTO answers(entertainmentid, content, reviewer, publishdate)" +
             "VALUES " +
             "(#{entertainmentid}, #{content}, #{reviewer}, #{publishdate})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
