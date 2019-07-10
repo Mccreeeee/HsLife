@@ -13,4 +13,5 @@ public interface UserMapper {
      Integer insertOneUser(User user);
      List<User> getBatchOfUser(@Param(value = "param_ids")List<String> ids);
      List<User> listUsersRank15();
+
 }

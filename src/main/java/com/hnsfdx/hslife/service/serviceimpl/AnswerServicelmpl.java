@@ -31,4 +31,7 @@ public class AnswerServicelmpl implements AnswerService {
     public Integer getAllAnswersCount(Integer enId) {
         return answerRepository.countAllAnswers(enId);
     }
+
+    @Override
+    public Integer doUserAnswer( Integer qid, String uid){return answerRepository.doUserAnswer(qid,uid);}
 }

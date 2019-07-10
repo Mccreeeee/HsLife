@@ -3,6 +3,7 @@ package com.hnsfdx.hslife.repository.repositoryimpl;
 import com.hnsfdx.hslife.mapper.AnswerMapper;
 import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.repository.AnswerRepository;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,4 +34,7 @@ public class AnswerRepositorylmpl implements AnswerRepository {
     public Integer countAllAnswers(Integer enterId) {
         return answerMapper.countAllAnswers(enterId);
     }
+
+    @Override
+    public Integer doUserAnswer(Integer qid, String uid){return answerMapper.doUserAnswer(qid,uid);}
 }

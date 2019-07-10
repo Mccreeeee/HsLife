@@ -36,7 +36,7 @@ public class EntertainmentsController {
         this.answerService = answerService;
     }
 
-    @ApiOperation(value = "添加一个抢答的问题", httpMethod = "POST",produces = "application/json")
+    @ApiOperation(value = "添加一个抢答的问题", httpMethod = "POST", produces = "application/json")
     @ApiResponses(
             {
                     @ApiResponse(code = 200, message = "")
@@ -75,6 +75,7 @@ public class EntertainmentsController {
         forRet.put("data", obtained);
         return forRet;
     }
+
     //娱乐的最大页数
     @GetMapping("/getEntertainmentMaxPage")
     public Map<String, Object> getMaxPage() {
@@ -101,9 +102,10 @@ public class EntertainmentsController {
                 answerService.getAllAnswerByEntertainmentId(enterId, (page - 1) * PageUtils.PAGESIZE, PageUtils.PAGESIZE)
         );
     }
+
     //回答的最大页数
     @GetMapping("/getAnswerMaxPage")
-    public Map<String, Object> getAnswerMaxPage(@RequestParam("enterId")  Integer enterId) {
+    public Map<String, Object> getAnswerMaxPage(@RequestParam("enterId") Integer enterId) {
         Integer count = answerService.getAllAnswersCount(enterId);
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         forRet.put("data", (int) Math.ceil(count * 1.0 / PageUtils.PAGESIZE));
@@ -112,9 +114,9 @@ public class EntertainmentsController {
 
     // 给出发布娱乐的人的openId和娱乐的Id以及上传的文件，将其保存在服务端，返回相对路径
     @PostMapping("/uploadimg")
-    public Map<String,Object> uploadOneImage(@RequestParam("author") String author,
-                                             @RequestParam("datetime") String datetime,
-                                             @RequestParam("file") MultipartFile file) {
+    public Map<String, Object> uploadOneImage(@RequestParam("author") String author,
+                                              @RequestParam("datetime") String datetime,
+                                              @RequestParam("file") MultipartFile file) {
         String uploadPath = author + "/" + "entertainment" + datetime + "/";
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         try {
@@ -127,9 +129,9 @@ public class EntertainmentsController {
 
     // 给出发布娱乐的人的openId和娱乐的Id，删除对应相对路径下的所有文件
     @PostMapping("/deleteimg")
-    public Map<String,Object> deleteOneImage(@RequestParam("author") String author,
-                                             @RequestParam("datetime") String datetime ) {
-        String deletePath = author + "/" +  "entertainment" + datetime + "/";
+    public Map<String, Object> deleteOneImage(@RequestParam("author") String author,
+                                              @RequestParam("datetime") String datetime) {
+        String deletePath = author + "/" + "entertainment" + datetime + "/";
         Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
         try {
             FileUtils.deleteInServer(deletePath);
@@ -137,5 +139,15 @@ public class EntertainmentsController {
             throw new AuthException();
         }
         return forRet;
+    }
+
+    @GetMapping("/doUserAnswer")
+    public Map<String, Object> doUserAnswer(@RequestParam("qid") Integer qid, @RequestParam("uid") String uid) {
+        Integer result = answerService.doUserAnswer(qid, uid);
+        if (result == 1) {
+            return ResponseTypeUtil.createSucResponseWithData("true");
+        } else {
+            return ResponseTypeUtil.createSucResponseWithData("false");
+        }
     }
 }

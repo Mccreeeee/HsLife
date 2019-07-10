@@ -13,4 +13,6 @@ public interface AnswerService {
 
     //所有答案的数量
     Integer getAllAnswersCount(Integer enid);
+
+    Integer doUserAnswer( Integer qid, String uid);
 }

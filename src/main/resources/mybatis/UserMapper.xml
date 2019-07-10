@@ -34,4 +34,5 @@
     <select id="listUsersRank15" resultMap="userResultMap">
         SELECT * FROM users ORDER BY score DESC LIMIT 15
     </select>
+    
 </mapper>

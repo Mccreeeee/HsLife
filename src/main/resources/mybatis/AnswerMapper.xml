@@ -21,4 +21,7 @@
     <select id="countAllAnswers" resultType="Integer" parameterType="Integer">
         SELECT COUNT(*) FROM answers WHERE entertainmentid = #{enterID}
     </select>
+    <select id="doUserAnswer" resultType="Integer">
+        SELECT COUNT(id) FROM answers where entertainmentid = #{qid} and reviewer = #{uid}
+    </select>
 </mapper>

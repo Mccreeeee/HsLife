@@ -19,4 +19,6 @@ public interface AnswerMapper {
                                           @Param(value = "lsize") Integer size);
     //所有回答的数量
     Integer countAllAnswers(Integer enterId);
+    Integer doUserAnswer(@Param("qid") Integer qid,
+                         @Param("uid") String uid);
 }

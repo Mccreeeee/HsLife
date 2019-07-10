@@ -12,4 +12,6 @@ public interface AnswerRepository {
 
     //所有回答的数量
     Integer countAllAnswers(Integer enterId);
+
+    Integer doUserAnswer( Integer qid, String uid);
 }
