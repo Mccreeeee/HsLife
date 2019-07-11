@@ -15,13 +15,17 @@
         <where>
         entertainmentid=#{enterId}
         </where>
-        order by publishdate desc LIMIT #{lindex},#{lsize}
+        order by publishdate asc LIMIT #{lindex},#{lsize}
     </select>
 
     <select id="countAllAnswers" resultType="Integer" parameterType="Integer">
-        SELECT COUNT(*) FROM answers WHERE entertainmentid = #{enterID}
+        SELECT COUNT(*) FROM answers WHERE entertainmentid = #{enterId}
     </select>
     <select id="doUserAnswer" resultType="Integer">
         SELECT COUNT(id) FROM answers where entertainmentid = #{qid} and reviewer = #{uid}
+    </select>
+
+    <select id="find3FirstRightAnswer" resultMap="AnswerResultMap">
+        SELECT * FROM answers WHERE entertainmentid = #{enterId} AND content = #{rightAnswer} LIMIT 3
     </select>
 </mapper>

@@ -37,4 +37,9 @@ public class AnswerRepositorylmpl implements AnswerRepository {
 
     @Override
     public Integer doUserAnswer(Integer qid, String uid){return answerMapper.doUserAnswer(qid,uid);}
+
+    @Override
+    public List<Answer> find3FirstRightAnswer(Integer enterId, String rightAnswer) {
+        return answerMapper.find3FirstRightAnswer(enterId, rightAnswer);
+    }
 }

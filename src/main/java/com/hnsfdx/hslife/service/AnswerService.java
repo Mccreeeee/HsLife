@@ -15,4 +15,6 @@ public interface AnswerService {
     Integer getAllAnswersCount(Integer enid);
 
     Integer doUserAnswer( Integer qid, String uid);
+
+    List<Answer> get3FirstRightAnswer(Integer enterId, String rightAnswer);
 }

@@ -34,4 +34,9 @@ public class AnswerServicelmpl implements AnswerService {
 
     @Override
     public Integer doUserAnswer( Integer qid, String uid){return answerRepository.doUserAnswer(qid,uid);}
+
+    @Override
+    public List<Answer> get3FirstRightAnswer(Integer enterId, String rightAnswer) {
+        return answerRepository.find3FirstRightAnswer(enterId, rightAnswer);
+    }
 }

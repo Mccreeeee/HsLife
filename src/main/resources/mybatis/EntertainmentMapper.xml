@@ -11,9 +11,10 @@
         <result property="imgurl2" column="imgurl2" jdbcType="VARCHAR"/>
         <result property="imgurl3" column="imgurl3" jdbcType="VARCHAR"/>
         <result property="imgurl4" column="imgurl4" jdbcType="VARCHAR"/>
+        <result property="rightAnswer" column="rightAnswer" jdbcType="VARCHAR" />
     </resultMap>
     <select id="findEntertainmentById" resultMap="EntertainmentsResultMap" parameterType="java.util.Map">
-    SELECT * FROM entertainments where id=#{id}
+    SELECT * FROM entertainments where id = #{id}
     </select>
 
     <select id="findEntertainments" resultMap="EntertainmentsResultMap" parameterType="java.util.Map">
@@ -24,4 +25,7 @@
         SELECT count(*) AS number FROM entertainments
     </select>
 
+    <select id="findRightAnswerById" parameterType="Integer" resultType="String">
+        SELECT rightAnswer FROM entertainments WHERE id = #{id};
+    </select>
 </mapper>

@@ -150,4 +150,13 @@ public class EntertainmentsController {
             return ResponseTypeUtil.createSucResponseWithData("false");
         }
     }
+
+    @PostMapping("/get3FirstRightAnswer")
+    public Map<String, Object> get3FirstRightAnswer(@RequestParam(value = "enterId") Integer enterId) {
+        String rightAnswer = entertainmentService.getRightAnswerById(enterId);
+        List<Answer> firstRightAnswerList = answerService.get3FirstRightAnswer(enterId, rightAnswer);
+        Map<String, Object> forRet = ResponseTypeUtil.createSucResponse();
+        forRet.put("data", firstRightAnswerList);
+        return forRet;
+    }
 }

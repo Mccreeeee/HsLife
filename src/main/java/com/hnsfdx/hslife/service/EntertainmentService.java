@@ -9,4 +9,5 @@ public interface EntertainmentService {
     List<Entertainment> getSingleEntertainmentById(Integer id);
     List<Entertainment> getEntertainments(Integer first,Integer size);
     Integer countEntertainmentsNumber();
+    String getRightAnswerById(Integer id);
 }

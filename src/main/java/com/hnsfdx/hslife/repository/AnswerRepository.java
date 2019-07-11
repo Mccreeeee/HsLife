@@ -14,4 +14,7 @@ public interface AnswerRepository {
     Integer countAllAnswers(Integer enterId);
 
     Integer doUserAnswer( Integer qid, String uid);
+
+    //找到对应entertainmentId以及正确答案的回答
+    List<Answer> find3FirstRightAnswer(Integer enterId, String rightAnswer);
 }

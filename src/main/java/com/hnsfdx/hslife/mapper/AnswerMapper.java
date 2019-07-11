@@ -21,4 +21,8 @@ public interface AnswerMapper {
     Integer countAllAnswers(Integer enterId);
     Integer doUserAnswer(@Param("qid") Integer qid,
                          @Param("uid") String uid);
+    //找到对应entertainmentId以及正确答案的回答
+    List<Answer> find3FirstRightAnswer(@Param(value = "enterId") Integer enterId,
+                                       @Param(value = "rightAnswer") String rightAnswer);
+
 }

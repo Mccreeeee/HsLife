@@ -38,4 +38,8 @@ public class EntertainmentServicelmpl implements EntertainmentService {
         return entertainmentRepository.findEntertainments(first, size);
     }
 
+    @Override
+    public String getRightAnswerById(Integer id) {
+        return entertainmentRepository.findRightAnswerById(id);
+    }
 }

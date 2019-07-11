@@ -36,4 +36,9 @@ public class EntertainmentRepositoryImpl implements EntertainmentRepository {
     public Integer countEntertainmentsNumber(){
         return entertainmentMapper.countEntertainmentsNumber();
     }
+
+    @Override
+    public String findRightAnswerById(Integer id) {
+        return entertainmentMapper.findRightAnswerById(id);
+    }
 }

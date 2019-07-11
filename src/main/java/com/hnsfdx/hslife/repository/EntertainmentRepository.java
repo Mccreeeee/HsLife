@@ -12,4 +12,6 @@ public interface EntertainmentRepository {
     List<Entertainment> findEntertainments(Integer firstIndex, Integer size);
 
     Integer countEntertainmentsNumber();
+
+    String findRightAnswerById(Integer id);
 }

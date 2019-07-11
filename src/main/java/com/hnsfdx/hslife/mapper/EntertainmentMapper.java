@@ -19,4 +19,6 @@ public interface EntertainmentMapper {
     List<Entertainment> findEntertainments(@Param(value = "lindex") Integer firstIndex, @Param(value = "lsize") Integer size);
 
     Integer countEntertainmentsNumber();
+
+    String findRightAnswerById(@Param(value = "id") Integer id);
 }

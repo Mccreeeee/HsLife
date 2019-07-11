@@ -11,6 +11,16 @@ public class Entertainment {
     private String content;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp publishdate;
+    private String rightAnswer;
+    public String getRightAnswer() {
+        return rightAnswer;
+    }
+
+    public void setRightAnswer(String rightAnswer) {
+        this.rightAnswer = rightAnswer;
+    }
+
+
     public Integer getId() {
         return id;
     }
@@ -87,6 +97,7 @@ public class Entertainment {
                 ", imgurl4='" + imgurl4 + '\'' +
                 ", content='" + content + '\'' +
                 ", publishdate=" + publishdate +
+                ", rightAnswer='" + rightAnswer + '\'' +
                 '}';
     }
 }
