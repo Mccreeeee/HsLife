@@ -11,6 +11,7 @@
         <result property="imgurl2" column="imgurl2" jdbcType="VARCHAR"/>
         <result property="imgurl3" column="imgurl3" jdbcType="VARCHAR"/>
         <result property="imgurl4" column="imgurl4" jdbcType="VARCHAR"/>
+        <result property="rightAnswer" column="rightanswer" jdbcType="VARCHAR"/>
     </resultMap>
     <select id="findEntertainmentById" resultMap="EntertainmentsResultMap" parameterType="java.util.Map">
     SELECT * FROM entertainments where id=#{id}

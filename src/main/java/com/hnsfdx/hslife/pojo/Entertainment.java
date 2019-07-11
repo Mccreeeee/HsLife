@@ -9,6 +9,16 @@ public class Entertainment {
     private Integer id=-1;
     private String title,imgurl1,imgurl2,imgurl3,imgurl4;
     private String content;
+
+    public String getRightAnswer() {
+        return rightAnswer;
+    }
+
+    public void setRightAnswer(String rightAnswer) {
+        this.rightAnswer = rightAnswer;
+    }
+
+    private String rightAnswer;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp publishdate;
     public Integer getId() {

@@ -3,6 +3,7 @@ package com.hnsfdx.hslife.mapper;
 import com.hnsfdx.hslife.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface UserMapper {
      List<User> getBatchOfUser(@Param(value = "param_ids")List<String> ids);
      List<User> listUsersRank15();
 
+     @Update("update users set score = score + #{score} where openid = #{id}")
+     void addScore(@Param(value = "id") String id,@Param("score") Integer score);
 }

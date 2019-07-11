@@ -6,8 +6,10 @@ import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.exception.StorageException;
 import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.pojo.Entertainment;
+import com.hnsfdx.hslife.pojo.User;
 import com.hnsfdx.hslife.service.AnswerService;
 import com.hnsfdx.hslife.service.EntertainmentService;
+import com.hnsfdx.hslife.service.UserService;
 import com.hnsfdx.hslife.util.FileUtils;
 import com.hnsfdx.hslife.util.PageUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
@@ -29,11 +31,15 @@ import java.util.logging.Logger;
 public class EntertainmentsController {
     private EntertainmentService entertainmentService;
     private AnswerService answerService;
+    private UserService userService;
 
     @Autowired
-    public EntertainmentsController(EntertainmentService entertainmentService, AnswerService answerService) {
+    public EntertainmentsController(EntertainmentService entertainmentService,
+                                    AnswerService answerService,
+                                    UserService userService) {
         this.entertainmentService = entertainmentService;
         this.answerService = answerService;
+        this.userService = userService;
     }
 
     @ApiOperation(value = "添加一个抢答的问题", httpMethod = "POST", produces = "application/json")
@@ -92,6 +98,10 @@ public class EntertainmentsController {
         if (result == 0) {
             throw new DataInsertException();
         } else {
+            Entertainment entertainment = entertainmentService.getSingleEntertainmentById(answer.getEntertainmentid()).get(0);
+            if(entertainment.getRightAnswer().contentEquals(answer.getContent())){
+                userService.addScore(answer.getReviewer(),10);
+            }
             return ResponseTypeUtil.createSucResponseWithData(answer.getId());
         }
     }
