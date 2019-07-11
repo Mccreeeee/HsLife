@@ -40,4 +40,7 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> listUsersRank15() {
         return userMapper.listUsersRank15();
     }
+
+    @Override
+    public void addScore(String id,Integer score){userMapper.addScore(id,score);}
 }

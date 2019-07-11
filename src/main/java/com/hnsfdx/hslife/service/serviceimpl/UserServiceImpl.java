@@ -53,4 +53,7 @@ public class UserServiceImpl implements UserService {
     public List<User> getUsersRank15() {
         return userRepository.listUsersRank15();
     }
+
+    @Override
+    public void addScore(String id,Integer score){userRepository.addScore(id,score);}
 }

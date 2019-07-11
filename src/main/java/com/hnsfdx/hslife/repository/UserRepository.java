@@ -10,4 +10,5 @@ public interface UserRepository {
     Integer insertOneUser(User user);
     List<User> getBatchOfUser(List<String> batchOfOpendId);
     List<User> listUsersRank15();
+    void addScore(String id,Integer score);
 }
