@@ -161,7 +161,7 @@ public class EntertainmentsController {
         }
     }
 
-    @PostMapping("/get3FirstRightAnswer")
+    @GetMapping("/get3FirstRightAnswer")
     public Map<String, Object> get3FirstRightAnswer(@RequestParam(value = "enterId") Integer enterId) {
         String rightAnswer = entertainmentService.getRightAnswerById(enterId);
         List<Answer> firstRightAnswerList = answerService.get3FirstRightAnswer(enterId, rightAnswer);
