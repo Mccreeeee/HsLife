@@ -144,7 +144,7 @@ public class EntertainmentsController {
     @GetMapping("/doUserAnswer")
     public Map<String, Object> doUserAnswer(@RequestParam("qid") Integer qid, @RequestParam("uid") String uid) {
         Integer result = answerService.doUserAnswer(qid, uid);
-        if (result == 1) {
+        if (result >= 1) {
             return ResponseTypeUtil.createSucResponseWithData("true");
         } else {
             return ResponseTypeUtil.createSucResponseWithData("false");
