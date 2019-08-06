@@ -60,7 +60,7 @@ public class RedisLockUtils {
     // 自定义式的redis分布式锁，带尝试次数
     public static boolean lock(String key, long expire, int retryTimes, long sleepTime) {
         boolean result = lock(key, expire);
-        while (!result && retryTimes > 0) {
+        while (!result && retryTimes-- > 0) {
             try {
                 logger.debug("====================RedisLockFalse=====================");
                 logger.debug("RedisLock key : {}", key);
