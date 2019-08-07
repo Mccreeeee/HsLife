@@ -1,5 +1,7 @@
 package com.hnsfdx.hslife.util;
 
+import com.hnsfdx.hslife.pojo.User;
+import com.hnsfdx.hslife.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +17,19 @@ import redis.clients.jedis.JedisCommands;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 
-public class RedisLockUtils {
-    private static final Logger logger = LoggerFactory.getLogger(RedisLockUtils.class);
+public class RedisUtils {
+    private static final Logger logger = LoggerFactory.getLogger(RedisUtils.class);
     @Autowired
     private static StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    private static UserService userService;
     private static final ThreadLocal<String> lockId = new ThreadLocal<>();
     private static final String UNLOCK_LUA;
+
     static {
         StringBuilder sb = new StringBuilder();
         sb.append("if redis.call(\"get\",KEYS[1]) == ARGV[1] ");
@@ -111,4 +118,23 @@ public class RedisLockUtils {
         lockId.remove();
         return false;
     }
+
+
+    // 缓存排行榜前15数据,过期时间以小时制
+    public static boolean setRankCache(long expire) {
+        Stream<User> userStream = userService.getUsersRank15().stream();
+        boolean flag = userStream.allMatch((item) -> stringRedisTemplate
+                                                    .opsForZSet()
+                                                    .add("UsersRank", item.getUserName(), item.getScore()));
+        // 如果全部添加成功则设置过期时间,否则直接删除缓存,准备重新配置缓存
+        if (!flag) {
+            stringRedisTemplate.delete("UsersRank");
+        } else {
+            stringRedisTemplate.expire("UsersRank", expire, TimeUnit.HOURS);
+        }
+        return flag;
+    }
+
+
+
 }
