@@ -1,5 +1,7 @@
 package com.hnsfdx.hslife.service.serviceimpl;
 
+import com.hnsfdx.hslife.annotation.ReadCache;
+import com.hnsfdx.hslife.annotation.WriteCache;
 import com.hnsfdx.hslife.pojo.Entertainment;
 import com.hnsfdx.hslife.repository.EntertainmentRepository;
 import com.hnsfdx.hslife.repository.repositoryimpl.EntertainmentRepositoryImpl;
@@ -23,21 +25,25 @@ public class EntertainmentServicelmpl implements EntertainmentService {
         return this.entertainmentRepository.countEntertainmentsNumber();
     }
 
+    @WriteCache(value = "entertainment")
     @Override
     public Integer insertEntertainment(Entertainment entertainment) {
         return  entertainmentRepository.insertSingle(entertainment);
     }
 
+    @ReadCache(value = "entertainment")
     @Override
     public List<Entertainment> getSingleEntertainmentById(Integer id) {
         return entertainmentRepository.findEntertainmentById(id);
     }
 
+    @ReadCache(value = "entertainment")
     @Override
     public List<Entertainment> getEntertainments(Integer first, Integer size) {
         return entertainmentRepository.findEntertainments(first, size);
     }
 
+    @ReadCache(value = "entertainment")
     @Override
     public String getRightAnswerById(Integer id) {
         return entertainmentRepository.findRightAnswerById(id);

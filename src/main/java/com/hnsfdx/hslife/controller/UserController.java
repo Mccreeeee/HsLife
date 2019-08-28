@@ -5,12 +5,14 @@ import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.User;
 import com.hnsfdx.hslife.service.UserService;
 import com.hnsfdx.hslife.util.MiniProgramConst;
+import com.hnsfdx.hslife.util.RedisUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,10 +24,12 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
     private UserService userService;
+    private RedisUtils redisUtils;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, RedisUtils redisUtils) {
         this.userService = userService;
+        this.redisUtils = redisUtils;
     }
 
     @GetMapping("/signUp")
@@ -89,9 +93,15 @@ public class UserController {
         Map<String,Object> forRet = ResponseTypeUtil.createSucResponseWithData(data);
         return forRet;
     }
+
     @GetMapping("/getrank15")
     public Map<String,Object> getRankOf15() {
-        List<User> data =  userService.getUsersRank15();
+        List<Map<String, String>> data = redisUtils.getRankCache();
+        if (data.size() == 0) {
+            // 重新设置获取
+            redisUtils.setRankCache(1);
+            data = redisUtils.getRankCache();
+        }
         Map<String,Object> forRet = ResponseTypeUtil.createSucResponseWithData(data);
         return forRet;
     }

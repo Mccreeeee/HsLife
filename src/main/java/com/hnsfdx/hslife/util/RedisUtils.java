@@ -5,30 +5,44 @@ import com.hnsfdx.hslife.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
-import org.springframework.data.redis.core.RedisCallback;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.*;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
-import redis.clients.jedis.JedisCommands;
+import redis.clients.jedis.ScanParams;
+import redis.clients.jedis.ScanResult;
+import redis.clients.jedis.commands.JedisCommands;
+import redis.clients.jedis.commands.MultiKeyCommands;
+import redis.clients.jedis.params.SetParams;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-
+@Configuration
 public class RedisUtils {
     private static final Logger logger = LoggerFactory.getLogger(RedisUtils.class);
+
+    private StringRedisTemplate stringRedisTemplate;
+
+    private UserService userService;
+
     @Autowired
-    private static StringRedisTemplate stringRedisTemplate;
-    @Autowired
-    private static UserService userService;
+    public RedisUtils(StringRedisTemplate stringRedisTemplate, UserService userService) {
+        this.stringRedisTemplate = stringRedisTemplate;
+        this.userService = userService;
+    }
+
     private static final ThreadLocal<String> lockId = new ThreadLocal<>();
     private static final String UNLOCK_LUA;
+    private static final String RANK_KEY = "UsersRank";
 
     static {
         StringBuilder sb = new StringBuilder();
@@ -42,7 +56,7 @@ public class RedisUtils {
     }
 
     // 通用式的redis分布式锁
-    public static boolean lock(String key, long expire) {
+    public boolean lock(String key, long expire) {
         try {
             String result = stringRedisTemplate.execute(new RedisCallback<String>() {
                 @Override
@@ -50,7 +64,9 @@ public class RedisUtils {
                     JedisCommands commands = (JedisCommands) connection.getNativeConnection();
                     String uuid = UUID.randomUUID().toString();
                     lockId.set(uuid);
-                    return commands.set(key, uuid, "NX", "PX", expire);
+                    SetParams setParams = new SetParams();
+                    setParams.nx().px(expire);
+                    return commands.set(key, uuid, setParams);
                 }
             });
             return !StringUtils.isEmpty(result);
@@ -65,7 +81,7 @@ public class RedisUtils {
     }
 
     // 自定义式的redis分布式锁，带尝试次数
-    public static boolean lock(String key, long expire, int retryTimes, long sleepTime) {
+    public boolean lock(String key, long expire, int retryTimes, long sleepTime) {
         boolean result = lock(key, expire);
         while (!result && retryTimes-- > 0) {
             try {
@@ -86,7 +102,7 @@ public class RedisUtils {
     }
 
     // 释放redis分布式锁
-    public static boolean unlock(String key) {
+    public boolean unlock(String key) {
         try {
             List<String> keys = new ArrayList<>();
             keys.add(key);
@@ -120,21 +136,62 @@ public class RedisUtils {
     }
 
 
-    // 缓存排行榜前15数据,过期时间以小时制
-    public static boolean setRankCache(long expire) {
-        Stream<User> userStream = userService.getUsersRank15().stream();
-        boolean flag = userStream.allMatch((item) -> stringRedisTemplate
-                                                    .opsForZSet()
-                                                    .add("UsersRank", item.getUserName(), item.getScore()));
-        // 如果全部添加成功则设置过期时间,否则直接删除缓存,准备重新配置缓存
-        if (!flag) {
-            stringRedisTemplate.delete("UsersRank");
-        } else {
-            stringRedisTemplate.expire("UsersRank", expire, TimeUnit.HOURS);
+    // 缓存排行榜前15数据,过期时间以小时制，从MySQL中读
+    public boolean setRankCache(long expire) {
+        List<User> users = userService.getUsersRank15();
+        Stream<User> userStream = users.stream();
+        try {
+            userStream.forEach((item) -> stringRedisTemplate
+                    .opsForZSet()
+                    .add(RANK_KEY, item.getUserName(), item.getScore()));
+        } catch (Exception e) {
+            stringRedisTemplate.delete(RANK_KEY);
+            return false;
         }
-        return flag;
+        // 如果全部添加成功则设置过期时间,否则直接删除缓存,准备重新配置缓存
+        stringRedisTemplate.expire(RANK_KEY, expire, TimeUnit.HOURS);
+        return true;
     }
 
+    // 获得缓存中的数据并用List保存起来
+    public List<Map<String, String>> getRankCache() {
+        Set<ZSetOperations.TypedTuple<String>> rankSet = stringRedisTemplate
+                .opsForZSet()
+                .reverseRangeWithScores(RANK_KEY, 0, -1);
+        List<Map<String, String>> rankList = new ArrayList<>();
+        rankSet.forEach((item) -> {
+            Map<String, String> rankMap = new HashMap<>();
+            rankMap.put(item.getValue(), String.valueOf(item.getScore()));
+            rankList.add(rankMap);
+        });
+        return rankList;
+    }
 
+    // 找到pattern匹配的key
+    private Set<String> scan(String pattern) {
+        return stringRedisTemplate.execute((RedisCallback<Set<String>>) connection -> {
+            Set<String> keys = new HashSet<>();
+            JedisCommands commands = (JedisCommands) connection.getNativeConnection();
+            MultiKeyCommands multiKeyCommands = (MultiKeyCommands) commands;
+            ScanParams scanParams = new ScanParams();
+            scanParams.match("*" + pattern + "*");
+            scanParams.count(1000);
+            ScanResult<String> scan = multiKeyCommands.scan("0", scanParams);
+            while (null != scan.getCursor()) {
+                keys.addAll(scan.getResult());
+                if (!"0".equals(scan.getCursor()) && scan.getCursor() != null) {
+                    scan = multiKeyCommands.scan(scan.getCursor(), scanParams);
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            return keys;
+        });
+    }
 
+    public void delPatternKeys(String pattern) {
+        Set<String> keys = scan(pattern);
+        keys.forEach(item -> stringRedisTemplate.delete(item));
+    }
 }

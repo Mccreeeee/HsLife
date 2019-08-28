@@ -1,5 +1,7 @@
 package com.hnsfdx.hslife.controller;
 
+import com.hnsfdx.hslife.annotation.ReadCache;
+import com.hnsfdx.hslife.annotation.WriteCache;
 import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.AuthException;
 import com.hnsfdx.hslife.exception.DataInsertException;
@@ -48,6 +50,8 @@ public class EntertainmentsController {
                     @ApiResponse(code = 200, message = "")
             }
     )
+
+
     @PostMapping("/addEntertainment")
     public Map<String, Object> addEntertainment(@RequestBody Entertainment entertainment) {
         Integer result = entertainmentService.insertEntertainment(entertainment);

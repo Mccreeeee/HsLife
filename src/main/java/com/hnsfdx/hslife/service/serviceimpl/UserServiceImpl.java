@@ -1,5 +1,7 @@
 package com.hnsfdx.hslife.service.serviceimpl;
 
+import com.hnsfdx.hslife.annotation.ReadCache;
+import com.hnsfdx.hslife.annotation.WriteCache;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.pojo.User;
 import com.hnsfdx.hslife.repository.UserRepository;
@@ -24,11 +26,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByOpenId(openId);
     }
 
+    @WriteCache(value = "user")
     @Override
     public Integer addUser(User user) {
         return userRepository.insertOneUser(user);
     }
 
+    @ReadCache(value = "user")
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAllUsers();
@@ -44,6 +48,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @ReadCache(value = "user")
     @Override
     public List<User> getBatchOfUser(List<String> batchOfOpendId){
         return userRepository.getBatchOfUser(batchOfOpendId);
@@ -54,6 +59,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.listUsersRank15();
     }
 
+    @WriteCache(value = "user")
     @Override
     public void addScore(String id,Integer score){userRepository.addScore(id,score);}
 }
