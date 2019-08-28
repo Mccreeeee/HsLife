@@ -8,38 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
-import org.springframework.data.redis.core.*;
-import org.springframework.stereotype.Component;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.util.StringUtils;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisCluster;
-import redis.clients.jedis.ScanParams;
-import redis.clients.jedis.ScanResult;
-import redis.clients.jedis.commands.JedisCommands;
-import redis.clients.jedis.commands.MultiKeyCommands;
-import redis.clients.jedis.params.SetParams;
+import redis.clients.jedis.*;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 @Configuration
 public class RedisUtils {
     private static final Logger logger = LoggerFactory.getLogger(RedisUtils.class);
-
-    private StringRedisTemplate stringRedisTemplate;
-
-    private UserService userService;
-
-    @Autowired
-    public RedisUtils(StringRedisTemplate stringRedisTemplate, UserService userService) {
-        this.stringRedisTemplate = stringRedisTemplate;
-        this.userService = userService;
-    }
-
     private static final ThreadLocal<String> lockId = new ThreadLocal<>();
     private static final String UNLOCK_LUA;
     private static final String RANK_KEY = "UsersRank";
@@ -55,6 +36,15 @@ public class RedisUtils {
         UNLOCK_LUA = sb.toString();
     }
 
+    private StringRedisTemplate stringRedisTemplate;
+    private UserService userService;
+
+    @Autowired
+    public RedisUtils(StringRedisTemplate stringRedisTemplate, UserService userService) {
+        this.stringRedisTemplate = stringRedisTemplate;
+        this.userService = userService;
+    }
+
     // 通用式的redis分布式锁
     public boolean lock(String key, long expire) {
         try {
@@ -64,9 +54,7 @@ public class RedisUtils {
                     JedisCommands commands = (JedisCommands) connection.getNativeConnection();
                     String uuid = UUID.randomUUID().toString();
                     lockId.set(uuid);
-                    SetParams setParams = new SetParams();
-                    setParams.nx().px(expire);
-                    return commands.set(key, uuid, setParams);
+                    return commands.set(key, uuid, "NX", "PX", expire);
                 }
             });
             return !StringUtils.isEmpty(result);
@@ -177,10 +165,10 @@ public class RedisUtils {
             scanParams.match("*" + pattern + "*");
             scanParams.count(1000);
             ScanResult<String> scan = multiKeyCommands.scan("0", scanParams);
-            while (null != scan.getCursor()) {
+            while (null != scan.getStringCursor()) {
                 keys.addAll(scan.getResult());
-                if (!"0".equals(scan.getCursor()) && scan.getCursor() != null) {
-                    scan = multiKeyCommands.scan(scan.getCursor(), scanParams);
+                if (!"0".equals(scan.getStringCursor()) && scan.getStringCursor() != null) {
+                    scan = multiKeyCommands.scan(scan.getStringCursor(), scanParams);
                     continue;
                 } else {
                     break;
@@ -192,6 +180,8 @@ public class RedisUtils {
 
     public void delPatternKeys(String pattern) {
         Set<String> keys = scan(pattern);
-        keys.forEach(item -> stringRedisTemplate.delete(item));
+        if (keys.size() != 0) {
+            keys.forEach(item -> stringRedisTemplate.delete(item));
+        }
     }
 }

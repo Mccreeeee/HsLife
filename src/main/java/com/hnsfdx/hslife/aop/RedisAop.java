@@ -102,9 +102,9 @@ public class RedisAop {
 
     // 淘汰可能会有问题的所有缓存
     @AfterReturning(pointcut = "writePointCut()", returning = "object")
-    public void writeEnhancement(Object object, JoinPoint joinPoint) {
+    public void writeEnhancement(JoinPoint joinPoint, Object object) {
         // 返回1代表操作数据库成功，要淘汰Redis缓存
-        if (object.equals(1)) {
+        if (Integer.valueOf(1).equals(object)) {
             String pattern = joinPoint.getSignature().getDeclaringType().getSimpleName();
             redisUtils.delPatternKeys(pattern);
         }

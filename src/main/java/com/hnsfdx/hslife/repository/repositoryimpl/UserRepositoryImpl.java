@@ -42,5 +42,5 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void addScore(String id,Integer score){userMapper.addScore(id,score);}
+    public Integer addScore(String id,Integer score){return userMapper.addScore(id,score);}
 }

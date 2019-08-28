@@ -11,5 +11,5 @@ public interface UserService {
     boolean tryAddUser(User user);
     List<User> getBatchOfUser(List<String> batchOfOpendId);
     List<User> getUsersRank15();
-    void addScore(String id,Integer score);
+    Integer addScore(String id,Integer score);
 }

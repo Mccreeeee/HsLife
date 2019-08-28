@@ -61,5 +61,5 @@ public class UserServiceImpl implements UserService {
 
     @WriteCache(value = "user")
     @Override
-    public void addScore(String id,Integer score){userRepository.addScore(id,score);}
+    public Integer addScore(String id,Integer score){return userRepository.addScore(id,score);}
 }

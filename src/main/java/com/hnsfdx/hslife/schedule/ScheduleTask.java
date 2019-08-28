@@ -14,7 +14,7 @@ public class ScheduleTask {
         this.redisUtils = redisUtils;
     }
 
-    @Scheduled(fixedDelay = 1000 * 60)
+    @Scheduled(fixedDelay = 1000 * 60 * 60)
     public void setRank15Cache() {
         redisUtils.setRankCache(1);
     }

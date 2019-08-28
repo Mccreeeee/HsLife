@@ -2,6 +2,7 @@ package com.hnsfdx.hslife.controller;
 
 import com.hnsfdx.hslife.annotation.ReadCache;
 import com.hnsfdx.hslife.annotation.WriteCache;
+import com.hnsfdx.hslife.aop.RedisAop;
 import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.AuthException;
 import com.hnsfdx.hslife.exception.DataInsertException;
@@ -14,6 +15,7 @@ import com.hnsfdx.hslife.service.EntertainmentService;
 import com.hnsfdx.hslife.service.UserService;
 import com.hnsfdx.hslife.util.FileUtils;
 import com.hnsfdx.hslife.util.PageUtils;
+import com.hnsfdx.hslife.util.RedisUtils;
 import com.hnsfdx.hslife.util.ResponseTypeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,15 +36,19 @@ public class EntertainmentsController {
     private EntertainmentService entertainmentService;
     private AnswerService answerService;
     private UserService userService;
+    private RedisUtils redisUtils;
 
     @Autowired
     public EntertainmentsController(EntertainmentService entertainmentService,
                                     AnswerService answerService,
-                                    UserService userService) {
+                                    UserService userService,
+                                    RedisUtils redisUtils) {
         this.entertainmentService = entertainmentService;
         this.answerService = answerService;
         this.userService = userService;
+        this.redisUtils = redisUtils;
     }
+
 
     @ApiOperation(value = "添加一个抢答的问题", httpMethod = "POST", produces = "application/json")
     @ApiResponses(
@@ -98,6 +104,7 @@ public class EntertainmentsController {
 
     @PostMapping("/addAnswer")
     public Map<String, Object> addAnswer(@RequestBody Answer answer) {
+        redisUtils.lock(String.valueOf(answer.getEntertainmentid()), 111700, 3,  100);
         Integer result = answerService.addSingleAnswer(answer);
         if (result == 0) {
             throw new DataInsertException();
@@ -106,6 +113,7 @@ public class EntertainmentsController {
             if(entertainment.getRightAnswer().contentEquals(answer.getContent())){
                 userService.addScore(answer.getReviewer(),10);
             }
+            redisUtils.unlock(String.valueOf(answer.getEntertainmentid()));
             return ResponseTypeUtil.createSucResponseWithData(answer.getId());
         }
     }

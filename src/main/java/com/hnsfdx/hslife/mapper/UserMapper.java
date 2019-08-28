@@ -16,5 +16,5 @@ public interface UserMapper {
      List<User> listUsersRank15();
 
      @Update("update users set score = score + #{score} where openid = #{id}")
-     void addScore(@Param(value = "id") String id,@Param("score") Integer score);
+     Integer addScore(@Param(value = "id") String id,@Param("score") Integer score);
 }
