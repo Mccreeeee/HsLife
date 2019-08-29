@@ -2,12 +2,12 @@ package com.hnsfdx.hslife.service.serviceimpl;
 
 import com.hnsfdx.hslife.annotation.ReadCache;
 import com.hnsfdx.hslife.annotation.WriteCache;
+import com.hnsfdx.hslife.async.EventType;
 import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.repository.AnswerRepository;
 import com.hnsfdx.hslife.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.reflect.annotation.AnnotationSupport;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class AnswerServicelmpl implements AnswerService {
         this.answerRepository = answerRepository;
     }
 
-    @WriteCache(value = "answer")
+    @WriteCache(topic = "answer")
     @Override
     public Integer addSingleAnswer(Answer answer){
         return answerRepository.insertSingleAnswer(answer);

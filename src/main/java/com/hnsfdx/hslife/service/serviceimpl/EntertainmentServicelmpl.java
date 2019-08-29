@@ -2,9 +2,9 @@ package com.hnsfdx.hslife.service.serviceimpl;
 
 import com.hnsfdx.hslife.annotation.ReadCache;
 import com.hnsfdx.hslife.annotation.WriteCache;
+import com.hnsfdx.hslife.async.EventType;
 import com.hnsfdx.hslife.pojo.Entertainment;
 import com.hnsfdx.hslife.repository.EntertainmentRepository;
-import com.hnsfdx.hslife.repository.repositoryimpl.EntertainmentRepositoryImpl;
 import com.hnsfdx.hslife.service.EntertainmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class EntertainmentServicelmpl implements EntertainmentService {
         return this.entertainmentRepository.countEntertainmentsNumber();
     }
 
-    @WriteCache(value = "entertainment")
+    @WriteCache(topic = "entertainment")
     @Override
     public Integer insertEntertainment(Entertainment entertainment) {
         return  entertainmentRepository.insertSingle(entertainment);

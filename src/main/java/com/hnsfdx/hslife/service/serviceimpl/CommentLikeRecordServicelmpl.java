@@ -2,6 +2,7 @@ package com.hnsfdx.hslife.service.serviceimpl;
 
 import com.hnsfdx.hslife.annotation.ReadCache;
 import com.hnsfdx.hslife.annotation.WriteCache;
+import com.hnsfdx.hslife.async.EventType;
 import com.hnsfdx.hslife.pojo.CommentLikeRecord;
 import com.hnsfdx.hslife.repository.repositoryimpl.CommentLikeRecordRepositorylmpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,12 @@ public class CommentLikeRecordServicelmpl {
         this.commentLikeRecordRepositorylmpl=commentLikeRecordServicelmpl;
     }
 
-    @WriteCache(value = "commentlike")
+    @WriteCache(topic = "commentlike")
     public Integer insert(CommentLikeRecord commentLikeRecord){
         return commentLikeRecordRepositorylmpl.insert(commentLikeRecord);
     }
 
-    @WriteCache(value = "commentlike")
+    @WriteCache(topic = "commentlike")
     public Integer delete(CommentLikeRecord commentLikeRecord){
         return commentLikeRecordRepositorylmpl.delete(commentLikeRecord);
     }

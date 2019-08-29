@@ -2,6 +2,7 @@ package com.hnsfdx.hslife.service.serviceimpl;
 
 import com.hnsfdx.hslife.annotation.ReadCache;
 import com.hnsfdx.hslife.annotation.WriteCache;
+import com.hnsfdx.hslife.async.EventType;
 import com.hnsfdx.hslife.pojo.Question;
 import com.hnsfdx.hslife.repository.QuestionRepository;
 import com.hnsfdx.hslife.service.QuestionService;
@@ -20,7 +21,7 @@ public class QuestionServiceImpl implements QuestionService {
         this.questionRepository = questionRepository;
     }
 
-    @WriteCache(value = "question")
+    @WriteCache(topic = "question")
     @Override
     public Integer addQuestion(Question question) {
         return questionRepository.insertOneQuestion(question);
@@ -60,13 +61,13 @@ public class QuestionServiceImpl implements QuestionService {
         return questionRepository.findAllQuestionsByQuestionId(questionIds);
     }
 
-    @WriteCache(value = "question")
+    @WriteCache(topic = "question")
     @Override
     public Integer updateQuestion(Question question) {
         return questionRepository.updateSingleQuestion(question);
     }
 
-    @WriteCache(value = "question")
+    @WriteCache(topic = "question")
     @Override
     public Integer deleteQuestion(Integer id) {
         return questionRepository.deleteSingleQuestion(id);

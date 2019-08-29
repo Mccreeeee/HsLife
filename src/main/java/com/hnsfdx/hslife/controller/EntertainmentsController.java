@@ -1,15 +1,14 @@
 package com.hnsfdx.hslife.controller;
 
-import com.hnsfdx.hslife.annotation.ReadCache;
-import com.hnsfdx.hslife.annotation.WriteCache;
-import com.hnsfdx.hslife.aop.RedisAop;
+import com.alibaba.fastjson.JSON;
+import com.hnsfdx.hslife.async.EventType;
+import com.hnsfdx.hslife.async.producer.DBProducer;
 import com.hnsfdx.hslife.exception.ArgsIntroduceException;
 import com.hnsfdx.hslife.exception.AuthException;
 import com.hnsfdx.hslife.exception.DataInsertException;
 import com.hnsfdx.hslife.exception.StorageException;
 import com.hnsfdx.hslife.pojo.Answer;
 import com.hnsfdx.hslife.pojo.Entertainment;
-import com.hnsfdx.hslife.pojo.User;
 import com.hnsfdx.hslife.service.AnswerService;
 import com.hnsfdx.hslife.service.EntertainmentService;
 import com.hnsfdx.hslife.service.UserService;
@@ -21,7 +20,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,18 +35,19 @@ public class EntertainmentsController {
     private AnswerService answerService;
     private UserService userService;
     private RedisUtils redisUtils;
+    private DBProducer dbProducer;
 
-    @Autowired
     public EntertainmentsController(EntertainmentService entertainmentService,
                                     AnswerService answerService,
                                     UserService userService,
-                                    RedisUtils redisUtils) {
+                                    RedisUtils redisUtils,
+                                    DBProducer dbProducer) {
         this.entertainmentService = entertainmentService;
         this.answerService = answerService;
         this.userService = userService;
         this.redisUtils = redisUtils;
+        this.dbProducer = dbProducer;
     }
-
 
     @ApiOperation(value = "添加一个抢答的问题", httpMethod = "POST", produces = "application/json")
     @ApiResponses(
@@ -104,19 +103,37 @@ public class EntertainmentsController {
 
     @PostMapping("/addAnswer")
     public Map<String, Object> addAnswer(@RequestBody Answer answer) {
-        redisUtils.lock(String.valueOf(answer.getEntertainmentid()), 111700, 3,  100);
+        redisUtils.lock(String.valueOf(answer.getEntertainmentid()), 700, 3, 100);
         Integer result = answerService.addSingleAnswer(answer);
         if (result == 0) {
             throw new DataInsertException();
         } else {
             Entertainment entertainment = entertainmentService.getSingleEntertainmentById(answer.getEntertainmentid()).get(0);
-            if(entertainment.getRightAnswer().contentEquals(answer.getContent())){
-                userService.addScore(answer.getReviewer(),10);
+            if (entertainment.getRightAnswer().contentEquals(answer.getContent())) {
+                userService.addScore(answer.getReviewer(), 10);
             }
             redisUtils.unlock(String.valueOf(answer.getEntertainmentid()));
             return ResponseTypeUtil.createSucResponseWithData(answer.getId());
         }
     }
+
+    // MQ方法，供选择，此时需要一个全局ID，否则因为解耦了的原因，无法从MyBatis中得到返回的主键ID
+    @PostMapping("/addanswerasync")
+    public Map<String, Object> addAnswerAsync(@RequestBody Answer answer) {
+        redisUtils.lock(String.valueOf(answer.getEntertainmentid()), 700, 3, 100);
+        try {
+            dbProducer.sendMsg("answer", JSON.toJSONString(answer), EventType.INSERT);
+        } catch (Exception e) {
+            throw new DataInsertException();
+        }
+        Entertainment entertainment = entertainmentService.getSingleEntertainmentById(answer.getEntertainmentid()).get(0);
+        if (entertainment.getRightAnswer().contentEquals(answer.getContent())) {
+            userService.addScore(answer.getReviewer(), 10);
+        }
+        redisUtils.unlock(String.valueOf(answer.getEntertainmentid()));
+        return ResponseTypeUtil.createSucResponseWithData(answer.getId());
+    }
+
 
     @GetMapping("/getAnswer")
     public Map<String, Object> getAnswer(@RequestParam("enterId") Integer enterId, @RequestParam("page") Integer page) {

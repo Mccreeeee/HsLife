@@ -2,6 +2,7 @@ package com.hnsfdx.hslife.service.serviceimpl;
 
 import com.hnsfdx.hslife.annotation.ReadCache;
 import com.hnsfdx.hslife.annotation.WriteCache;
+import com.hnsfdx.hslife.async.EventType;
 import com.hnsfdx.hslife.pojo.News;
 import com.hnsfdx.hslife.repository.NewsRepository;
 import com.hnsfdx.hslife.service.NewsService;
@@ -18,7 +19,7 @@ public class NewsServiceImpl implements NewsService {
     public NewsServiceImpl(NewsRepository newsRepository) {
         this.newsRepository = newsRepository;
     }
-    @WriteCache(value = "news")
+    @WriteCache(topic = "news")
     @Override
     public Integer addNews(News oneNews) {
         return newsRepository.insertOneNews(oneNews);

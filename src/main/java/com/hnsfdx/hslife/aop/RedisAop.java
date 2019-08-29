@@ -1,6 +1,9 @@
 package com.hnsfdx.hslife.aop;
 
 import com.alibaba.fastjson.JSON;
+import com.hnsfdx.hslife.annotation.WriteCache;
+import com.hnsfdx.hslife.async.EventModel;
+import com.hnsfdx.hslife.async.producer.DBProducer;
 import com.hnsfdx.hslife.exception.AuthException;
 import com.hnsfdx.hslife.util.RedisUtils;
 import org.aspectj.lang.JoinPoint;
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 
@@ -37,7 +41,6 @@ public class RedisAop {
         this.stringRedisTemplate = stringRedisTemplate;
         this.redisUtils = redisUtils;
     }
-
 
     // 读切面
     @Pointcut("@annotation(com.hnsfdx.hslife.annotation.ReadCache)")

@@ -2,6 +2,7 @@ package com.hnsfdx.hslife.service.serviceimpl;
 
 import com.hnsfdx.hslife.annotation.ReadCache;
 import com.hnsfdx.hslife.annotation.WriteCache;
+import com.hnsfdx.hslife.async.EventType;
 import com.hnsfdx.hslife.pojo.Comment;
 import com.hnsfdx.hslife.repository.CommentRepository;
 import com.hnsfdx.hslife.service.CommentService;
@@ -19,7 +20,7 @@ public class CommentServiceImpl implements CommentService {
         this.commentRepository = commentRepository;
     }
 
-    @WriteCache(value = "comment")
+    @WriteCache(topic = "comment")
     @Override
     public Integer addComment(Comment comment) {
         return commentRepository.insertOneComment(comment);
@@ -48,13 +49,13 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.findAllCommentsByReviewerOpenId(openId);
     }
 
-    @WriteCache(value = "comment")
+    @WriteCache(topic = "comment")
     @Override
     public Integer updateComment(Comment comment) {
         return commentRepository.updateSingleComment(comment);
     }
 
-    @WriteCache(value = "comment")
+    @WriteCache(topic = "comment")
     @Override
     public Integer deleteComment(Integer id) {
         return commentRepository.deleteSingleComment(id);
